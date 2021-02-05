@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["src/miniRequest.ts"],"sourcesContent":["export default function miniRequest(): void {\n  console.log(23423);\n}\n"],"names":[],"mappings":";;;;;;WAAwB,WAAW;MACjC,OAAO,CAAC,GAAG,CAAC,KAAK,CAAC,CAAC;EACrB;;;;;;;;"}
