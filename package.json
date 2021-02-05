@@ -1,0 +1,26 @@
+{
+  "name": "mini-request",
+  "version": "1.0.0",
+  "description": "mini program axois request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bugszhou/mini-request.git"
+  },
+  "keywords": [
+    "mini",
+    "program",
+    "axios",
+    "request"
+  ],
+  "author": "yiri.zhou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bugszhou/mini-request/issues"
+  },
+  "homepage": "https://github.com/bugszhou/mini-request#readme",
+  "types": "typings/index.d.ts"
+}
