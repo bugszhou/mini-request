@@ -10,7 +10,7 @@ import { forEach, isPlainObject, isUndefined, merge } from "../helpers/utils";
 
 export default function mergeConfig(
   config1: IAppletsRequestConfig,
-  optionalConfig2?: IAppletsRequestConfig,
+  optionalConfig2?: IAppletsRequestConfig
 ): IAppletsRequestConfig {
   const config2 = optionalConfig2 || {};
 
@@ -28,7 +28,19 @@ export default function mergeConfig(
   const directMergeKeys = ["validateStatus"];
 
   // 优先从config2中取值，config2中没有值的，再从config1取值
-  const config2FirstConfig1DefaultKeys = ["timeout"];
+  const config2FirstConfig1DefaultKeys = [
+    "baseURL",
+    "transformConfig",
+    "transformRequest",
+    "transformResponse",
+    "paramsSerializer",
+    "timeout",
+    "adapter",
+    "responseType",
+    "xsrfCookieName",
+    "xsrfHeaderName",
+    "cancelToken",
+  ];
 
   valueFromConfig2Keys.forEach(getValueFromConfig2);
 
