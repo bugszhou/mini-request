@@ -10,9 +10,9 @@ import copyConfig from "../helpers/copyConfig";
 import { forEach } from "../helpers/utils";
 
 export default function transformConfig(
-  config: IMiniRequestConfig,
-  fns: IMiniRequestConfig["transformConfig"],
-): IMiniRequestConfig {
+  config: IAppletsRequestConfig,
+  fns: IAppletsRequestConfig["transformConfig"],
+): IAppletsRequestConfig {
   let formattedConfig = config;
 
   forEach(fns, (fn) => {

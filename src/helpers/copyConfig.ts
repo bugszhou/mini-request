@@ -9,10 +9,10 @@
 import { merge } from "./utils";
 
 export default function copyConfig(
-  config: IMiniRequestConfig,
-): IMiniRequestConfig {
+  config: IAppletsRequestConfig,
+): IAppletsRequestConfig {
   if (!config) {
     return config;
   }
-  return merge({}, config) as IMiniRequestConfig;
+  return merge({}, config) as IAppletsRequestConfig;
 }

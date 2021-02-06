@@ -9,14 +9,14 @@
 import { forEach } from "../helpers/utils";
 
 export type ITransformer =
-  | IMiniRequest.ITransformer
-  | IMiniRequest.ITransformer[];
+  | IAppletsRequest.ITransformer
+  | IAppletsRequest.ITransformer[];
 
 export default function transformData(
   data: any,
   headers: any,
   fns: ITransformer | undefined,
-): IMiniRequest.IDataType {
+): IAppletsRequest.IDataType {
   let formattedData = data;
 
   forEach(fns, (fn) => {

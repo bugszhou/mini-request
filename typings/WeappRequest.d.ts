@@ -1,4 +1,4 @@
-declare namespace IMiniRequestWx {
+declare namespace IAppletsRequestWx {
   interface GeneralCallbackResult {
     errMsg: string;
   }
@@ -17,7 +17,7 @@ declare namespace IMiniRequestWx {
     /** 接口调用结束的回调函数（调用成功、失败都会执行） */
     complete?: RequestCompleteCallback;
     /** 请求的参数 */
-    data?: string | IMiniRequest.IAnyObject | ArrayBuffer;
+    data?: string | IAppletsRequest.IAnyObject | ArrayBuffer;
     /** 返回的数据格式
      *
      * 可选值：
@@ -41,7 +41,7 @@ declare namespace IMiniRequestWx {
     /** 设置请求的 header，header 中不能设置 Referer。
      *
      * `content-type` 默认为 `application/json` */
-    header?: IMiniRequest.IAnyObject;
+    header?: IAppletsRequest.IAnyObject;
     /** HTTP 请求方法
      *
      * 可选值：
@@ -84,11 +84,11 @@ declare namespace IMiniRequestWx {
      * 最低基础库： `2.10.0` */
     cookies: string[];
     /** 开发者服务器返回的数据 */
-    data: string | IMiniRequest.IAnyObject | ArrayBuffer;
+    data: string | IAppletsRequest.IAnyObject | ArrayBuffer;
     /** 开发者服务器返回的 HTTP Response Header
      *
      * 最低基础库： `1.2.0` */
-    header: IMiniRequest.IAnyObject;
+    header: IAppletsRequest.IAnyObject;
     /** 网络请求过程中一些调试信息
      *
      * 最低基础库： `2.10.4` */
@@ -154,7 +154,7 @@ declare namespace IMiniRequestWx {
 
   interface OnHeadersReceivedCallbackResult {
     /** 开发者服务器返回的 HTTP Response Header */
-    header: IMiniRequest.IAnyObject;
+    header: IAppletsRequest.IAnyObject;
   }
 
   type OffHeadersReceivedCallback = (

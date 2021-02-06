@@ -12,13 +12,13 @@ import isURLSameOrigin from "../helpers/isURLSameOrigin";
 import storageCookies, { getCookie } from "../adapters/wx/storageCookies";
 import { isPlainObject } from "../helpers/utils";
 import parseCookies from "../helpers/parseCookie";
-import { createError } from "./MiniRequestError";
+import { createError } from "./AppletsRequestError";
 import combineURLs from "../helpers/combineURLs";
 import isAbsoluteURL from "../helpers/isAbsoluteURL";
 
 async function request(
-  config: IMiniRequestConfig,
-): Promise<IMiniRequestResponse> {
+  config: IAppletsRequestConfig,
+): Promise<IAppletsRequestResponse> {
   const transformedConfig = formattedConfig(config);
 
   try {
@@ -64,7 +64,7 @@ async function request(
 
     throwIfCancellationRequested(transformedConfig);
 
-    const err = reason as IMiniRequestRejectData;
+    const err = reason as IAppletsRequestRejectData;
 
     if (err && err.response) {
       err.response.data = transformData(
@@ -83,13 +83,13 @@ async function request(
 /**
  * Throws a `Cancel` if cancellation has been requested.
  */
-function throwIfCancellationRequested(config: IMiniRequestConfig): void {
+function throwIfCancellationRequested(config: IAppletsRequestConfig): void {
   if (config.cancelToken) {
     config.cancelToken.throwIfRequested();
   }
 }
 
-function formattedConfig(config: IMiniRequestConfig): IMiniRequest.IHttpConfig {
+function formattedConfig(config: IAppletsRequestConfig): IAppletsRequest.IHttpConfig {
   throwIfCancellationRequested(config);
 
   const { baseURL, url, params } = config;
@@ -101,7 +101,7 @@ function formattedConfig(config: IMiniRequestConfig): IMiniRequest.IHttpConfig {
   );
   const method = transformMethod(config.method);
 
-  let transformedConfig: IMiniRequestConfig = {
+  let transformedConfig: IAppletsRequestConfig = {
     ...config,
     // 过滤headers中无用的配置
     headers: filterHeaders(config.headers, method),
@@ -157,7 +157,7 @@ function formattedGetRequestTaskFunction(fn: any): () => any {
   };
 }
 
-function getCookiesStr(config: IMiniRequestConfig): string {
+function getCookiesStr(config: IAppletsRequestConfig): string {
   if (config.withCredentials || isURLSameOrigin()) {
     return combineCookiesStr(
       config.headers!.Cookies as string,

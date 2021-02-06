@@ -5,7 +5,7 @@ import { isPlainObject } from "./helpers/utils";
 
 const DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
 
-const defaults: IMiniRequestConfig = {
+const defaults: IAppletsRequestConfig = {
   adapter: getDefaultAdapter(),
 
   method: "GET",
@@ -22,7 +22,7 @@ const defaults: IMiniRequestConfig = {
   transformConfig: [],
 
   transformRequest: [
-    (data, headers): IMiniRequest.IDataType => {
+    (data, headers): IAppletsRequest.IDataType => {
       normalizeHeaderName(headers, "Accept");
       normalizeHeaderName(headers, "Content-Type");
 

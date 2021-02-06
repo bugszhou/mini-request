@@ -38,7 +38,7 @@ export function formattedHeader(
 
 export default function assembleReqHeaders(
   headers: any,
-  data: IMiniRequest.IDataType
+  data: IAppletsRequest.IDataType
 ): Record<string, string> {
   const reqHeaders = formattedHeader(Object.assign(headers || {}), [
     "Content-Type",

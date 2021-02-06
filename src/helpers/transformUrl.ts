@@ -26,7 +26,7 @@ export type IParamsEntries = [string, string];
 function parseUrl(
   url: string,
   params: string | { [key: string]: any },
-  paramsSerializer?: IMiniRequest.IEmptyFN,
+  paramsSerializer?: IAppletsRequest.IEmptyFN,
 ): string {
   const tmpUrl = removeHash(url);
 
@@ -143,7 +143,7 @@ function encode(str: string): string {
 export default function transformUrl(
   url: string,
   params?: any,
-  paramsSerializer?: IMiniRequest.IEmptyFN,
+  paramsSerializer?: IAppletsRequest.IEmptyFN,
 ): string {
   if (!url) {
     return removeHash(url);

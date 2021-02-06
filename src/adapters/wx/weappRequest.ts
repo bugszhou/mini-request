@@ -5,8 +5,8 @@
  * @Last Modified time: 2021-02-05 23:44:52
  * @Description request adapter
  *
- * 1. 执行成功需要返回IMiniRequestResponse，执行失败即为reject返回IMiniRequestAdapterError
- * 2. 如果取消返回IMiniRequest.ICanceler
+ * 1. 执行成功需要返回IAppletsRequestResponse，执行失败即为reject返回IAppletsRequestAdapterError
+ * 2. 如果取消返回IAppletsRequest.ICanceler
  */
 
 import { isUndefined, merge } from "../../helpers/utils";
@@ -14,8 +14,8 @@ import Adapter, { IResolveOptions } from "../Adapter";
 import configAdapter from "./configAdapter";
 
 export default function weappRequest(
-  config: IMiniRequest.IHttpConfig,
-): IMiniRequestPromise {
+  config: IAppletsRequest.IHttpConfig,
+): IAppletsRequestPromise {
   function requestSuccess(res: any): IResolveOptions {
     if (isUndefined(res) || res === null) {
       return {
@@ -79,8 +79,8 @@ export default function weappRequest(
   }
 
   function getReqConfig(
-    originalConfig: IMiniRequestWx.RequestOption,
-  ): IMiniRequest.IHttpConfig {
+    originalConfig: IAppletsRequestWx.RequestOption,
+  ): IAppletsRequest.IHttpConfig {
     if (isUndefined(originalConfig) || originalConfig === null) {
       return {};
     }

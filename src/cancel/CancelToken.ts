@@ -10,7 +10,7 @@ export default class CancelToken {
 
   private promise: Promise<string>;
 
-  private promiseResolve: IMiniRequest.IResolved<any> = (): any => {
+  private promiseResolve: IAppletsRequest.IResolved<any> = (): any => {
     // empty
   };
 
@@ -27,7 +27,7 @@ export default class CancelToken {
     };
   }
 
-  constructor(executor?: IMiniRequest.IEmptyFN) {
+  constructor(executor?: IAppletsRequest.IEmptyFN) {
     this.promise = new Promise((resolve) => {
       this.promiseResolve = resolve;
     });
@@ -45,7 +45,7 @@ export default class CancelToken {
     this.promiseResolve(this.reason);
   }
 
-  execAbort(resolution: IMiniRequest.IResolved<any>): any {
+  execAbort(resolution: IAppletsRequest.IResolved<any>): any {
     return this.promise.then(resolution);
   }
 

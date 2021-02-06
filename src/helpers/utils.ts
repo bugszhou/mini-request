@@ -35,7 +35,7 @@ export function isUndefined(val: any): boolean {
  * @param {Object|Array} obj
  * @param fn
  */
-export function forEach(obj: any, fn: IMiniRequest.IEmptyFN): void {
+export function forEach(obj: any, fn: IAppletsRequest.IEmptyFN): void {
   if (typeof obj === "undefined" || obj === null) {
     return;
   }

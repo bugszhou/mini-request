@@ -30,19 +30,19 @@ export interface IResolveOptions {
 
 interface IRejectOptions {
   errMsg: string;
-  status: IMiniRequestStatus;
+  status: IAppletsRequestStatus;
   data?: any;
   extra?: any;
 }
 
 export default class Adapter {
-  private reqConfig: IMiniRequest.IHttpConfig;
+  private reqConfig: IAppletsRequest.IHttpConfig;
 
-  constructor(config: IMiniRequest.IHttpConfig) {
+  constructor(config: IAppletsRequest.IHttpConfig) {
     this.reqConfig = config;
   }
 
-  resolve(options: IResolveOptions, resolve: IMiniRequest.IResolved<any>): void {
+  resolve(options: IResolveOptions, resolve: IAppletsRequest.IResolved<any>): void {
     if (isUndefined(options) || options === null) {
       resolve({
         headers: {},
@@ -62,7 +62,7 @@ export default class Adapter {
     });
   }
 
-  reject(options: IRejectOptions, reject: IMiniRequest.IRejected): void {
+  reject(options: IRejectOptions, reject: IAppletsRequest.IRejected): void {
     if (isUndefined(options) || options === null) {
       reject({
         status: "NETWORK_ERROR",
@@ -81,7 +81,7 @@ export default class Adapter {
     });
   }
 
-  abort(executor: (cancel: IMiniRequest.ICanceler) => void): void {
+  abort(executor: (cancel: IAppletsRequest.ICanceler) => void): void {
     if (!this.reqConfig.cancelToken) {
       return;
     }

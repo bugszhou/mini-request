@@ -1,7 +1,7 @@
 export default function configAdapter(
-  config: IMiniRequest.IHttpConfig,
-): IMiniRequestWx.RequestOption {
-  const reqConfig: IMiniRequestWx.RequestOption = {
+  config: IAppletsRequest.IHttpConfig,
+): IAppletsRequestWx.RequestOption {
+  const reqConfig: IAppletsRequestWx.RequestOption = {
     url: config.url || "",
     method: config.method,
     data: config.data,

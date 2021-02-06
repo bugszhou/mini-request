@@ -1,7 +1,7 @@
-declare namespace IMiniRequest {
+declare namespace IAppletsRequest {
   type IAnyObject = Record<string, any>;
 
-  type IEmptyFN = (...opts) => any;
+  type IEmptyFN = (...opts: any) => any;
 
   type IMethod =
     | "get"
@@ -31,7 +31,7 @@ declare namespace IMiniRequest {
     | "TRACE"
     | "CONNECT";
 
-  interface IHttpConfig extends IMiniRequestConfig {
+  interface IHttpConfig extends IAppletsRequestConfig {
     method?: INormalizeMethod;
   }
 
@@ -86,116 +86,116 @@ declare namespace IMiniRequest {
     cancel: ICancelTokenInstance["cancel"];
   }
 
-  type ICancelFn = (canceler: IMiniRequest.ICanceler) => boolean;
+  type ICancelFn = (canceler: IAppletsRequest.ICanceler) => boolean;
 }
 
-declare class MiniRequest {
-  MiniRequest: typeof MiniRequest;
+declare class AppletsRequest {
+  AppletsRequest: typeof AppletsRequest;
 
   interceptors: {
-    request: IMiniRequest.IInterceptorManager<IMiniRequestConfig>;
-    response: IMiniRequest.IInterceptorManager<IMiniRequestResponse>;
+    request: IAppletsRequest.IInterceptorManager<IAppletsRequestConfig>;
+    response: IAppletsRequest.IInterceptorManager<IAppletsRequestResponse>;
   };
 
-  defaults: IMiniRequestConfig;
+  defaults: IAppletsRequestConfig;
 
-  request<IData = any>(config: IMiniRequestConfig): IMiniRequestPromise<IData>;
+  request<IData = any>(config: IAppletsRequestConfig): IAppletsRequestPromise<IData>;
 
   /**
    * 支持两个参数
    * @param {string} url 请求的URL
-   * @param {IMiniRequestConfig} config 配置信息
+   * @param {IAppletsRequestConfig} config 配置信息
    */
   request<IData = any>(
     url: string,
-    config?: IMiniRequestConfig
-  ): IMiniRequestPromise<IData>;
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestPromise<IData>;
 
   get<IData = any>(
     url: string,
-    config?: IMiniRequestConfig
-  ): IMiniRequestPromise<IData>;
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestPromise<IData>;
 
   delete<IData = any>(
     url: string,
-    config?: IMiniRequestConfig
-  ): IMiniRequestPromise<IData>;
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestPromise<IData>;
 
   head<IData = any>(
     url: string,
-    config?: IMiniRequestConfig
-  ): IMiniRequestPromise<IData>;
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestPromise<IData>;
 
   options<IData = any>(
     url: string,
-    config?: IMiniRequestConfig
-  ): IMiniRequestPromise<IData>;
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestPromise<IData>;
 
   /**
    * Post Request
    * @param url string
    * @param data string | Record<string, any> | ArrayBuffer
-   * @param config IMiniRequestConfig
+   * @param config IAppletsRequestConfig
    */
   post<IData = any>(
     url: string,
-    data?: IMiniRequest.IDataType,
-    config?: IMiniRequestConfig
-  ): IMiniRequestPromise<IData>;
+    data?: IAppletsRequest.IDataType,
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestPromise<IData>;
 
   put<IData = any>(
     url: string,
-    data?: IMiniRequest.IDataType,
-    config?: IMiniRequestConfig
-  ): IMiniRequestPromise<IData>;
+    data?: IAppletsRequest.IDataType,
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestPromise<IData>;
 
   // patch<IData = any>(
   //   url: string,
-  //   data?: IMiniRequest.IDataType,
-  //   config?: IMiniRequestConfig,
-  // ): IMiniRequestPromise<IData>;
+  //   data?: IAppletsRequest.IDataType,
+  //   config?: IAppletsRequestConfig,
+  // ): IAppletsRequestPromise<IData>;
 
   all<T>(promises: (T | Promise<T>)[]): Promise<T[]>;
 
-  getUri(config: IMiniRequestConfig): string;
+  getUri(config: IAppletsRequestConfig): string;
 
-  create(config?: IMiniRequestConfig): MiniRequestInstance;
+  create(config?: IAppletsRequestConfig): AppletsRequestInstance;
 
-  CancelToken: IMiniRequest.ICancelToken;
+  CancelToken: IAppletsRequest.ICancelToken;
 
   /**
    * 是否是取消返回
-   * @param {IMiniRequest.ICanceler} canceler 取消内容
+   * @param {IAppletsRequest.ICanceler} canceler 取消内容
    */
-  isCancel: IMiniRequest.ICancelFn;
+  isCancel: IAppletsRequest.ICancelFn;
 
   /**
    * 是否是Network Error，如：请求不可用
-   * @param {IMiniRequestResponse} response
+   * @param {IAppletsRequestResponse} response
    */
-  isNetworkError(response: IMiniRequestResponse): boolean;
+  isNetworkError(response: IAppletsRequestResponse): boolean;
 
   /**
    * 是否是超时错误
-   * @param {IMiniRequestResponse} response
+   * @param {IAppletsRequestResponse} response
    */
-  isTimeout(response: IMiniRequestResponse): boolean;
+  isTimeout(response: IAppletsRequestResponse): boolean;
 }
 
-interface MiniRequestInstance extends MiniRequest {
-  <IData = any>(config: IMiniRequestConfig): IMiniRequestPromise<IData>;
+interface AppletsRequestInstance extends AppletsRequest {
+  <IData = any>(config: IAppletsRequestConfig): IAppletsRequestPromise<IData>;
 
   /**
    * 支持两个参数
    *
    * first-param {string} url 请求的URL
    *
-   * second-param {IMiniRequestConfig} config 配置信息
+   * second-param {IAppletsRequestConfig} config 配置信息
    */
   <IData = any>(
     url: string,
-    config?: IMiniRequestConfig
-  ): IMiniRequestPromise<IData>;
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestPromise<IData>;
 }
 
 /**
@@ -209,19 +209,19 @@ interface MiniRequestInstance extends MiniRequest {
  *
  * number类型：参考http status code，如：404、500
  */
-type IMiniRequestStatus = "NETWORK_ERROR" | "TIMEOUT" | number;
+type IAppletsRequestStatus = "NETWORK_ERROR" | "TIMEOUT" | number;
 
-interface IMiniRequestConfig {
-  adapter?: (config: IMiniRequestConfig) => IMiniRequestPromise;
+interface IAppletsRequestConfig {
+  adapter?: (config: IAppletsRequestConfig) => IAppletsRequestPromise;
   url?: string;
-  method?: IMiniRequest.IMethod;
+  method?: IAppletsRequest.IMethod;
   headers?: {
     [key: string]: string | Record<string, string>;
   };
   /**
    * body data
    */
-  data?: IMiniRequest.IDataType;
+  data?: IAppletsRequest.IDataType;
   /**
    * query data
    */
@@ -237,17 +237,17 @@ interface IMiniRequestConfig {
    * 转换config
    */
   transformConfig?:
-    | IMiniRequest.IConfigTransformer
-    | IMiniRequest.IConfigTransformer[];
+    | IAppletsRequest.IConfigTransformer
+    | IAppletsRequest.IConfigTransformer[];
 
-  transformRequest?: IMiniRequest.ITransformer | IMiniRequest.ITransformer[];
+  transformRequest?: IAppletsRequest.ITransformer | IAppletsRequest.ITransformer[];
 
-  transformResponse?: IMiniRequest.ITransformer | IMiniRequest.ITransformer[];
+  transformResponse?: IAppletsRequest.ITransformer | IAppletsRequest.ITransformer[];
 
   /**
    * 取消请求
    */
-  cancelToken?: IMiniRequest.ICancelTokenInstance;
+  cancelToken?: IAppletsRequest.ICancelTokenInstance;
 
   withCredentials?: boolean;
 
@@ -259,32 +259,32 @@ interface IMiniRequestConfig {
   /**
    * 是否执行resolve成功
    */
-  validateStatus?: (number) => boolean;
+  validateStatus?: (status: number) => boolean;
 
   /**
    * 自定义query序列化
    */
-  paramsSerializer?: IMiniRequest.IEmptyFN;
+  paramsSerializer?: IAppletsRequest.IEmptyFN;
 
   baseURL?: string;
 
   [otherConfigName: string]: any;
 }
 
-interface IMiniRequestError {
-  config: IMiniRequest.IHttpConfig;
-  status: IMiniRequestStatus;
-  response: IMiniRequestResponse;
+interface IAppletsRequestError {
+  config: IAppletsRequest.IHttpConfig;
+  status: IAppletsRequestStatus;
+  response: IAppletsRequestResponse;
 }
 
-type IMiniRequestWxRequest = IMiniRequestWx.RequestTask;
+type IAppletsRequestWxRequest = IAppletsRequestWx.RequestTask;
 
-interface IMiniRequestResponse<IData = any> {
+interface IAppletsRequestResponse<IData = any> {
   data: IData;
   status: number;
-  headers: IMiniRequest.IAnyObject;
-  config: IMiniRequest.IHttpConfig;
-  cookies?: IMiniRequest.IAnyObject;
+  headers: IAppletsRequest.IAnyObject;
+  config: IAppletsRequest.IHttpConfig;
+  cookies?: IAppletsRequest.IAnyObject;
 
   /**
    * http request adapters original response
@@ -296,19 +296,19 @@ interface IMiniRequestResponse<IData = any> {
    *
    * 最低基础库： `2.10.4`
    */
-  profile?: IMiniRequestWx.RequestProfile;
+  profile?: IAppletsRequestWx.RequestProfile;
 }
 
-type IMiniRequestPromise<IData = any> = Promise<IMiniRequestResponse<IData>>;
+type IAppletsRequestPromise<IData = any> = Promise<IAppletsRequestResponse<IData>>;
 
-interface IMiniRequestRejectData {
+interface IAppletsRequestRejectData {
   errMsg: string;
-  config: IMiniRequest.IHttpConfig;
+  config: IAppletsRequest.IHttpConfig;
   status: "NETWORK_ERROR" | "TIMEOUT";
-  response?: IMiniRequestResponse;
+  response?: IAppletsRequestResponse;
   extra?: any;
 }
 
-type IMiniRequestAdapterError =
-  | IMiniRequestRejectData
-  | IMiniRequest.ICancelerIns;
+type IAppletsRequestAdapterError =
+  | IAppletsRequestRejectData
+  | IAppletsRequest.ICancelerIns;

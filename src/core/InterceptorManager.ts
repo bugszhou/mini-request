@@ -1,6 +1,6 @@
 interface IInterceptor<T> {
-  fulfilled: IMiniRequest.IResolved<T>;
-  rejected: IMiniRequest.IRejected | undefined;
+  fulfilled: IAppletsRequest.IResolved<T>;
+  rejected: IAppletsRequest.IRejected | undefined;
 }
 
 export default class InterceptorManager<T> {
@@ -11,9 +11,9 @@ export default class InterceptorManager<T> {
   }
 
   use(
-    fulfilled: IMiniRequest.IResolved<T>,
-    rejected?: IMiniRequest.IRejected,
-  ): IMiniRequest.IInterceptorId {
+    fulfilled: IAppletsRequest.IResolved<T>,
+    rejected?: IAppletsRequest.IRejected,
+  ): IAppletsRequest.IInterceptorId {
     this.interceptors.push({
       fulfilled,
       rejected,
@@ -22,7 +22,7 @@ export default class InterceptorManager<T> {
     return this.interceptors.length - 1;
   }
 
-  eject(interceptorId: IMiniRequest.IInterceptorId): void {
+  eject(interceptorId: IAppletsRequest.IInterceptorId): void {
     if (!this.interceptors[interceptorId]) {
       return;
     }

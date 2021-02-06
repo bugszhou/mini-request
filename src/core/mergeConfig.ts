@@ -9,9 +9,9 @@
 import { forEach, isPlainObject, isUndefined, merge } from "../helpers/utils";
 
 export default function mergeConfig(
-  config1: IMiniRequestConfig,
-  optionalConfig2?: IMiniRequestConfig,
-): IMiniRequestConfig {
+  config1: IAppletsRequestConfig,
+  optionalConfig2?: IAppletsRequestConfig,
+): IAppletsRequestConfig {
   const config2 = optionalConfig2 || {};
 
   const config = Object.create(null);
