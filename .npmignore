@@ -21,3 +21,4 @@ commitlint.config.js
 package-lock.json
 rollup.config.es5.js
 rollup.config.js
+coverage/
