@@ -8,6 +8,8 @@
     "lint": "eslint --ext .ts --ext .tsx src -c .eslintrc.js",
     "fix": "npm run lint --fix",
     "test": "jest",
+    "test:report": "jest --coverage",
+    "test:prod": "npm run lint && npm run test -- --no-cache",
     "prebuild": "rimraf dist",
     "dev": "rollup -c rollup.config.ts -w",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts",
