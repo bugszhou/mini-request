@@ -126,7 +126,9 @@ export default class AppletsRequest {
 
   create(config?: IAppletsRequestConfig): AppletsRequestInstance {
     const miniRequest = new AppletsRequest(mergeConfig(defaults, config));
-    const ins: AppletsRequestInstance = AppletsRequest.prototype.request.bind(miniRequest) as AppletsRequestInstance;
+    const ins: AppletsRequestInstance = AppletsRequest.prototype.request.bind(
+      miniRequest
+    ) as AppletsRequestInstance;
 
     return assign(ins, miniRequest);
   }
@@ -180,7 +182,9 @@ export default class AppletsRequest {
     });
   }
 
-  private transformConfig(config?: IAppletsRequestConfig): IAppletsRequestConfig {
+  private transformConfig(
+    config?: IAppletsRequestConfig
+  ): IAppletsRequestConfig {
     return isPlainObject(config) ? config : {};
   }
 }

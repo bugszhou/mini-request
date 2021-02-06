@@ -2,7 +2,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-01-30 16:44:44
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-05 23:10:33
+ * @Last Modified time: 2021-02-06 21:46:26
  * @Description 处理url，将params数据，以query的方式拼接到url上，
  * @example /demo?p1=12&p2=34
  *
@@ -26,7 +26,7 @@ export type IParamsEntries = [string, string];
 function parseUrl(
   url: string,
   params: string | { [key: string]: any },
-  paramsSerializer?: IAppletsRequest.IEmptyFN,
+  paramsSerializer?: IAppletsRequest.IEmptyFN
 ): string {
   const tmpUrl = removeHash(url);
 
@@ -34,16 +34,14 @@ function parseUrl(
     return assembleUrl(tmpUrl, params);
   }
 
-  const paramsKeys = Object.keys(
-    !isObject(params) ? {} : params,
-  );
+  const paramsKeys = Object.keys(!isObject(params) ? {} : params);
 
   if (paramsKeys.length === 0 && !isFunction(paramsSerializer)) {
     return tmpUrl;
   }
 
   const queryStr = isFunction(paramsSerializer)
-    ? paramsSerializer!(params)
+    ? paramsSerializer?.(params)
     : parseQueryStr(paramsKeys, params);
 
   if (!queryStr) {
@@ -143,7 +141,7 @@ function encode(str: string): string {
 export default function transformUrl(
   url: string,
   params?: any,
-  paramsSerializer?: IAppletsRequest.IEmptyFN,
+  paramsSerializer?: IAppletsRequest.IEmptyFN
 ): string {
   if (!url) {
     return removeHash(url);

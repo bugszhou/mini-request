@@ -5,6 +5,7 @@ import camelCase from "lodash.camelcase";
 import typescript from "rollup-plugin-typescript2";
 import json from "@rollup/plugin-json";
 import { terser } from "rollup-plugin-terser";
+import eslint from "@rollup/plugin-eslint";
 
 const pkg = require("./package.json");
 
@@ -30,6 +31,7 @@ export default {
     include: "src/**",
   },
   plugins: [
+    eslint(),
     // Allow json resolution
     json(),
     // Compile TypeScript files

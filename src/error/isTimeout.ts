@@ -1,6 +1,8 @@
 import { isUndefined } from "../helpers/utils";
 
-export default function isTimeout(response: IAppletsRequestRejectData): boolean {
+export default function isTimeout(
+  response: IAppletsRequestRejectData
+): boolean {
   if (isUndefined(response) || response === null) {
     return false;
   }

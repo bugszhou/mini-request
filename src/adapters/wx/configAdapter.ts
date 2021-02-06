@@ -1,5 +1,5 @@
 export default function configAdapter(
-  config: IAppletsRequest.IHttpConfig,
+  config: IAppletsRequest.IHttpConfig
 ): IAppletsRequestWx.RequestOption {
   const reqConfig: IAppletsRequestWx.RequestOption = {
     url: config.url || "",

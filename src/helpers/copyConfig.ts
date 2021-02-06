@@ -2,14 +2,14 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-02 18:16:24
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-02 18:56:46
+ * @Last Modified time: 2021-02-06 21:46:19
  * @Description 创建副本，避免引用类型影响
  */
 
 import { merge } from "./utils";
 
 export default function copyConfig(
-  config: IAppletsRequestConfig,
+  config: IAppletsRequestConfig
 ): IAppletsRequestConfig {
   if (!config) {
     return config;

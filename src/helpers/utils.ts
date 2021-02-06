@@ -58,7 +58,9 @@ export function forEach(obj: any, fn: IAppletsRequest.IEmptyFN): void {
   });
 }
 
-export function merge(...objs: Record<string, any>[]): any[] | Record<string, any> {
+export function merge(
+  ...objs: Record<string, any>[]
+): any[] | Record<string, any> {
   if (objs.length === 0) {
     return Object.create(null);
   }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import assembleReqHeaders, {
   combineCookiesStr,
   filterHeaders,
@@ -17,7 +18,7 @@ import combineURLs from "../helpers/combineURLs";
 import isAbsoluteURL from "../helpers/isAbsoluteURL";
 
 async function request(
-  config: IAppletsRequestConfig,
+  config: IAppletsRequestConfig
 ): Promise<IAppletsRequestResponse> {
   const transformedConfig = formattedConfig(config);
 
@@ -28,7 +29,7 @@ async function request(
 
     if (isPlainObject(res.headers)) {
       res.cookies = parseCookies(
-        formattedHeader(res.headers, ["Set-Cookie"])["Set-Cookie"],
+        formattedHeader(res.headers, ["Set-Cookie"])["Set-Cookie"]
       );
     }
 
@@ -43,7 +44,7 @@ async function request(
       res.data = transformData(
         res.data,
         res.headers,
-        transformedConfig.transformResponse,
+        transformedConfig.transformResponse
       );
 
       return res;
@@ -54,8 +55,8 @@ async function request(
         `Request failed with status code ${res.status}`,
         res.config,
         res.status,
-        res,
-      ),
+        res
+      )
     );
   } catch (reason) {
     if (isCancel(reason)) {
@@ -70,12 +71,12 @@ async function request(
       err.response.data = transformData(
         err.response.data,
         err.response.headers,
-        transformedConfig.transformResponse,
+        transformedConfig.transformResponse
       );
     }
 
     return Promise.reject(
-      createError(err.errMsg, err.config, err.status, err.response, err.extra),
+      createError(err.errMsg, err.config, err.status, err.response, err.extra)
     );
   }
 }
@@ -89,7 +90,9 @@ function throwIfCancellationRequested(config: IAppletsRequestConfig): void {
   }
 }
 
-function formattedConfig(config: IAppletsRequestConfig): IAppletsRequest.IHttpConfig {
+function formattedConfig(
+  config: IAppletsRequestConfig
+): IAppletsRequest.IHttpConfig {
   throwIfCancellationRequested(config);
 
   const { baseURL, url, params } = config;
@@ -97,7 +100,7 @@ function formattedConfig(config: IAppletsRequestConfig): IAppletsRequest.IHttpCo
   const formattedUrl = transformUrl(
     combinedURL!,
     params,
-    config.paramsSerializer,
+    config.paramsSerializer
   );
   const method = transformMethod(config.method);
 
@@ -111,18 +114,18 @@ function formattedConfig(config: IAppletsRequestConfig): IAppletsRequest.IHttpCo
   transformedConfig.data = transformData(
     transformedConfig.data,
     transformedConfig.headers,
-    transformedConfig.transformRequest,
+    transformedConfig.transformRequest
   );
 
   transformedConfig.headers = assembleReqHeaders(
     transformedConfig.headers,
-    transformedConfig.data,
+    transformedConfig.data
   );
 
   // 后执行config转换，最后返回config副本，避免引用类型导致数据混乱问题
   transformedConfig = transformConfig(
     transformedConfig,
-    config.transformConfig,
+    config.transformConfig
   );
 
   // 添加Cookie头
@@ -143,7 +146,7 @@ function formattedConfig(config: IAppletsRequestConfig): IAppletsRequest.IHttpCo
     method,
     headers: transformedConfig.headers as Record<string, string>,
     getRequestTask: formattedGetRequestTaskFunction(
-      transformedConfig.getRequestTask,
+      transformedConfig.getRequestTask
     ),
   };
 }
@@ -161,7 +164,7 @@ function getCookiesStr(config: IAppletsRequestConfig): string {
   if (config.withCredentials || isURLSameOrigin()) {
     return combineCookiesStr(
       config.headers!.Cookies as string,
-      config.xsrfCookieName,
+      config.xsrfCookieName
     );
   }
   return "";

@@ -2,7 +2,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-02 18:26:33
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-02 19:19:24
+ * @Last Modified time: 2021-02-06 22:02:36
  * @Description 执行transform config，并且转换成对应环境的配置文件
  */
 
@@ -11,7 +11,7 @@ import { forEach } from "../helpers/utils";
 
 export default function transformConfig(
   config: IAppletsRequestConfig,
-  fns: IAppletsRequestConfig["transformConfig"],
+  fns: IAppletsRequestConfig["transformConfig"]
 ): IAppletsRequestConfig {
   let formattedConfig = config;
 
