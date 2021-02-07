@@ -20,6 +20,11 @@ const pairSplitRegExp = /; */;
 // eslint-disable-next-line no-control-regex
 const fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
 
+/**
+ *
+ * @param {string} cookiesStr cookies字符串
+ * @param options
+ */
 export default function parseCookies(
   cookiesStr: any,
   options: any = {}
