@@ -8,7 +8,7 @@
  * 6. 可以出现在URL中的特殊字符
  * 7. 保留url中的参数
  */
-import transformUrl from "../src/helpers/transformUrl";
+import transformUrl from "../../src/helpers/transformUrl";
 
 describe("transformUrl", () => {
   it("params undefined", () => {
@@ -27,7 +27,7 @@ describe("transformUrl", () => {
     expect(
       transformUrl("base/url#demo", {
         p1: null,
-        p2: undefined
+        p2: undefined,
       })
     ).toEqual("base/url");
   });
@@ -37,7 +37,7 @@ describe("transformUrl", () => {
       transformUrl("base/url#demo", {
         p1: null,
         p2: undefined,
-        p3: 2
+        p3: 2,
       })
     ).toEqual("base/url?p3=2");
   });
@@ -47,7 +47,7 @@ describe("transformUrl", () => {
       transformUrl("base/url#demo", {
         p1: null,
         p2: undefined,
-        p3: [2, "test"]
+        p3: [2, "test"],
       })
     ).toEqual("base/url?p3[]=2&p3[]=test");
   });
@@ -57,7 +57,7 @@ describe("transformUrl", () => {
       transformUrl("base/url#demo", {
         p1: null,
         p2: undefined,
-        p3: { demo: 3 }
+        p3: { demo: 3 },
       })
     ).toEqual("base/url?p3=%7B%22demo%22:3%7D");
   });
@@ -67,7 +67,7 @@ describe("transformUrl", () => {
       transformUrl("base/url#demo", {
         p1: null,
         p2: undefined,
-        p3: new Date("2021-01-30T13:02:49.173Z")
+        p3: new Date("2021-01-30T13:02:49.173Z"),
       })
     ).toEqual(`base/url?p3=2021-01-30T13:02:49.173Z`);
   });
@@ -77,20 +77,18 @@ describe("transformUrl", () => {
       transformUrl("base/url?demo=test#demo", {
         p1: null,
         p2: undefined,
-        p3: new Date("2021-01-30T13:02:49.173Z")
+        p3: new Date("2021-01-30T13:02:49.173Z"),
       })
     ).toEqual("base/url?demo=test&p3=2021-01-30T13:02:49.173Z");
   });
 
   it("Params is string", () => {
-    expect(
-      transformUrl("base/url", "test")
-    ).toEqual("base/url?test");
+    expect(transformUrl("base/url", "test")).toEqual("base/url?test");
   });
 
   it("Params is string and url has query", () => {
-    expect(
-      transformUrl("base/url?demo=234", "test")
-    ).toEqual("base/url?demo=234&test");
+    expect(transformUrl("base/url?demo=234", "test")).toEqual(
+      "base/url?demo=234&test"
+    );
   });
 });

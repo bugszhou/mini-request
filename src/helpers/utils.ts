@@ -19,6 +19,10 @@ export function isPlainObject(val: any): val is Record<string, any> {
 }
 
 export function assign<T, U>(to: T, from: U): T & U {
+  if (isString(from)) {
+    return to as T & U;
+  }
+
   for (const key in from) {
     (to as T & U)[key] = from[key] as any;
   }
@@ -65,7 +69,7 @@ export function merge(
     return Object.create(null);
   }
 
-  let result: any = {};
+  let result: any = Object.create(null);
   function assignValue(val: any, key: string | number): void {
     if (isPlainObject(result[key]) && isPlainObject(val)) {
       result[key] = merge(result[key], val);
