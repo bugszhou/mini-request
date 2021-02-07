@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for defaults.ts</title>
+    <title>Code coverage report for src/cancel/CancelToken.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="prettify.css" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> defaults.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/cancel</a> CancelToken.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/64</span>
+                <span class='fraction'>0/57</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/64</span>
+                <span class='fraction'>0/57</span>
             </div>
         
             
@@ -114,14 +114,7 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -178,77 +171,63 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import getDefaultAdapter from "./adapters";</span></span></span>
-<span class="cstat-no" title="statement not covered" >import normalizeHeaderName from "./helpers/normalizeHeaderName";</span>
-<span class="cstat-no" title="statement not covered" >import setContentTypeIfUnset from "./helpers/setContentTypeIfUnset";</span>
-<span class="cstat-no" title="statement not covered" >import { isPlainObject } from "./helpers/utils";</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import Cancel from "./Cancel";</span></span></span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const defaults: IAppletsRequestConfig = {</span>
-<span class="cstat-no" title="statement not covered" >  adapter: getDefaultAdapter(),</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  method: "GET",</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  timeout: 10000,</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  headers: {</span>
-<span class="cstat-no" title="statement not covered" >    common: {</span>
-<span class="cstat-no" title="statement not covered" >      Accept: "application/json, text/plain, */*",</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >    ...getDefaultHeaders(),</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  transformConfig: [],</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  transformRequest: [</span>
-<span class="cstat-no" title="statement not covered" >    (data, headers): IAppletsRequest.IDataType =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      normalizeHeaderName(headers, "Accept");</span>
-<span class="cstat-no" title="statement not covered" >      normalizeHeaderName(headers, "Content-Type");</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >      if (isPlainObject(data)) {</span>
-<span class="cstat-no" title="statement not covered" >        setContentTypeIfUnset(headers, "application/json; charset=utf-8");</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      return data;</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >  ],</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  transformResponse: [],</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  xsrfCookieName: "XSRF-TOKEN",</span>
-<span class="cstat-no" title="statement not covered" >  xsrfHeaderName: "X-XSRF-TOKEN",</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  validateStatus(status): boolean {</span>
-<span class="cstat-no" title="statement not covered" >    if (status &gt;= 200 &amp;&amp; status &lt; 300) {</span>
-<span class="cstat-no" title="statement not covered" >      return true;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return false;</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >};</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >function getDefaultHeaders(): any {</span>
-<span class="cstat-no" title="statement not covered" >  const headers: any = {};</span>
-<span class="cstat-no" title="statement not covered" >  ["delete", "get", "head", "options"].forEach((method) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    headers[method] = {};</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
-<span class="cstat-no" title="statement not covered" >  ["post", "put", "patch"].forEach((method) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    headers[method] = {</span>
-<span class="cstat-no" title="statement not covered" >      "Content-Type": DEFAULT_CONTENT_TYPE,</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  return headers;</span>
+<span class="cstat-no" title="statement not covered" >interface ISourceReturn {</span>
+<span class="cstat-no" title="statement not covered" >  token: CancelToken;</span>
+<span class="cstat-no" title="statement not covered" >  cancel: CancelToken["cancel"];</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default defaults;</span>
+<span class="cstat-no" title="statement not covered" >export default class CancelToken {</span>
+<span class="cstat-no" title="statement not covered" >  private reason: Cancel | undefined;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  private promise: Promise&lt;string&gt;;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  private promiseResolve: IAppletsRequest.IResolved&lt;any&gt; = (): any =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    // empty</span>
+<span class="cstat-no" title="statement not covered" >  };</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  static source(): ISourceReturn {</span>
+<span class="cstat-no" title="statement not covered" >    let cancel = (): void =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      // empty</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
+<span class="cstat-no" title="statement not covered" >    const token = new CancelToken((cancelFn) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      cancel = cancelFn;</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+<span class="cstat-no" title="statement not covered" >      token,</span>
+<span class="cstat-no" title="statement not covered" >      cancel,</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  constructor(executor?: IAppletsRequest.IEmptyFN) {</span>
+<span class="cstat-no" title="statement not covered" >    this.promise = new Promise((resolve) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.promiseResolve = resolve;</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (typeof executor === "function") {</span>
+<span class="cstat-no" title="statement not covered" >      executor(this.cancel.bind(this));</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  cancel(message: string): void {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.reason) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    this.reason = new Cancel(message);</span>
+<span class="cstat-no" title="statement not covered" >    this.promiseResolve(this.reason);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  execAbort(resolution: IAppletsRequest.IResolved&lt;any&gt;): any {</span>
+<span class="cstat-no" title="statement not covered" >    return this.promise.then(resolution);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  throwIfRequested(): void {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.reason) {</span>
+<span class="cstat-no" title="statement not covered" >      throw this.reason;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -256,17 +235,17 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Feb 07 2021 11:58:20 GMT+0800 (China Standard Time)
+                at Sun Feb 07 2021 12:25:08 GMT+0800 (China Standard Time)
             </div>
         </div>
-        <script src="prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="sorter.js"></script>
-        <script src="block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     

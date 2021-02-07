@@ -2,8 +2,12 @@ import {
   assign,
   forEach,
   isDate,
+  isFunction,
+  isNumber,
   isObject,
   isPlainObject,
+  isString,
+  isUndefined,
   merge,
 } from "../../src/helpers/utils";
 
@@ -270,6 +274,13 @@ describe("utils module test", () => {
       };
       const c = merge(a, b);
 
+      const d = merge(a, b, {
+        students: {
+          first: "er",
+          second: "sd",
+        },
+      });
+
       b.students.first = "female";
       b.teachers[1] = "d";
 
@@ -292,6 +303,91 @@ describe("utils module test", () => {
         },
         teachers: ["a", "d", "c"],
       });
+
+      expect(d).toEqual({
+        name: "tom",
+        age: 12,
+        sex: "male",
+        students: {
+          first: "er",
+          second: "sd",
+        },
+        teachers: ["a", "b", "c"],
+      });
+    });
+
+    it("no params", () => {
+      const a = merge();
+
+      expect(a).toEqual({});
+    });
+  });
+
+  describe("isNumber", () => {
+    it("plain number", () => {
+      expect(isNumber(234)).toBeTruthy();
+    });
+
+    it("object Number", () => {
+      expect(isNumber(new Number(234))).toBeFalsy();
+    });
+
+    it("string number", () => {
+      expect(isNumber("1234")).toBeFalsy();
+    });
+
+    it("null or undefined", () => {
+      expect(isNumber(null)).toBeFalsy();
+      expect(isNumber(undefined)).toBeFalsy();
+    });
+  });
+
+  describe("isString", () => {
+    it("plain string", () => {
+      expect(isString("string")).toBeTruthy();
+    });
+
+    it("object string", () => {
+      expect(isString(new String("string"))).toBeFalsy();
+    });
+
+    it("null or undefined", () => {
+      expect(isString(null)).toBeFalsy();
+      expect(isString(undefined)).toBeFalsy();
+    });
+  });
+
+  describe("isFunction", () => {
+    it("function", () => {
+      expect(
+        isFunction(() => {
+          // empty
+        })
+      ).toBeTruthy();
+    });
+
+    it("other", () => {
+      expect(isFunction(1234)).toBeFalsy();
+      expect(isFunction("string")).toBeFalsy();
+      expect(isFunction(null)).toBeFalsy();
+      expect(isFunction(undefined)).toBeFalsy();
+    });
+  });
+
+  describe("isUndefined", () => {
+    it("undefined", () => {
+      expect(isUndefined(undefined)).toBeTruthy();
+    });
+
+    it("other", () => {
+      expect(isUndefined(1234)).toBeFalsy();
+      expect(isUndefined("string")).toBeFalsy();
+      expect(isUndefined(null)).toBeFalsy();
+      expect(
+        isUndefined(() => {
+          // empty
+        })
+      ).toBeFalsy();
     });
   });
 });

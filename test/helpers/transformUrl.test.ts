@@ -72,6 +72,15 @@ describe("transformUrl", () => {
     ).toEqual(`base/url?p3=2021-01-30T13:02:49.173Z`);
   });
 
+  it("Param Empty String", () => {
+    expect(
+      transformUrl("base/url#demo", {
+        p1: "",
+        p2: "",
+      })
+    ).toEqual(`base/url`);
+  });
+
   it("Param Remain Query", () => {
     expect(
       transformUrl("base/url?demo=test#demo", {
@@ -90,5 +99,28 @@ describe("transformUrl", () => {
     expect(transformUrl("base/url?demo=234", "test")).toEqual(
       "base/url?demo=234&test"
     );
+  });
+
+  it("paramsSerializer", () => {
+    expect(
+      transformUrl(
+        "base/url?demo=234",
+        { test: 132, name: "tom" },
+        (params) => {
+          const queryStrs = Object.entries(params).map(([key, val]) => {
+            return `${key}=${val}`;
+          });
+          return queryStrs.join("&");
+        }
+      )
+    ).toEqual("base/url?demo=234&test=132&name=tom");
+  });
+
+  it("paramsSerializer no transform param", () => {
+    expect(
+      transformUrl("base/url?demo=234", { test: 132, name: "tom" }, () => {
+        return "name=tom";
+      })
+    ).toEqual("base/url?demo=234&name=tom");
   });
 });
