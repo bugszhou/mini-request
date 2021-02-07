@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1612701104709" clover="3.2.0">
-  <project timestamp="1612701104709" name="All files">
-    <metrics statements="1743" coveredstatements="266" conditionals="122" coveredconditionals="92" methods="50" coveredmethods="22" elements="1915" coveredelements="380" complexity="0" loc="1743" ncloc="1743" packages="7" files="31" classes="31"/>
+<coverage generated="1612702370724" clover="3.2.0">
+  <project timestamp="1612702370724" name="All files">
+    <metrics statements="1743" coveredstatements="280" conditionals="123" coveredconditionals="94" methods="50" coveredmethods="23" elements="1916" coveredelements="397" complexity="0" loc="1743" ncloc="1743" packages="7" files="31" classes="31"/>
     <package name="src">
       <metrics statements="86" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="appletsRequest.ts" path="/Users/gary/My/front/mini-request/src/appletsRequest.ts">
@@ -1196,7 +1196,7 @@
       </file>
     </package>
     <package name="src.helpers">
-      <metrics statements="628" coveredstatements="266" conditionals="102" coveredconditionals="92" methods="30" coveredmethods="22"/>
+      <metrics statements="628" coveredstatements="280" conditionals="103" coveredconditionals="94" methods="30" coveredmethods="23"/>
       <file name="assembleHeaders.ts" path="/Users/gary/My/front/mini-request/src/helpers/assembleHeaders.ts">
         <metrics statements="96" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
@@ -1567,21 +1567,21 @@
         <line num="198" count="0" type="stmt"/>
       </file>
       <file name="setContentTypeIfUnset.ts" path="/Users/gary/My/front/mini-request/src/helpers/setContentTypeIfUnset.ts">
-        <metrics statements="14" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
+        <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
       </file>
       <file name="transformMethod.ts" path="/Users/gary/My/front/mini-request/src/helpers/transformMethod.ts">
         <metrics statements="8" coveredstatements="8" conditionals="3" coveredconditionals="3" methods="1" coveredmethods="1"/>
@@ -1781,9 +1781,9 @@
         <line num="30" count="7" type="stmt"/>
         <line num="31" count="7" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="33" count="5" type="cond" truecount="1" falsecount="0"/>
-        <line num="34" count="5" type="stmt"/>
-        <line num="35" count="5" type="stmt"/>
+        <line num="33" count="9" type="cond" truecount="1" falsecount="0"/>
+        <line num="34" count="9" type="stmt"/>
+        <line num="35" count="9" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>

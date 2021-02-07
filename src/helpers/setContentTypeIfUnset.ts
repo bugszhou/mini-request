@@ -7,7 +7,7 @@ export default function setContentTypeIfUnset(
   if (
     !isUndefined(headers) &&
     headers &&
-    !isUndefined(headers["Content-Type"])
+    isUndefined(headers["Content-Type"])
   ) {
     headers["Content-Type"] = value;
   }
