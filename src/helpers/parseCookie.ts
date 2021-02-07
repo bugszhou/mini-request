@@ -21,12 +21,14 @@ const pairSplitRegExp = /; */;
 const fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
 
 export default function parseCookies(
-  cookiesStr: string
+  cookiesStr: any,
+  options: any = {}
 ): Record<string, string> {
   if (!cookiesStr) {
     return {};
   }
-  return parse(cookiesStr);
+
+  return parse(cookiesStr, options);
 }
 
 /**
@@ -95,34 +97,33 @@ export function serializeCookie(
   const encodeFn = options.encode || encode;
 
   serializeThrowErr(typeof encodeFn !== "function", "option encode is invalid");
-
-  serializeThrowErr(regPass(name), "argument name is invalid");
+  serializeThrowErr(!regPass(name), "argument name is invalid");
 
   const value = encodeFn(val);
 
-  serializeThrowErr(regPass(value), "argument val is invalid");
+  serializeThrowErr(!regPass(value), "argument val is invalid");
 
   let str = `${name}=${value}`;
 
-  if (options.maxAge !== null) {
+  if (options.maxAge || options.maxAge === 0) {
     const maxAge = options.maxAge - 0;
 
     serializeThrowErr(
       Number.isNaN(maxAge) || !Number.isFinite(maxAge),
-      "argument val is invalid"
+      "option maxAge is invalid"
     );
 
     str += `; Max-Age=${Math.floor(maxAge)}`;
   }
 
   if (options.domain) {
-    serializeThrowErr(regPass(options.domain), "argument val is invalid");
+    serializeThrowErr(!regPass(options.domain), "option domain is invalid");
 
     str += `; Domain=${options.domain}`;
   }
 
   if (options.path) {
-    serializeThrowErr(regPass(options.path), "option path is invalid");
+    serializeThrowErr(!regPass(options.path), "option path is invalid");
 
     str += `; Path=${options.path}`;
   }
@@ -178,7 +179,7 @@ function serializeThrowErr(isErr: boolean, errMsg: string): never | void {
 }
 
 function regPass(data: any): boolean {
-  return data && !fieldContentRegExp.test(data);
+  return Boolean(data) && fieldContentRegExp.test(data);
 }
 
 /**
