@@ -1,0 +1,1 @@
+{"version":3,"file":"transformMethod.js","sourceRoot":"","sources":["../../../src/helpers/transformMethod.ts"],"names":[],"mappings":";;AAAA,SAAwB,eAAe,CACrC,MAA2C;IAE3C,IAAI,CAAC,MAAM,IAAI,OAAO,MAAM,KAAK,QAAQ,EAAE;QACzC,OAAO,KAAK,CAAC;KACd;IACD,OAAO,MAAM,CAAC,WAAW,EAAsC,CAAC;AAClE,CAAC;AAPD,kCAOC"}

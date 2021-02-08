@@ -1,0 +1,1 @@
+{"version":3,"file":"isCancel.js","sourceRoot":"","sources":["../../../src/cancel/isCancel.ts"],"names":[],"mappings":";;AAAA,0CAA+C;AAE/C,SAAwB,QAAQ,CAAC,QAAa;IAC5C,IAAI,mBAAW,CAAC,QAAQ,CAAC,EAAE;QACzB,OAAO,KAAK,CAAC;KACd;IACD,OAAO,QAAQ,IAAI,QAAQ,CAAC,QAAQ,CAAC;AACvC,CAAC;AALD,2BAKC"}

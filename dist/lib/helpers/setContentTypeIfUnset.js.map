@@ -1,0 +1,1 @@
+{"version":3,"file":"setContentTypeIfUnset.js","sourceRoot":"","sources":["../../../src/helpers/setContentTypeIfUnset.ts"],"names":[],"mappings":";;AAAA,iCAAsC;AAEtC,SAAwB,qBAAqB,CAC3C,OAAY,EACZ,KAAa;IAEb,IACE,CAAC,mBAAW,CAAC,OAAO,CAAC;QACrB,OAAO;QACP,CAAC,mBAAW,CAAC,OAAO,CAAC,cAAc,CAAC,CAAC,EACrC;QACA,OAAO,CAAC,cAAc,CAAC,GAAG,KAAK,CAAC;KACjC;AACH,CAAC;AAXD,wCAWC"}

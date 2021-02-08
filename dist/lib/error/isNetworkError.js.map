@@ -1,0 +1,1 @@
+{"version":3,"file":"isNetworkError.js","sourceRoot":"","sources":["../../../src/error/isNetworkError.ts"],"names":[],"mappings":";;AAAA,0CAA+C;AAE/C,SAAwB,cAAc,CAAC,QAAmC;IACxE,IAAI,mBAAW,CAAC,QAAQ,CAAC,IAAI,QAAQ,KAAK,IAAI,EAAE;QAC9C,OAAO,KAAK,CAAC;KACd;IACD,OAAO,QAAQ,CAAC,MAAM,KAAK,eAAe,CAAC;AAC7C,CAAC;AALD,iCAKC"}

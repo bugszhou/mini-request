@@ -1,0 +1,1 @@
+{"version":3,"file":"isTimeout.js","sourceRoot":"","sources":["../../../src/error/isTimeout.ts"],"names":[],"mappings":";;AAAA,0CAA+C;AAE/C,SAAwB,SAAS,CAAC,QAAmC;IACnE,IAAI,mBAAW,CAAC,QAAQ,CAAC,IAAI,QAAQ,KAAK,IAAI,EAAE;QAC9C,OAAO,KAAK,CAAC;KACd;IACD,OAAO,QAAQ,CAAC,MAAM,KAAK,SAAS,CAAC;AACvC,CAAC;AALD,4BAKC"}
