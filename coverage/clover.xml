@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1612774243315" clover="3.2.0">
-  <project timestamp="1612774243315" name="All files">
-    <metrics statements="1829" coveredstatements="719" conditionals="209" coveredconditionals="186" methods="61" coveredmethods="40" elements="2099" coveredelements="945" complexity="0" loc="1829" ncloc="1829" packages="7" files="31" classes="31"/>
+<coverage generated="1612851282340" clover="3.2.0">
+  <project timestamp="1612851282340" name="All files">
+    <metrics statements="1832" coveredstatements="730" conditionals="212" coveredconditionals="190" methods="61" coveredmethods="41" elements="2105" coveredelements="961" complexity="0" loc="1832" ncloc="1832" packages="7" files="31" classes="31"/>
     <package name="src">
       <metrics statements="86" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="appletsRequest.ts" path="/Users/gary/My/front/mini-request/src/appletsRequest.ts">
@@ -1169,17 +1169,17 @@
       </file>
     </package>
     <package name="src.error">
-      <metrics statements="18" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <metrics statements="18" coveredstatements="8" conditionals="5" coveredconditionals="4" methods="2" coveredmethods="1"/>
       <file name="isNetworkError.ts" path="/Users/gary/My/front/mini-request/src/error/isNetworkError.ts">
-        <metrics statements="8" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
+        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="10" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="8" count="8" type="stmt"/>
       </file>
       <file name="isTimeout.ts" path="/Users/gary/My/front/mini-request/src/error/isTimeout.ts">
         <metrics statements="10" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -1196,9 +1196,9 @@
       </file>
     </package>
     <package name="src.helpers">
-      <metrics statements="714" coveredstatements="714" conditionals="190" coveredconditionals="186" methods="40" coveredmethods="40"/>
+      <metrics statements="717" coveredstatements="717" conditionals="190" coveredconditionals="186" methods="40" coveredmethods="40"/>
       <file name="assembleHeaders.ts" path="/Users/gary/My/front/mini-request/src/helpers/assembleHeaders.ts">
-        <metrics statements="155" coveredstatements="155" conditionals="28" coveredconditionals="28" methods="5" coveredmethods="5"/>
+        <metrics statements="158" coveredstatements="158" conditionals="28" coveredconditionals="28" methods="5" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -1348,12 +1348,15 @@
         <line num="147" count="2" type="stmt"/>
         <line num="148" count="2" type="stmt"/>
         <line num="149" count="2" type="stmt"/>
-        <line num="150" count="1" type="stmt"/>
-        <line num="151" count="3" type="cond" truecount="1" falsecount="0"/>
-        <line num="152" count="3" type="cond" truecount="1" falsecount="0"/>
-        <line num="153" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="150" count="2" type="stmt"/>
+        <line num="151" count="2" type="stmt"/>
+        <line num="152" count="2" type="stmt"/>
+        <line num="153" count="1" type="stmt"/>
         <line num="154" count="3" type="cond" truecount="1" falsecount="0"/>
-        <line num="155" count="3" type="stmt"/>
+        <line num="155" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="156" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="157" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="158" count="3" type="stmt"/>
       </file>
       <file name="combineURLs.ts" path="/Users/gary/My/front/mini-request/src/helpers/combineURLs.ts">
         <metrics statements="28" coveredstatements="28" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
@@ -1867,9 +1870,9 @@
         <line num="30" count="7" type="stmt"/>
         <line num="31" count="7" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="33" count="21" type="cond" truecount="1" falsecount="0"/>
-        <line num="34" count="21" type="stmt"/>
-        <line num="35" count="21" type="stmt"/>
+        <line num="33" count="31" type="cond" truecount="1" falsecount="0"/>
+        <line num="34" count="31" type="stmt"/>
+        <line num="35" count="31" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
