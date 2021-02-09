@@ -9,5 +9,6 @@ export default function writeCookies(
     return;
   }
 
-  config.writeCookies?.(STORAGE_COOKIES_KEY, cookies);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  config.writeCookies!(STORAGE_COOKIES_KEY, cookies);
 }

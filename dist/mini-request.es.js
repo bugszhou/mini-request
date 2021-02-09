@@ -217,136 +217,6 @@ function isCancel(canceler) {
     return canceler && canceler.isCancel;
 }
 
-function configAdapter(config) {
-    var reqConfig = {
-        url: config.url || "",
-        method: config.method,
-        data: config.data,
-        header: config.headers,
-        dataType: "json",
-        timeout: config.timeout,
-    };
-    var dataType = config.dataType || "json";
-    reqConfig.dataType = dataType;
-    if (config.responseType && config.responseType !== "json") {
-        reqConfig.dataType = "其他";
-    }
-    return reqConfig;
-}
-
-/*
- * @Author: youzhao.zhou
- * @Date: 2021-02-04 16:09:10
- * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-09 17:27:51
- * @Description request adapter
- *
- * 1. 执行成功需要返回IAppletsRequestResponse，执行失败即为reject返回IAppletsRequestAdapterError
- * 2. 如果取消返回IAppletsRequest.ICanceler
- */
-function weappRequest(config) {
-    function requestSuccess(res) {
-        if (isUndefined(res) || res === null) {
-            return {
-                headers: {},
-                status: 200,
-                data: {},
-                response: res,
-            };
-        }
-        return {
-            headers: res.header,
-            status: res.statusCode,
-            data: dataParser(res.data),
-            response: res,
-        };
-    }
-    /**
-     * 获取错误类型
-     * @param err
-     * @param timeout
-     * @returns NETWORK_ERROR | TIMEOUT
-     * @example {
-     *    msg: `Timeout of 2000 ms exceeded`,
-     *    type: "TIMEOUT",
-     *  }
-     */
-    function failType(err, timeout) {
-        if (err &&
-            (err.errMsg || "").toString().toLowerCase().includes("timeout")) {
-            return {
-                msg: "Timeout of " + (timeout || "") + " ms exceeded",
-                type: "TIMEOUT",
-            };
-        }
-        return {
-            msg: "Network Error",
-            type: "NETWORK_ERROR",
-        };
-    }
-    /**
-     * JSON parse data
-     * @param data
-     */
-    function dataParser(data) {
-        if (typeof data !== "string") {
-            return data;
-        }
-        try {
-            return JSON.parse(data);
-        }
-        catch (e) {
-            return data;
-        }
-    }
-    function getReqConfig(originalConfig) {
-        var tmpConfig = merge({}, originalConfig);
-        tmpConfig.headers = originalConfig.header;
-        delete tmpConfig.header;
-        delete tmpConfig.Adapter;
-        return tmpConfig;
-    }
-    return new Promise(function (resolve, reject) {
-        var Adapter = config.Adapter;
-        var reqConfig = configAdapter(config);
-        var adapterConfig = getReqConfig(reqConfig);
-        if (!Adapter) {
-            throw new TypeError("Adapter is undefined or null");
-        }
-        var adapter = new Adapter(adapterConfig);
-        var request = wx.request(__assign(__assign({}, reqConfig), { success: function (res) {
-                adapter.resolve(requestSuccess(res), resolve);
-            },
-            fail: function (err) {
-                var errData = failType(err, reqConfig.timeout);
-                var rejectData = {
-                    errMsg: errData.msg,
-                    status: errData.type,
-                    extra: err,
-                };
-                adapter.reject(rejectData, reject);
-            },
-            complete: function () {
-                request = null;
-            } }));
-        adapter.cancel(function (reason) {
-            reject(reason);
-            request.abort();
-            request = null;
-        });
-        if (typeof config.getRequestTask === "function") {
-            config.getRequestTask(request);
-        }
-    });
-}
-
-function getDefaultAdapter() {
-    if (!isUndefined(wx) && isFunction(wx.request)) {
-        return weappRequest;
-    }
-    return Promise.resolve;
-}
-
 function normalizeHeaderName(headers, normalizedHeaderName) {
     if (!normalizedHeaderName) {
         return;
@@ -370,7 +240,7 @@ function setContentTypeIfUnset(headers, value) {
 
 var DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
 var defaults = {
-    adapter: getDefaultAdapter(),
+    // adapter: getDefaultAdapter(),
     method: "GET",
     timeout: 10000,
     headers: __assign({ common: {
@@ -1112,11 +982,11 @@ var Adapter = /** @class */ (function () {
 }());
 
 function writeCookies(config, cookies) {
-    var _a;
     if (!config.autoCookies || !isFunction(config.writeCookies)) {
         return;
     }
-    (_a = config.writeCookies) === null || _a === void 0 ? void 0 : _a.call(config, STORAGE_COOKIES_KEY, cookies);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    (config.writeCookies)(STORAGE_COOKIES_KEY, cookies);
 }
 
 function request(config) {

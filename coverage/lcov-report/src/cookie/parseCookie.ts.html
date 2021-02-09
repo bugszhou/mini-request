@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/helpers/assembleHeaders.ts</title>
+    <title>Code coverage report for src/cookie/parseCookie.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/helpers</a> assembleHeaders.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/cookie</a> parseCookie.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>158/158</span>
+                <span class='fraction'>204/204</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">95.92% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>28/28</span>
+                <span class='fraction'>47/49</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>158/158</span>
+                <span class='fraction'>204/204</span>
             </div>
         
             
@@ -215,7 +215,53 @@
 <a name='L156'></a><a href='#L156'>156</a>
 <a name='L157'></a><a href='#L157'>157</a>
 <a name='L158'></a><a href='#L158'>158</a>
-<a name='L159'></a><a href='#L159'>159</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a>
+<a name='L188'></a><a href='#L188'>188</a>
+<a name='L189'></a><a href='#L189'>189</a>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a>
+<a name='L194'></a><a href='#L194'>194</a>
+<a name='L195'></a><a href='#L195'>195</a>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -235,301 +281,393 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
- * @Author: youzhao.zhou
- * @Date: 2021-01-31 11:14:33
- * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-08 16:50:27
- * @Description 处理请求headers和处理响应headers
- */
-&nbsp;
-import { getCookie } from "../adapters/wx/storageCookies";
-import { isPlainObject, isString, merge } from "./utils";
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">58x</span>
+<span class="cline-any cline-yes">58x</span>
+<span class="cline-any cline-yes">53x</span>
+<span class="cline-any cline-yes">53x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">37x</span>
+<span class="cline-any cline-yes">37x</span>
+<span class="cline-any cline-yes">37x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { isUndefined } from "../helpers/utils";
 &nbsp;
 /**
- * 格式化请求头中key的格式
- * @param headers 请求头数据
- * @param normalizedNames 标准的请求头key值，如：["Content-Type"]
- * @example
- * // Returns {"Content-Type", "plain/text"}
- * formatterHeader({"content-type": "plain/text"}, ["Content-Type"]);
- * @returns {Object} 返回标准化的请求头数据
+ * Module variables.
+ * @private
  */
-export function formattedHeader(
-  headers: any,
-  normalizedNames: string[]
-): Record&lt;string, string&gt; {
-  const normalizedHeaders: Record&lt;string, string&gt; = {};
-  if (!isPlainObject(headers)) {
-    return normalizedHeaders;
-  }
 &nbsp;
-  if (normalizedNames.length === 0) {
-    return headers;
-  }
-&nbsp;
-  const headerUpperKeyMapping: Record&lt;string, string&gt; = {};
-  normalizedNames.forEach((key) =&gt; {
-    headerUpperKeyMapping[key.toUpperCase()] = key;
-  });
-&nbsp;
-  Object.keys(headers).forEach((header) =&gt; {
-    const upperHeader = header.toUpperCase();
-    const normalizedKey = headerUpperKeyMapping[upperHeader];
-    normalizedHeaders[normalizedKey || header] = headers[header];
-  });
-&nbsp;
-  return normalizedHeaders;
-}
+const decode = decodeURIComponent;
+const encode = encodeURIComponent;
+const pairSplitRegExp = /; */;
 &nbsp;
 /**
- * 先将headers的key标准化处理，如果未设置Content-Type的，根据传输的数据类型，设置Content-Type的值
- * @param headers 请求头
- * @param data 请求body体中的数据
- * @example
- * // return {"Content-Type": "application/json; charset=utf-8"}
- * assembleReqHeaders({}, {username: "tome"});
- * @returns {Record&lt;string, string&gt;}
- */
-export default function assembleReqHeaders(
-  headers: any,
-  data: IAppletsRequest.IDataType | undefined
-): Record&lt;string, string&gt; {
-  const reqHeaders = formattedHeader(Object.assign(headers || {}), [
-    "Content-Type",
-  ]);
-&nbsp;
-  if (isPlainObject(data) &amp;&amp; !reqHeaders["Content-Type"]) {
-    reqHeaders["Content-Type"] = "application/json; charset=utf-8";
-  }
-&nbsp;
-  if (data === null || typeof data === "undefined") {
-    delete reqHeaders["Content-Type"];
-  }
-&nbsp;
-  return reqHeaders;
-}
-&nbsp;
-/**
- * 合并headers中【headers.common】[headers[method]】数据，删除不需要的默认属性
- * @param headers 请求头数据
- * @param method 请求method
- * @example
- * // Return {"Content-Type": "plain/text", "Accept": "*"}
- * filterHeaders({
- *   common: {
- *     "Content-Type": "plain/text"
- *   },
- *   post: {
- *     "Accept": "*"
- *   }
- * }, "post");
- * @returns {Record&lt;string, any&gt;} 返回完整可用的headers
+ * RegExp to match field-content in RFC 7230 sec 3.2
  *
- * {"Content-Type": "plain/text", "Accept": "*"}
+ * field-content = field-vchar [ 1*( SP / HTAB ) field-vchar ]
+ * field-vchar   = VCHAR / obs-text
+ * obs-text      = %x80-FF
  */
-export function filterHeaders(
-  headers: Record&lt;string, any&gt; | undefined,
-  method: string
-): Record&lt;string, any&gt; {
-  if (!headers) {
+&nbsp;
+// eslint-disable-next-line no-control-regex
+const fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
+&nbsp;
+/**
+ *
+ * @param {string} cookiesStr cookies字符串
+ * @param options
+ */
+export default function parseCookies(
+  cookiesStr: any,
+  options: any = {}
+): Record&lt;string, string&gt; {
+  if (!cookiesStr) {
     return {};
   }
 &nbsp;
-  const mergedHeaders: Record&lt;string, any&gt; = merge(
-    headers.common,
-    headers[method.toLowerCase()],
-    headers
-  );
-&nbsp;
-  [
-    "delete",
-    "get",
-    "post",
-    "head",
-    "patch",
-    "put",
-    "options",
-    "common",
-  ].forEach((deleteMethod) =&gt; {
-    delete mergedHeaders[deleteMethod];
-  });
-&nbsp;
-  return mergedHeaders;
+  return parse(cookiesStr, options);
 }
 &nbsp;
 /**
- * 和原有的cookie string拼接成新的cookie string
- * @param cookiesString header中已存在的cookie string
- * @param cookieName 需要新加入的cookie keyName
- * @example
- * // return token=tokenString; username=tom
- * combineCookieStr("token=tokenString", "username");
- * @returns {string} 拼接后的cookie string
+ * Parse a cookie header.
+ *
+ * Parse the given cookie header string into an object
+ * The object has the various cookies as keys(names) =&gt; values
+ *
+ * @param {string} str
+ * @param {object} [options]
+ * @return {object}
+ * @public
  */
-export function combineCookiesStr(
-  cookiesString: string | undefined,
-  cookieName: string | undefined
-): any {
-  if (!cookieName &amp;&amp; String(cookieName) !== String(0)) {
-    return cookiesString;
+&nbsp;
+function parse(cookiesStr: string, <span class="branch-0 cbranch-no" title="branch not covered" >options: any = {}): Record&lt;string, string&gt; {</span>
+  if (typeof cookiesStr !== "string") {
+    return {};
   }
 &nbsp;
-  const cookieVal = getCookie(cookieName);
+  const cookies: Record&lt;string, string&gt; = {};
+  const pairs = cookiesStr.split(pairSplitRegExp);
+  const decodeFn = options.decode || decode;
 &nbsp;
-  if (!isString(cookiesString)) {
-    return !cookieVal &amp;&amp; String(cookieVal) !== "0"
-      ? cookieName
-      : `${spliceCookieStr(cookieName as string, cookieVal)}`;
-  }
-  return `${cookiesString}; ${spliceCookieStr(
-    cookieName as string,
-    cookieVal
-  )}`;
+  pairs.forEach((pair: string) =&gt; {
+    const qeInd = pair.indexOf("=");
+    if (qeInd &lt; 0) {
+      return;
+    }
+&nbsp;
+    const key = pair.substr(0, qeInd).trim();
+    let val = pair.substr(qeInd + 1, pair.length).trim();
+&nbsp;
+    // 如果val是含有“”的字符串，则删除“”
+    if (val[0] === '"') {
+      val = val.slice(1, -1);
+    }
+&nbsp;
+    if (isUndefined(cookies[key])) {
+      cookies[key] = tryDecode(val, decodeFn);
+    }
+  });
+&nbsp;
+  return cookies;
 }
 &nbsp;
-function spliceCookieStr(cookieName: string, cookieVal: any): string {
-  return !cookieVal &amp;&amp; String(cookieVal) !== "0"
-    ? cookieName
-    : `${cookieName}=${cookieVal}`;
+/**
+ * Serialize data into a cookie header.
+ *
+ * Serialize the a name value pair into a cookie string suitable for
+ * http headers. An optional options object specified cookie parameters.
+ *
+ * serialize('foo', 'bar', { httpOnly: true })
+ *   =&gt; "foo=bar; httpOnly"
+ *
+ * @param {string} name
+ * @param {string} val
+ * @param {object} [options]
+ * @return {string}
+ * @public
+ */
+export function serializeCookie(
+  name: string,
+  val: string,
+  options: any = {}
+): string {
+  const encodeFn = options.encode || encode;
+&nbsp;
+  serializeThrowErr(typeof encodeFn !== "function", "option encode is invalid");
+  serializeThrowErr(!regPass(name), "argument name is invalid");
+&nbsp;
+  const value = encodeFn(val);
+&nbsp;
+  serializeThrowErr(!regPass(value), "argument val is invalid");
+&nbsp;
+  let str = `${name}=${value}`;
+&nbsp;
+  if (options.maxAge || options.maxAge === 0) {
+    const maxAge = options.maxAge - 0;
+&nbsp;
+    serializeThrowErr(
+      Number.isNaN(maxAge) || !Number.isFinite(maxAge),
+      "option maxAge is invalid"
+    );
+&nbsp;
+    str += `; Max-Age=${Math.floor(maxAge)}`;
+  }
+&nbsp;
+  if (options.domain) {
+    serializeThrowErr(!regPass(options.domain), "option domain is invalid");
+&nbsp;
+    str += `; Domain=${options.domain}`;
+  }
+&nbsp;
+  if (options.path) {
+    serializeThrowErr(!regPass(options.path), "option path is invalid");
+&nbsp;
+    str += `; Path=${options.path}`;
+  }
+&nbsp;
+  if (options.expires) {
+    serializeThrowErr(
+      typeof options.expires.toUTCString !== "function",
+      "option expires is invalid"
+    );
+&nbsp;
+    str += `; Expires=${options.expires.toUTCString()}`;
+  }
+&nbsp;
+  if (options.httpOnly) {
+    str += "; HttpOnly";
+  }
+&nbsp;
+  if (options.secure) {
+    str += "; Secure";
+  }
+&nbsp;
+  if (options.sameSite) {
+    str += getSameSiteCookieStr(options.sameSite);
+  }
+&nbsp;
+  return str;
+}
+&nbsp;
+function getSameSiteCookieStr(sameSite: string | boolean): string {
+  const tmpSameSite =
+    typeof sameSite === "string" ? sameSite.toLowerCase() : sameSite;
+&nbsp;
+  if (tmpSameSite === true || tmpSameSite === "strict") {
+    return "; SameSite=Strict";
+  }
+&nbsp;
+  if (tmpSameSite === "lax") {
+    return "; SameSite=Lax";
+  }
+&nbsp;
+  if (tmpSameSite === "none") {
+    return "; SameSite=None";
+  }
+&nbsp;
+  throw new TypeError("option sameSite is invalid");
+}
+&nbsp;
+function serializeThrowErr(isErr: boolean, errMsg: string): never | void {
+  if (!isErr) {
+    return;
+  }
+  throw new TypeError(errMsg);
+}
+&nbsp;
+function regPass(data: any): boolean {
+  return Boolean(data) &amp;&amp; fieldContentRegExp.test(data);
+}
+&nbsp;
+/**
+ * Try decoding a string using a decoding function.
+ *
+ * @param {string} str
+ * @param {function} decode
+ * @private
+ */
+&nbsp;
+function tryDecode(str: string, decodeFn: any): string {
+  try {
+    return decodeFn(str);
+  }<span class="branch-0 cbranch-no" title="branch not covered" > catch (e</span>) {
+    return str;
+  }
 }
 &nbsp;</pre></td></tr></table></pre>
 

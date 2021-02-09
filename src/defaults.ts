@@ -1,4 +1,4 @@
-import getDefaultAdapter from "./adapters";
+// import getDefaultAdapter from "./adapters";
 import normalizeHeaderName from "./helpers/normalizeHeaderName";
 import setContentTypeIfUnset from "./helpers/setContentTypeIfUnset";
 import { isPlainObject } from "./helpers/utils";
@@ -6,7 +6,7 @@ import { isPlainObject } from "./helpers/utils";
 const DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
 
 const defaults: IAppletsRequestConfig = {
-  adapter: getDefaultAdapter(),
+  // adapter: getDefaultAdapter(),
 
   method: "GET",
 
