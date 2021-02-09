@@ -409,6 +409,7 @@ function getDefaultHeaders() {
     });
     return headers;
 }
+var STORAGE_COOKIES_KEY = "miniRequest:cookies";
 
 /**
  * 根据response.status的值来判断是不是NETWORK_ERROR(网络错误)，如：请求不可用等
@@ -733,22 +734,10 @@ function mergeConfig(config1, optionalConfig2) {
     return config;
 }
 
-var STORAGE_COOKIES_KEY = "miniRequest:cookies";
-function storageCookies(cookies) {
-    if (!cookies || !isPlainObject(cookies)) {
-        return;
-    }
-    try {
-        var cacheCookies = wx.getStorageSync(STORAGE_COOKIES_KEY);
-        wx.setStorageSync(STORAGE_COOKIES_KEY, merge(cacheCookies, cookies));
-    }
-    catch (e) {
-        console.error(e);
-    }
-}
+var STORAGE_COOKIES_KEY$1 = "miniRequest:cookies";
 function getCookie(cookieName) {
     try {
-        var cacheCookies = wx.getStorageSync(STORAGE_COOKIES_KEY);
+        var cacheCookies = wx.getStorageSync(STORAGE_COOKIES_KEY$1);
         if (!cacheCookies || !cookieName || !isString(cacheCookies[cookieName])) {
             return "";
         }
@@ -942,6 +931,26 @@ function isURLSameOrigin() {
     return true;
 }
 
+function getCookies(config) {
+    var _a;
+    if (!isFunction(config.readCookies)) {
+        return {};
+    }
+    return (_a = config.readCookies) === null || _a === void 0 ? void 0 : _a.call(config, STORAGE_COOKIES_KEY);
+}
+function getCookie$1(cookies, cookieName) {
+    try {
+        if (!cookies || !cookieName || !isString(cookies[cookieName])) {
+            return "";
+        }
+        return cookies[cookieName];
+    }
+    catch (e) {
+        console.error(e);
+        return "";
+    }
+}
+
 /**
  * Module variables.
  * @private
@@ -1102,6 +1111,14 @@ var Adapter = /** @class */ (function () {
     return Adapter;
 }());
 
+function writeCookies(config, cookies) {
+    var _a;
+    if (!config.autoCookies || !isFunction(config.writeCookies)) {
+        return;
+    }
+    (_a = config.writeCookies) === null || _a === void 0 ? void 0 : _a.call(config, STORAGE_COOKIES_KEY, cookies);
+}
+
 function request(config) {
     return __awaiter(this, void 0, void 0, function () {
         var transformedConfig, res, reason_1, err;
@@ -1119,9 +1136,7 @@ function request(config) {
                     if (isPlainObject(res.headers)) {
                         res.cookies = parseCookies(formattedHeader(res.headers, ["Set-Cookie"])["Set-Cookie"]);
                     }
-                    if (config.autoCookies) {
-                        storageCookies(res.cookies);
-                    }
+                    writeCookies(config, res.cookies);
                     if (typeof config.validateStatus === "function" &&
                         config.validateStatus(res.status)) {
                         res.data = transformData(res.data, res.headers, transformedConfig.transformResponse);
@@ -1172,7 +1187,7 @@ function formattedConfig(config) {
         transformedConfig.headers.Cookies = cookiesStr;
     }
     // xsrf 防御
-    var xsrfToken = getCookie(transformedConfig.xsrfCookieName);
+    var xsrfToken = getCookie$1(getCookies(config), transformedConfig.xsrfCookieName);
     if (xsrfToken) {
         transformedConfig.headers[transformedConfig.xsrfHeaderName] = xsrfToken;
     }

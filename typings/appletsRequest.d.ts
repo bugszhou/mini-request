@@ -90,16 +90,46 @@ declare namespace IAppletsRequest {
   type ICancelFn = (canceler: IAppletsRequest.ICanceler) => boolean;
 
   interface IAdapterResolveOptions {
+    /**
+     * 响应headers
+     */
     headers: Record<string, any>;
+    /**
+     * http status code，eg：200，201...
+     */
     status: number;
+    /**
+     * response data
+     */
     data: any;
+    /**
+     * 响应对象
+     */
     response?: any;
   }
 
   interface IAdapterRejectOptions {
+    /**
+     * 错误信息
+     */
     errMsg: string;
+    /**
+     * Three types
+     *
+     * 1. http status code，eg：400，500...
+     *
+     * 2. NETWORK_ERROR
+     *
+     * 3. TIMEOUT
+     */
     status: IAppletsRequestStatus;
+    /**
+     * response data
+     */
     data?: any;
+    /**
+     * other info
+     */
     extra?: any;
   }
 }
@@ -262,6 +292,10 @@ interface AppletsRequestInstance extends AppletsRequest {
 type IAppletsRequestStatus = "NETWORK_ERROR" | "TIMEOUT" | number;
 
 interface IAppletsRequestConfig {
+  baseURL?: string;
+  /**
+   * http request in different platform
+   */
   adapter?: (config: IAppletsRequestConfig) => IAppletsRequestPromise;
   url?: string;
   method?: IAppletsRequest.IMethod;
@@ -320,7 +354,15 @@ interface IAppletsRequestConfig {
    */
   paramsSerializer?: IAppletsRequest.IEmptyFN;
 
-  baseURL?: string;
+  /**
+   * 写入cookies
+   */
+  writeCookies?: (storageKey: string, cookies: any) => void;
+
+  /**
+   * 读取cookies
+   */
+  readCookies?: (storageKey: string) => Record<string, any>;
 
   [otherConfigName: string]: any;
 }

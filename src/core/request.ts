@@ -10,13 +10,14 @@ import transformConfig from "./transformConfig";
 import transformData from "./transformData";
 import isCancel from "../cancel/isCancel";
 import isURLSameOrigin from "../helpers/isURLSameOrigin";
-import storageCookies, { getCookie } from "../adapters/wx/storageCookies";
+import getCookies, { getCookie } from "../cookie/getCookies";
 import { isPlainObject } from "../helpers/utils";
 import parseCookies from "../helpers/parseCookie";
 import { createError } from "./AppletsRequestError";
 import combineURLs from "../helpers/combineURLs";
 import isAbsoluteURL from "../helpers/isAbsoluteURL";
 import Adapter from "../adapters/Adapter";
+import writeCookies from "../cookie/writeCookies";
 
 async function request(
   config: IAppletsRequestConfig
@@ -34,9 +35,7 @@ async function request(
       );
     }
 
-    if (config.autoCookies) {
-      storageCookies(res.cookies);
-    }
+    writeCookies(config, res.cookies);
 
     if (
       typeof config.validateStatus === "function" &&
@@ -136,7 +135,10 @@ function formattedConfig(
   }
 
   // xsrf 防御
-  const xsrfToken = getCookie(transformedConfig.xsrfCookieName);
+  const xsrfToken = getCookie(
+    getCookies(config),
+    transformedConfig.xsrfCookieName
+  );
   if (xsrfToken) {
     transformedConfig.headers![transformedConfig.xsrfHeaderName!] = xsrfToken;
   }

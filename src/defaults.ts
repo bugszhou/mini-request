@@ -61,4 +61,6 @@ function getDefaultHeaders(): any {
   return headers;
 }
 
+export const STORAGE_COOKIES_KEY = "miniRequest:cookies";
+
 export default defaults;
