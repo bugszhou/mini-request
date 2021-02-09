@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/173</span>
+                <span class='fraction'>0/177</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/173</span>
+                <span class='fraction'>0/177</span>
             </div>
         
             
@@ -230,7 +230,15 @@
 <a name='L171'></a><a href='#L171'>171</a>
 <a name='L172'></a><a href='#L172'>172</a>
 <a name='L173'></a><a href='#L173'>173</a>
-<a name='L174'></a><a href='#L174'>174</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -415,12 +423,14 @@
 <span class="cstat-no" title="statement not covered" >import transformData from "./transformData";</span>
 <span class="cstat-no" title="statement not covered" >import isCancel from "../cancel/isCancel";</span>
 <span class="cstat-no" title="statement not covered" >import isURLSameOrigin from "../helpers/isURLSameOrigin";</span>
-<span class="cstat-no" title="statement not covered" >import storageCookies, { getCookie } from "../adapters/wx/storageCookies";</span>
+<span class="cstat-no" title="statement not covered" >import getCookies, { getCookie } from "../cookie/getCookies";</span>
 <span class="cstat-no" title="statement not covered" >import { isPlainObject } from "../helpers/utils";</span>
 <span class="cstat-no" title="statement not covered" >import parseCookies from "../helpers/parseCookie";</span>
 <span class="cstat-no" title="statement not covered" >import { createError } from "./AppletsRequestError";</span>
 <span class="cstat-no" title="statement not covered" >import combineURLs from "../helpers/combineURLs";</span>
 <span class="cstat-no" title="statement not covered" >import isAbsoluteURL from "../helpers/isAbsoluteURL";</span>
+<span class="cstat-no" title="statement not covered" >import Adapter from "../adapters/Adapter";</span>
+<span class="cstat-no" title="statement not covered" >import writeCookies from "../cookie/writeCookies";</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >async function request(</span>
 <span class="cstat-no" title="statement not covered" >  config: IAppletsRequestConfig</span>
@@ -438,9 +448,7 @@
 <span class="cstat-no" title="statement not covered" >      );</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    if (config.autoCookies) {</span>
-<span class="cstat-no" title="statement not covered" >      storageCookies(res.cookies);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    writeCookies(config, res.cookies);</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >    if (</span>
 <span class="cstat-no" title="statement not covered" >      typeof config.validateStatus === "function" &amp;&amp;</span>
@@ -540,7 +548,10 @@
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  // xsrf 防御</span>
-<span class="cstat-no" title="statement not covered" >  const xsrfToken = getCookie(transformedConfig.xsrfCookieName);</span>
+<span class="cstat-no" title="statement not covered" >  const xsrfToken = getCookie(</span>
+<span class="cstat-no" title="statement not covered" >    getCookies(config),</span>
+<span class="cstat-no" title="statement not covered" >    transformedConfig.xsrfCookieName</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" >  if (xsrfToken) {</span>
 <span class="cstat-no" title="statement not covered" >    transformedConfig.headers![transformedConfig.xsrfHeaderName!] = xsrfToken;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
@@ -553,6 +564,7 @@
 <span class="cstat-no" title="statement not covered" >    getRequestTask: formattedGetRequestTaskFunction(</span>
 <span class="cstat-no" title="statement not covered" >      transformedConfig.getRequestTask</span>
 <span class="cstat-no" title="statement not covered" >    ),</span>
+<span class="cstat-no" title="statement not covered" >    Adapter,</span>
 <span class="cstat-no" title="statement not covered" >  };</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -583,7 +595,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 09 2021 15:02:23 GMT+0800 (China Standard Time)
+                at Tue Feb 09 2021 18:14:02 GMT+0800 (China Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

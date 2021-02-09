@@ -12,7 +12,7 @@ import isCancel from "../cancel/isCancel";
 import isURLSameOrigin from "../helpers/isURLSameOrigin";
 import getCookies, { getCookie } from "../cookie/getCookies";
 import { isPlainObject } from "../helpers/utils";
-import parseCookies from "../helpers/parseCookie";
+import parseCookies from "../cookie/parseCookie";
 import { createError } from "./AppletsRequestError";
 import combineURLs from "../helpers/combineURLs";
 import isAbsoluteURL from "../helpers/isAbsoluteURL";

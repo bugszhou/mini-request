@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/93</span>
+                <span class='fraction'>0/106</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/93</span>
+                <span class='fraction'>0/106</span>
             </div>
         
             
@@ -150,7 +150,33 @@
 <a name='L91'></a><a href='#L91'>91</a>
 <a name='L92'></a><a href='#L92'>92</a>
 <a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -248,7 +274,7 @@
 <span class="cstat-no" title="statement not covered" > * @Author: youzhao.zhou</span>
 <span class="cstat-no" title="statement not covered" > * @Date: 2021-02-05 14:31:47</span>
 <span class="cstat-no" title="statement not covered" > * @Last Modified by: youzhao.zhou</span>
-<span class="cstat-no" title="statement not covered" > * @Last Modified time: 2021-02-05 14:43:44</span>
+<span class="cstat-no" title="statement not covered" > * @Last Modified time: 2021-02-09 16:54:10</span>
 <span class="cstat-no" title="statement not covered" > * @Description http request adapter</span>
 <span class="cstat-no" title="statement not covered" > * 1. 自定义请求适配器接口规范</span>
 <span class="cstat-no" title="statement not covered" > * 2. 执行成功需要调用resolve</span>
@@ -273,13 +299,6 @@
 <span class="cstat-no" title="statement not covered" >  response?: any;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface IRejectOptions {</span>
-<span class="cstat-no" title="statement not covered" >  errMsg: string;</span>
-<span class="cstat-no" title="statement not covered" >  status: IAppletsRequestStatus;</span>
-<span class="cstat-no" title="statement not covered" >  data?: any;</span>
-<span class="cstat-no" title="statement not covered" >  extra?: any;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >export default class Adapter {</span>
 <span class="cstat-no" title="statement not covered" >  private reqConfig: IAppletsRequest.IHttpConfig;</span>
 <span class="cstat-no" title="statement not covered" ></span>
@@ -287,7 +306,15 @@
 <span class="cstat-no" title="statement not covered" >    this.reqConfig = config;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  resolve(options: IResolveOptions, resolve: IAppletsRequest.IResolved&lt;any&gt;): void {</span>
+<span class="cstat-no" title="statement not covered" >  /**</span>
+<span class="cstat-no" title="statement not covered" >   * 接口请求成功执行该方法</span>
+<span class="cstat-no" title="statement not covered" >   * @param options response数据</span>
+<span class="cstat-no" title="statement not covered" >   * @param resolve Promise.resolve</span>
+<span class="cstat-no" title="statement not covered" >   */</span>
+<span class="cstat-no" title="statement not covered" >  resolve(</span>
+<span class="cstat-no" title="statement not covered" >    options: IAppletsRequest.IAdapterResolveOptions,</span>
+<span class="cstat-no" title="statement not covered" >    resolve: IAppletsRequest.IResolved&lt;any&gt;</span>
+<span class="cstat-no" title="statement not covered" >  ): void {</span>
 <span class="cstat-no" title="statement not covered" >    if (isUndefined(options) || options === null) {</span>
 <span class="cstat-no" title="statement not covered" >      resolve({</span>
 <span class="cstat-no" title="statement not covered" >        headers: {},</span>
@@ -307,7 +334,15 @@
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  reject(options: IRejectOptions, reject: IAppletsRequest.IRejected): void {</span>
+<span class="cstat-no" title="statement not covered" >  /**</span>
+<span class="cstat-no" title="statement not covered" >   * 接口请求失败执行该方法</span>
+<span class="cstat-no" title="statement not covered" >   * @param options response数据</span>
+<span class="cstat-no" title="statement not covered" >   * @param reject Promise.reject</span>
+<span class="cstat-no" title="statement not covered" >   */</span>
+<span class="cstat-no" title="statement not covered" >  reject(</span>
+<span class="cstat-no" title="statement not covered" >    options: IAppletsRequest.IAdapterRejectOptions,</span>
+<span class="cstat-no" title="statement not covered" >    reject: IAppletsRequest.IRejected</span>
+<span class="cstat-no" title="statement not covered" >  ): void {</span>
 <span class="cstat-no" title="statement not covered" >    if (isUndefined(options) || options === null) {</span>
 <span class="cstat-no" title="statement not covered" >      reject({</span>
 <span class="cstat-no" title="statement not covered" >        status: "NETWORK_ERROR",</span>
@@ -326,7 +361,11 @@
 <span class="cstat-no" title="statement not covered" >    });</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  abort(executor: (cancel: IAppletsRequest.ICanceler) =&gt; void): void {</span>
+<span class="cstat-no" title="statement not covered" >  /**</span>
+<span class="cstat-no" title="statement not covered" >   * 取消接口请求</span>
+<span class="cstat-no" title="statement not covered" >   * @param executor 监听执行取消接口请求操作的监听函数</span>
+<span class="cstat-no" title="statement not covered" >   */</span>
+<span class="cstat-no" title="statement not covered" >  cancel(executor: (cancel: IAppletsRequest.ICanceler) =&gt; void): void {</span>
 <span class="cstat-no" title="statement not covered" >    if (!this.reqConfig.cancelToken) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
@@ -343,7 +382,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Feb 09 2021 15:02:23 GMT+0800 (China Standard Time)
+                at Tue Feb 09 2021 18:14:02 GMT+0800 (China Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

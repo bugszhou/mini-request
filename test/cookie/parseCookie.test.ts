@@ -1,4 +1,4 @@
-import parseCookie, { serializeCookie } from "../../src/helpers/parseCookie";
+import parseCookie, { serializeCookie } from "../../src/cookie/parseCookie";
 
 describe("Cookie Test", () => {
   describe("parseCookie", () => {

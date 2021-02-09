@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/adapters/wx/storageCookies.ts</title>
+    <title>Code coverage report for src/cookie/getCookies.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/adapters/wx</a> storageCookies.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/cookie</a> getCookies.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>0/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>0/28</span>
             </div>
         
             
@@ -85,23 +85,7 @@
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -115,30 +99,43 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { isPlainObject, isString, merge } from "../../helpers/utils";
-&nbsp;
-const STORAGE_COOKIES_KEY = "miniRequest:cookies";
-&nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export default function storageCookies(cookies: Record&lt;string, string&gt; | undefined): void {</span></span>
-<span class="cstat-no" title="statement not covered" >  if (!cookies || !isPlainObject(cookies)) {</span>
-<span class="cstat-no" title="statement not covered" >    return;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { STORAGE_COOKIES_KEY } from "../defaults";</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { isFunction, isString } from "../helpers/utils";</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export default function getCookies(</span>
+<span class="cstat-no" title="statement not covered" >  config: IAppletsRequestConfig</span>
+<span class="cstat-no" title="statement not covered" >): Record&lt;string, any&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (!isFunction(config.readCookies)) {</span>
+<span class="cstat-no" title="statement not covered" >    return {};</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    const cacheCookies = wx.getStorageSync(STORAGE_COOKIES_KEY);</span>
-<span class="cstat-no" title="statement not covered" >    wx.setStorageSync(STORAGE_COOKIES_KEY, merge(cacheCookies, cookies));</span>
-<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >    console.error(e);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >  return config.readCookies?.(STORAGE_COOKIES_KEY) as Record&lt;string, any&gt;;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >export function getCookie(cookieName: string | undefined): string {</span></span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export function getCookie(</span>
+<span class="cstat-no" title="statement not covered" >  cookies: Record&lt;string, any&gt;,</span>
+<span class="cstat-no" title="statement not covered" >  cookieName: string | undefined</span>
+<span class="cstat-no" title="statement not covered" >): string {</span>
 <span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    const cacheCookies = wx.getStorageSync(STORAGE_COOKIES_KEY);</span>
-<span class="cstat-no" title="statement not covered" >    if (!cacheCookies || !cookieName || !isString(cacheCookies[cookieName])) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!cookies || !cookieName || !isString(cookies[cookieName])) {</span>
 <span class="cstat-no" title="statement not covered" >      return "";</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    return cacheCookies[cookieName];</span>
+<span class="cstat-no" title="statement not covered" >    return cookies[cookieName];</span>
 <span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
 <span class="cstat-no" title="statement not covered" >    console.error(e);</span>
 <span class="cstat-no" title="statement not covered" >    return "";</span>
@@ -154,14 +151,14 @@ const STORAGE_COOKIES_KEY = "miniRequest:cookies";
                 at Tue Feb 09 2021 18:14:02 GMT+0800 (China Standard Time)
             </div>
         </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
     </body>
 </html>
     
