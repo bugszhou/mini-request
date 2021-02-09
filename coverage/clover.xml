@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1612851282340" clover="3.2.0">
-  <project timestamp="1612851282340" name="All files">
-    <metrics statements="1832" coveredstatements="730" conditionals="212" coveredconditionals="190" methods="61" coveredmethods="41" elements="2105" coveredelements="961" complexity="0" loc="1832" ncloc="1832" packages="7" files="31" classes="31"/>
+<coverage generated="1612854143849" clover="3.2.0">
+  <project timestamp="1612854143849" name="All files">
+    <metrics statements="1858" coveredstatements="766" conditionals="215" coveredconditionals="194" methods="61" coveredmethods="42" elements="2134" coveredelements="1002" complexity="0" loc="1858" ncloc="1858" packages="7" files="31" classes="31"/>
     <package name="src">
       <metrics statements="86" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="appletsRequest.ts" path="/Users/gary/My/front/mini-request/src/appletsRequest.ts">
@@ -1169,30 +1169,56 @@
       </file>
     </package>
     <package name="src.error">
-      <metrics statements="18" coveredstatements="8" conditionals="5" coveredconditionals="4" methods="2" coveredmethods="1"/>
+      <metrics statements="44" coveredstatements="44" conditionals="8" coveredconditionals="8" methods="2" coveredmethods="2"/>
       <file name="isNetworkError.ts" path="/Users/gary/My/front/mini-request/src/error/isNetworkError.ts">
-        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <metrics statements="21" coveredstatements="21" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="3" count="10" type="cond" truecount="1" falsecount="0"/>
-        <line num="4" count="10" type="cond" truecount="2" falsecount="0"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="6" count="2" type="stmt"/>
-        <line num="7" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="8" count="8" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="10" type="cond" truecount="1" falsecount="0"/>
+        <line num="17" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="21" count="8" type="stmt"/>
       </file>
       <file name="isTimeout.ts" path="/Users/gary/My/front/mini-request/src/error/isTimeout.ts">
-        <metrics statements="10" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
+        <metrics statements="23" coveredstatements="23" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="17" count="11" type="stmt"/>
+        <line num="18" count="11" type="stmt"/>
+        <line num="19" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="9" type="cond" truecount="1" falsecount="0"/>
+        <line num="23" count="9" type="stmt"/>
       </file>
     </package>
     <package name="src.helpers">
@@ -1870,9 +1896,9 @@
         <line num="30" count="7" type="stmt"/>
         <line num="31" count="7" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="33" count="31" type="cond" truecount="1" falsecount="0"/>
-        <line num="34" count="31" type="stmt"/>
-        <line num="35" count="31" type="stmt"/>
+        <line num="33" count="42" type="cond" truecount="1" falsecount="0"/>
+        <line num="34" count="42" type="stmt"/>
+        <line num="35" count="42" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
