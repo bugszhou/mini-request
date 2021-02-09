@@ -2,7 +2,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-04 16:09:10
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-09 15:56:12
+ * @Last Modified time: 2021-02-09 17:27:51
  * @Description request adapter
  *
  * 1. 执行成功需要返回IAppletsRequestResponse，执行失败即为reject返回IAppletsRequestAdapterError
@@ -10,8 +10,14 @@
  */
 
 import { isUndefined, merge } from "../../helpers/utils";
-import Adapter, { IResolveOptions } from "../Adapter";
 import configAdapter from "./configAdapter";
+
+interface IResolveOptions {
+  headers: Record<string, any>;
+  status: number;
+  data: any;
+  response?: any;
+}
 
 export default function weappRequest(
   config: IAppletsRequest.IHttpConfig
@@ -81,19 +87,23 @@ export default function weappRequest(
   function getReqConfig(
     originalConfig: IAppletsRequestWx.RequestOption
   ): IAppletsRequest.IHttpConfig {
-    if (isUndefined(originalConfig) || originalConfig === null) {
-      return {};
-    }
     const tmpConfig: any = merge({}, originalConfig);
     tmpConfig.headers = originalConfig.header;
     delete tmpConfig.header;
+    delete tmpConfig.Adapter;
     return tmpConfig;
   }
 
   return new Promise((resolve, reject) => {
+    const Adapter = config.Adapter;
     const reqConfig = configAdapter(config);
+    const adapterConfig = getReqConfig(reqConfig);
 
-    const adapter = new Adapter(getReqConfig(reqConfig));
+    if (!Adapter) {
+      throw new TypeError("Adapter is undefined or null");
+    }
+
+    const adapter = new Adapter(adapterConfig);
 
     let request = wx.request({
       ...reqConfig,

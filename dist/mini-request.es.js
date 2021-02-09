@@ -217,71 +217,6 @@ function isCancel(canceler) {
     return canceler && canceler.isCancel;
 }
 
-/* eslint-disable max-len */
-var Adapter = /** @class */ (function () {
-    function Adapter(config) {
-        this.reqConfig = config;
-    }
-    /**
-     * 接口请求成功执行该方法
-     * @param options response数据
-     * @param resolve Promise.resolve
-     */
-    Adapter.prototype.resolve = function (options, resolve) {
-        if (isUndefined(options) || options === null) {
-            resolve({
-                headers: {},
-                status: 200,
-                data: {},
-                config: this.reqConfig,
-                originalRes: null,
-            });
-        }
-        resolve({
-            headers: options.headers,
-            config: this.reqConfig,
-            data: options.data,
-            status: options.status,
-            originalRes: isUndefined(options.response) ? null : options.response,
-        });
-    };
-    /**
-     * 接口请求失败执行该方法
-     * @param options response数据
-     * @param reject Promise.reject
-     */
-    Adapter.prototype.reject = function (options, reject) {
-        if (isUndefined(options) || options === null) {
-            reject({
-                status: "NETWORK_ERROR",
-                errMsg: "Reject arguments Error",
-                config: this.reqConfig,
-                extra: null,
-            });
-        }
-        reject({
-            config: this.reqConfig,
-            status: options.status,
-            data: options.data,
-            errMsg: options.errMsg,
-            extra: isUndefined(options.extra) ? null : options.extra,
-        });
-    };
-    /**
-     * 取消接口请求
-     * @param executor 监听执行取消接口请求操作的监听函数
-     */
-    Adapter.prototype.cancel = function (executor) {
-        if (!this.reqConfig.cancelToken) {
-            return;
-        }
-        this.reqConfig.cancelToken.execAbort(function (reason) {
-            executor(reason);
-        });
-    };
-    return Adapter;
-}());
-
 function configAdapter(config) {
     var reqConfig = {
         url: config.url || "",
@@ -303,7 +238,7 @@ function configAdapter(config) {
  * @Author: youzhao.zhou
  * @Date: 2021-02-04 16:09:10
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-09 15:56:12
+ * @Last Modified time: 2021-02-09 17:27:51
  * @Description request adapter
  *
  * 1. 执行成功需要返回IAppletsRequestResponse，执行失败即为reject返回IAppletsRequestAdapterError
@@ -365,17 +300,20 @@ function weappRequest(config) {
         }
     }
     function getReqConfig(originalConfig) {
-        if (isUndefined(originalConfig) || originalConfig === null) {
-            return {};
-        }
         var tmpConfig = merge({}, originalConfig);
         tmpConfig.headers = originalConfig.header;
         delete tmpConfig.header;
+        delete tmpConfig.Adapter;
         return tmpConfig;
     }
     return new Promise(function (resolve, reject) {
+        var Adapter = config.Adapter;
         var reqConfig = configAdapter(config);
-        var adapter = new Adapter(getReqConfig(reqConfig));
+        var adapterConfig = getReqConfig(reqConfig);
+        if (!Adapter) {
+            throw new TypeError("Adapter is undefined or null");
+        }
+        var adapter = new Adapter(adapterConfig);
         var request = wx.request(__assign(__assign({}, reqConfig), { success: function (res) {
                 adapter.resolve(requestSuccess(res), resolve);
             },
@@ -1099,6 +1037,71 @@ function createError(message, config, status, response, extra) {
     return new AppletsRequestError(message, config, tmpStatus, response, extra);
 }
 
+/* eslint-disable max-len */
+var Adapter = /** @class */ (function () {
+    function Adapter(config) {
+        this.reqConfig = config;
+    }
+    /**
+     * 接口请求成功执行该方法
+     * @param options response数据
+     * @param resolve Promise.resolve
+     */
+    Adapter.prototype.resolve = function (options, resolve) {
+        if (isUndefined(options) || options === null) {
+            resolve({
+                headers: {},
+                status: 200,
+                data: {},
+                config: this.reqConfig,
+                originalRes: null,
+            });
+        }
+        resolve({
+            headers: options.headers,
+            config: this.reqConfig,
+            data: options.data,
+            status: options.status,
+            originalRes: isUndefined(options.response) ? null : options.response,
+        });
+    };
+    /**
+     * 接口请求失败执行该方法
+     * @param options response数据
+     * @param reject Promise.reject
+     */
+    Adapter.prototype.reject = function (options, reject) {
+        if (isUndefined(options) || options === null) {
+            reject({
+                status: "NETWORK_ERROR",
+                errMsg: "Reject arguments Error",
+                config: this.reqConfig,
+                extra: null,
+            });
+        }
+        reject({
+            config: this.reqConfig,
+            status: options.status,
+            data: options.data,
+            errMsg: options.errMsg,
+            extra: isUndefined(options.extra) ? null : options.extra,
+        });
+    };
+    /**
+     * 取消接口请求
+     * @param executor 监听执行取消接口请求操作的监听函数
+     */
+    Adapter.prototype.cancel = function (executor) {
+        if (!this.reqConfig.cancelToken) {
+            return;
+        }
+        this.reqConfig.cancelToken.execAbort(function (reason) {
+            executor(reason);
+        });
+    };
+    return Adapter;
+}());
+
 function request(config) {
     return __awaiter(this, void 0, void 0, function () {
         var transformedConfig, res, reason_1, err;
@@ -1173,7 +1176,7 @@ function formattedConfig(config) {
     if (xsrfToken) {
         transformedConfig.headers[transformedConfig.xsrfHeaderName] = xsrfToken;
     }
-    return __assign(__assign({}, transformedConfig), { url: formattedUrl, method: method, headers: transformedConfig.headers, getRequestTask: formattedGetRequestTaskFunction(transformedConfig.getRequestTask) });
+    return __assign(__assign({}, transformedConfig), { url: formattedUrl, method: method, headers: transformedConfig.headers, getRequestTask: formattedGetRequestTaskFunction(transformedConfig.getRequestTask), Adapter: Adapter });
 }
 function formattedGetRequestTaskFunction(fn) {
     if (typeof fn === "function") {

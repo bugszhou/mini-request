@@ -33,6 +33,7 @@ declare namespace IAppletsRequest {
 
   interface IHttpConfig extends IAppletsRequestConfig {
     method?: INormalizeMethod;
+    Adapter: typeof Adapter;
   }
 
   type IDataType = string | Record<string, any> | ArrayBuffer;
@@ -87,6 +88,20 @@ declare namespace IAppletsRequest {
   }
 
   type ICancelFn = (canceler: IAppletsRequest.ICanceler) => boolean;
+
+  interface IAdapterResolveOptions {
+    headers: Record<string, any>;
+    status: number;
+    data: any;
+    response?: any;
+  }
+
+  interface IAdapterRejectOptions {
+    errMsg: string;
+    status: IAppletsRequestStatus;
+    data?: any;
+    extra?: any;
+  }
 }
 
 declare class AppletsRequest {
@@ -99,7 +114,9 @@ declare class AppletsRequest {
 
   defaults: IAppletsRequestConfig;
 
-  request<IData = any>(config: IAppletsRequestConfig): IAppletsRequestPromise<IData>;
+  request<IData = any>(
+    config: IAppletsRequestConfig,
+  ): IAppletsRequestPromise<IData>;
 
   /**
    * 支持两个参数
@@ -108,27 +125,27 @@ declare class AppletsRequest {
    */
   request<IData = any>(
     url: string,
-    config?: IAppletsRequestConfig
+    config?: IAppletsRequestConfig,
   ): IAppletsRequestPromise<IData>;
 
   get<IData = any>(
     url: string,
-    config?: IAppletsRequestConfig
+    config?: IAppletsRequestConfig,
   ): IAppletsRequestPromise<IData>;
 
   delete<IData = any>(
     url: string,
-    config?: IAppletsRequestConfig
+    config?: IAppletsRequestConfig,
   ): IAppletsRequestPromise<IData>;
 
   head<IData = any>(
     url: string,
-    config?: IAppletsRequestConfig
+    config?: IAppletsRequestConfig,
   ): IAppletsRequestPromise<IData>;
 
   options<IData = any>(
     url: string,
-    config?: IAppletsRequestConfig
+    config?: IAppletsRequestConfig,
   ): IAppletsRequestPromise<IData>;
 
   /**
@@ -140,13 +157,13 @@ declare class AppletsRequest {
   post<IData = any>(
     url: string,
     data?: IAppletsRequest.IDataType,
-    config?: IAppletsRequestConfig
+    config?: IAppletsRequestConfig,
   ): IAppletsRequestPromise<IData>;
 
   put<IData = any>(
     url: string,
     data?: IAppletsRequest.IDataType,
-    config?: IAppletsRequestConfig
+    config?: IAppletsRequestConfig,
   ): IAppletsRequestPromise<IData>;
 
   // patch<IData = any>(
@@ -182,6 +199,39 @@ declare class AppletsRequest {
   isTimeout(response: IAppletsRequestResponse): boolean;
 }
 
+/**
+ * Http Request Adapter
+ */
+declare class Adapter {
+  constructor(config: IAppletsRequest.IHttpConfig);
+
+  /**
+   * 接口请求成功执行该方法
+   * @param options response数据
+   * @param resolve Promise.resolve
+   */
+  resolve(
+    options: IAppletsRequest.IAdapterResolveOptions,
+    resolve: IAppletsRequest.IResolved<any>,
+  ): void;
+
+  /**
+   * 接口请求失败执行该方法
+   * @param options response数据
+   * @param reject Promise.reject
+   */
+  reject(
+    options: IAppletsRequest.IAdapterRejectOptions,
+    reject: IAppletsRequest.IRejected,
+  ): void;
+
+  /**
+   * 取消接口请求
+   * @param executor 监听执行取消接口请求操作的监听函数
+   */
+  cancel(executor: (cancel: IAppletsRequest.ICanceler) => void): void;
+}
+
 interface AppletsRequestInstance extends AppletsRequest {
   <IData = any>(config: IAppletsRequestConfig): IAppletsRequestPromise<IData>;
 
@@ -194,7 +244,7 @@ interface AppletsRequestInstance extends AppletsRequest {
    */
   <IData = any>(
     url: string,
-    config?: IAppletsRequestConfig
+    config?: IAppletsRequestConfig,
   ): IAppletsRequestPromise<IData>;
 }
 
@@ -240,9 +290,13 @@ interface IAppletsRequestConfig {
     | IAppletsRequest.IConfigTransformer
     | IAppletsRequest.IConfigTransformer[];
 
-  transformRequest?: IAppletsRequest.ITransformer | IAppletsRequest.ITransformer[];
+  transformRequest?:
+    | IAppletsRequest.ITransformer
+    | IAppletsRequest.ITransformer[];
 
-  transformResponse?: IAppletsRequest.ITransformer | IAppletsRequest.ITransformer[];
+  transformResponse?:
+    | IAppletsRequest.ITransformer
+    | IAppletsRequest.ITransformer[];
 
   /**
    * 取消请求
@@ -299,7 +353,9 @@ interface IAppletsRequestResponse<IData = any> {
   profile?: IAppletsRequestWx.RequestProfile;
 }
 
-type IAppletsRequestPromise<IData = any> = Promise<IAppletsRequestResponse<IData>>;
+type IAppletsRequestPromise<IData = any> = Promise<
+  IAppletsRequestResponse<IData>
+>;
 
 interface IAppletsRequestRejectData {
   errMsg: string;

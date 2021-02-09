@@ -3,7 +3,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-05 14:31:47
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-09 15:56:50
+ * @Last Modified time: 2021-02-09 16:54:10
  * @Description http request adapter
  * 1. 自定义请求适配器接口规范
  * 2. 执行成功需要调用resolve
@@ -28,13 +28,6 @@ export interface IResolveOptions {
   response?: any;
 }
 
-interface IRejectOptions {
-  errMsg: string;
-  status: IAppletsRequestStatus;
-  data?: any;
-  extra?: any;
-}
-
 export default class Adapter {
   private reqConfig: IAppletsRequest.IHttpConfig;
 
@@ -48,7 +41,7 @@ export default class Adapter {
    * @param resolve Promise.resolve
    */
   resolve(
-    options: IResolveOptions,
+    options: IAppletsRequest.IAdapterResolveOptions,
     resolve: IAppletsRequest.IResolved<any>
   ): void {
     if (isUndefined(options) || options === null) {
@@ -75,7 +68,10 @@ export default class Adapter {
    * @param options response数据
    * @param reject Promise.reject
    */
-  reject(options: IRejectOptions, reject: IAppletsRequest.IRejected): void {
+  reject(
+    options: IAppletsRequest.IAdapterRejectOptions,
+    reject: IAppletsRequest.IRejected
+  ): void {
     if (isUndefined(options) || options === null) {
       reject({
         status: "NETWORK_ERROR",

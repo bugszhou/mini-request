@@ -16,6 +16,7 @@ import parseCookies from "../helpers/parseCookie";
 import { createError } from "./AppletsRequestError";
 import combineURLs from "../helpers/combineURLs";
 import isAbsoluteURL from "../helpers/isAbsoluteURL";
+import Adapter from "../adapters/Adapter";
 
 async function request(
   config: IAppletsRequestConfig
@@ -148,6 +149,7 @@ function formattedConfig(
     getRequestTask: formattedGetRequestTaskFunction(
       transformedConfig.getRequestTask
     ),
+    Adapter,
   };
 }
 
