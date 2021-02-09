@@ -3,7 +3,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-05 14:31:47
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-05 14:43:44
+ * @Last Modified time: 2021-02-09 15:56:50
  * @Description http request adapter
  * 1. 自定义请求适配器接口规范
  * 2. 执行成功需要调用resolve
@@ -42,7 +42,15 @@ export default class Adapter {
     this.reqConfig = config;
   }
 
-  resolve(options: IResolveOptions, resolve: IAppletsRequest.IResolved<any>): void {
+  /**
+   * 接口请求成功执行该方法
+   * @param options response数据
+   * @param resolve Promise.resolve
+   */
+  resolve(
+    options: IResolveOptions,
+    resolve: IAppletsRequest.IResolved<any>
+  ): void {
     if (isUndefined(options) || options === null) {
       resolve({
         headers: {},
@@ -62,6 +70,11 @@ export default class Adapter {
     });
   }
 
+  /**
+   * 接口请求失败执行该方法
+   * @param options response数据
+   * @param reject Promise.reject
+   */
   reject(options: IRejectOptions, reject: IAppletsRequest.IRejected): void {
     if (isUndefined(options) || options === null) {
       reject({
@@ -81,7 +94,11 @@ export default class Adapter {
     });
   }
 
-  abort(executor: (cancel: IAppletsRequest.ICanceler) => void): void {
+  /**
+   * 取消接口请求
+   * @param executor 监听执行取消接口请求操作的监听函数
+   */
+  cancel(executor: (cancel: IAppletsRequest.ICanceler) => void): void {
     if (!this.reqConfig.cancelToken) {
       return;
     }

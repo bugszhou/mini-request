@@ -222,6 +222,11 @@ var Adapter = /** @class */ (function () {
     function Adapter(config) {
         this.reqConfig = config;
     }
+    /**
+     * 接口请求成功执行该方法
+     * @param options response数据
+     * @param resolve Promise.resolve
+     */
     Adapter.prototype.resolve = function (options, resolve) {
         if (isUndefined(options) || options === null) {
             resolve({
@@ -240,6 +245,11 @@ var Adapter = /** @class */ (function () {
             originalRes: isUndefined(options.response) ? null : options.response,
         });
     };
+    /**
+     * 接口请求失败执行该方法
+     * @param options response数据
+     * @param reject Promise.reject
+     */
     Adapter.prototype.reject = function (options, reject) {
         if (isUndefined(options) || options === null) {
             reject({
@@ -257,7 +267,11 @@ var Adapter = /** @class */ (function () {
             extra: isUndefined(options.extra) ? null : options.extra,
         });
     };
-    Adapter.prototype.abort = function (executor) {
+    /**
+     * 取消接口请求
+     * @param executor 监听执行取消接口请求操作的监听函数
+     */
+    Adapter.prototype.cancel = function (executor) {
         if (!this.reqConfig.cancelToken) {
             return;
         }
@@ -289,7 +303,7 @@ function configAdapter(config) {
  * @Author: youzhao.zhou
  * @Date: 2021-02-04 16:09:10
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-05 23:44:52
+ * @Last Modified time: 2021-02-09 15:56:12
  * @Description request adapter
  *
  * 1. 执行成功需要返回IAppletsRequestResponse，执行失败即为reject返回IAppletsRequestAdapterError
@@ -377,7 +391,7 @@ function weappRequest(config) {
             complete: function () {
                 request = null;
             } }));
-        adapter.abort(function (reason) {
+        adapter.cancel(function (reason) {
             reject(reason);
             request.abort();
             request = null;

@@ -2,7 +2,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-04 16:09:10
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-05 23:44:52
+ * @Last Modified time: 2021-02-09 15:56:12
  * @Description request adapter
  *
  * 1. 执行成功需要返回IAppletsRequestResponse，执行失败即为reject返回IAppletsRequestAdapterError
@@ -14,7 +14,7 @@ import Adapter, { IResolveOptions } from "../Adapter";
 import configAdapter from "./configAdapter";
 
 export default function weappRequest(
-  config: IAppletsRequest.IHttpConfig,
+  config: IAppletsRequest.IHttpConfig
 ): IAppletsRequestPromise {
   function requestSuccess(res: any): IResolveOptions {
     if (isUndefined(res) || res === null) {
@@ -46,7 +46,7 @@ export default function weappRequest(
    */
   function failType(
     err: any,
-    timeout: number | undefined,
+    timeout: number | undefined
   ): { msg: string; type: "NETWORK_ERROR" | "TIMEOUT" } {
     if (
       err &&
@@ -79,7 +79,7 @@ export default function weappRequest(
   }
 
   function getReqConfig(
-    originalConfig: IAppletsRequestWx.RequestOption,
+    originalConfig: IAppletsRequestWx.RequestOption
   ): IAppletsRequest.IHttpConfig {
     if (isUndefined(originalConfig) || originalConfig === null) {
       return {};
@@ -115,7 +115,7 @@ export default function weappRequest(
       },
     });
 
-    adapter.abort((reason) => {
+    adapter.cancel((reason) => {
       reject(reason);
       request.abort();
       request = null;
