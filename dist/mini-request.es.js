@@ -802,23 +802,18 @@ function isURLSameOrigin() {
 }
 
 function getCookies(config) {
-    var _a;
-    if (!isFunction(config.readCookies)) {
+    if (!config || !isFunction(config.readCookies)) {
         return {};
     }
-    return (_a = config.readCookies) === null || _a === void 0 ? void 0 : _a.call(config, STORAGE_COOKIES_KEY);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return config.readCookies(STORAGE_COOKIES_KEY);
 }
 function getCookie$1(cookies, cookieName) {
-    try {
-        if (!cookies || !cookieName || !isString(cookies[cookieName])) {
-            return "";
-        }
-        return cookies[cookieName];
-    }
-    catch (e) {
-        console.error(e);
+    if (!cookies || !cookieName) {
         return "";
     }
+    var cookie = cookies[cookieName];
+    return isUndefined(cookie) || cookie === null ? "" : cookies[cookieName];
 }
 
 /**
@@ -986,7 +981,7 @@ function writeCookies(config, cookies) {
         return;
     }
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    (config.writeCookies)(STORAGE_COOKIES_KEY, cookies);
+    config.writeCookies(STORAGE_COOKIES_KEY, cookies);
 }
 
 function request(config) {
