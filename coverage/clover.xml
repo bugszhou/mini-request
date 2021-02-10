@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1612884688380" clover="3.2.0">
-  <project timestamp="1612884688380" name="All files">
-    <metrics statements="1924" coveredstatements="870" conditionals="235" coveredconditionals="216" methods="67" coveredmethods="48" elements="2226" coveredelements="1134" complexity="0" loc="1924" ncloc="1924" packages="8" files="33" classes="33"/>
+<coverage generated="1612927074235" clover="3.2.0">
+  <project timestamp="1612927074235" name="All files">
+    <metrics statements="1924" coveredstatements="878" conditionals="238" coveredconditionals="220" methods="67" coveredmethods="49" elements="2229" coveredelements="1147" complexity="0" loc="1924" ncloc="1924" packages="8" files="33" classes="33"/>
     <package name="src">
       <metrics statements="88" coveredstatements="54" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="1"/>
       <file name="appletsRequest.ts" path="/Users/gary/My/front/mini-request/src/appletsRequest.ts">
@@ -433,7 +433,7 @@
       </file>
     </package>
     <package name="src.cancel">
-      <metrics statements="78" coveredstatements="13" conditionals="6" coveredconditionals="4" methods="4" coveredmethods="2"/>
+      <metrics statements="78" coveredstatements="21" conditionals="9" coveredconditionals="8" methods="4" coveredmethods="3"/>
       <file name="Cancel.ts" path="/Users/gary/My/front/mini-request/src/cancel/Cancel.ts">
         <metrics statements="13" coveredstatements="13" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="cond" truecount="1" falsecount="0"/>
@@ -511,15 +511,15 @@
         <line num="57" count="0" type="stmt"/>
       </file>
       <file name="isCancel.ts" path="/Users/gary/My/front/mini-request/src/cancel/isCancel.ts">
-        <metrics statements="8" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
+        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="6" type="stmt"/>
       </file>
     </package>
     <package name="src.cookie">
@@ -1971,9 +1971,9 @@
         <line num="30" count="7" type="stmt"/>
         <line num="31" count="7" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
-        <line num="33" count="44" type="cond" truecount="1" falsecount="0"/>
-        <line num="34" count="44" type="stmt"/>
-        <line num="35" count="44" type="stmt"/>
+        <line num="33" count="50" type="cond" truecount="1" falsecount="0"/>
+        <line num="34" count="50" type="stmt"/>
+        <line num="35" count="50" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="38" count="1" type="stmt"/>
