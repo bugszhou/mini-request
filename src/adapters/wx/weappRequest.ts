@@ -2,7 +2,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-04 16:09:10
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-09 17:27:51
+ * @Last Modified time: 2021-02-10 12:10:14
  * @Description request adapter
  *
  * 1. 执行成功需要返回IAppletsRequestResponse，执行失败即为reject返回IAppletsRequestAdapterError
@@ -125,7 +125,7 @@ export default function weappRequest(
       },
     });
 
-    adapter.cancel((reason) => {
+    adapter.subscribeCancelEvent((reason) => {
       reject(reason);
       request.abort();
       request = null;

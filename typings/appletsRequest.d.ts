@@ -46,6 +46,10 @@ declare namespace IAppletsRequest {
     eject(interceptorId: IInterceptorId): void;
   }
 
+  interface IResolvedReturn<IData, IReturn = any> {
+    (data: IData): IReturn | Promise<IReturn>;
+  }
+
   interface IResolved<T> {
     (data: T): T | Promise<T>;
   }
@@ -79,7 +83,11 @@ declare namespace IAppletsRequest {
 
     throwIfRequested(): void;
 
-    execAbort(resolution: IResolved<any>): any;
+    /**
+     * 订阅取消事件
+     * @param listener 监听函数 
+     */
+    subscribeCancelEvent<T>(listener: IResolved<ICancelerIns>): T | Promise<T>;
   }
 
   interface ICancelTokenSource {
@@ -87,7 +95,7 @@ declare namespace IAppletsRequest {
     cancel: ICancelTokenInstance["cancel"];
   }
 
-  type ICancelFn = (canceler: IAppletsRequest.ICanceler) => boolean;
+  type ICancelFn = (canceler: IAppletsRequest.ICancelerIns) => boolean;
 
   interface IAdapterResolveOptions {
     /**
@@ -212,7 +220,7 @@ declare class AppletsRequest {
 
   /**
    * 是否是取消返回
-   * @param {IAppletsRequest.ICanceler} canceler 取消内容
+   * @param {IAppletsRequest.ICancelerIns} canceler 取消内容
    */
   isCancel: IAppletsRequest.ICancelFn;
 
@@ -256,10 +264,10 @@ declare class Adapter {
   ): void;
 
   /**
-   * 取消接口请求
-   * @param executor 监听执行取消接口请求操作的监听函数
+   * 订阅取消事件
+   * @param listener 监听执行取消接口请求操作的监听函数
    */
-  cancel(executor: (cancel: IAppletsRequest.ICanceler) => void): void;
+  subscribeCancelEvent<T>(listener: (reason: IAppletsRequest.ICancelerIns) => T): T | Promise<T>;;
 }
 
 interface AppletsRequestInstance extends AppletsRequest {

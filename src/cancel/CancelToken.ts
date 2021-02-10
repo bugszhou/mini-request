@@ -8,22 +8,20 @@ interface ISourceReturn {
 export default class CancelToken {
   private reason: Cancel | undefined;
 
-  private promise: Promise<string>;
+  private promise: Promise<IAppletsRequest.ICancelerIns>;
 
-  private promiseResolve: IAppletsRequest.IResolved<any> = (): any => {
-    // empty
-  };
+  private promiseResolve!: IAppletsRequest.IResolved<any>;
 
   static source(): ISourceReturn {
-    let cancel = (): void => {
-      // empty
-    };
+    let cancel: (message: string) => void;
+
     const token = new CancelToken((cancelFn) => {
       cancel = cancelFn;
     });
     return {
       token,
-      cancel,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      cancel: cancel!,
     };
   }
 
@@ -45,8 +43,10 @@ export default class CancelToken {
     this.promiseResolve(this.reason);
   }
 
-  execAbort(resolution: IAppletsRequest.IResolved<any>): any {
-    return this.promise.then(resolution);
+  subscribeCancelEvent(
+    listener: IAppletsRequest.IResolvedReturn<IAppletsRequest.ICancelerIns>
+  ): any {
+    return this.promise.then(listener);
   }
 
   throwIfRequested(): void {

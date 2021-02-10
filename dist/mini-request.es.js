@@ -77,9 +77,6 @@ var Cancel = /** @class */ (function () {
 var CancelToken = /** @class */ (function () {
     function CancelToken(executor) {
         var _this = this;
-        this.promiseResolve = function () {
-            // empty
-        };
         this.promise = new Promise(function (resolve) {
             _this.promiseResolve = resolve;
         });
@@ -88,14 +85,13 @@ var CancelToken = /** @class */ (function () {
         }
     }
     CancelToken.source = function () {
-        var cancel = function () {
-            // empty
-        };
+        var cancel;
         var token = new CancelToken(function (cancelFn) {
             cancel = cancelFn;
         });
         return {
             token: token,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             cancel: cancel,
         };
     };
@@ -106,8 +102,8 @@ var CancelToken = /** @class */ (function () {
         this.reason = new Cancel(message);
         this.promiseResolve(this.reason);
     };
-    CancelToken.prototype.execAbort = function (resolution) {
-        return this.promise.then(resolution);
+    CancelToken.prototype.subscribeCancelEvent = function (listener) {
+        return this.promise.then(listener);
     };
     CancelToken.prototype.throwIfRequested = function () {
         if (this.reason) {
@@ -963,15 +959,13 @@ var Adapter = /** @class */ (function () {
     };
     /**
      * 取消接口请求
-     * @param executor 监听执行取消接口请求操作的监听函数
+     * @param listener 监听执行取消接口请求操作的监听函数
      */
-    Adapter.prototype.cancel = function (executor) {
+    Adapter.prototype.subscribeCancelEvent = function (listener) {
         if (!this.reqConfig.cancelToken) {
             return;
         }
-        this.reqConfig.cancelToken.execAbort(function (reason) {
-            executor(reason);
-        });
+        return this.reqConfig.cancelToken.subscribeCancelEvent(listener);
     };
     return Adapter;
 }());

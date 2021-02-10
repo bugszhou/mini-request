@@ -3,7 +3,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-05 14:31:47
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-09 16:54:10
+ * @Last Modified time: 2021-02-10 12:09:58
  * @Description http request adapter
  * 1. 自定义请求适配器接口规范
  * 2. 执行成功需要调用resolve
@@ -92,15 +92,15 @@ export default class Adapter {
 
   /**
    * 取消接口请求
-   * @param executor 监听执行取消接口请求操作的监听函数
+   * @param listener 监听执行取消接口请求操作的监听函数
    */
-  cancel(executor: (cancel: IAppletsRequest.ICanceler) => void): void {
+  subscribeCancelEvent(
+    listener: (reason: IAppletsRequest.ICancelerIns) => any
+  ): any {
     if (!this.reqConfig.cancelToken) {
       return;
     }
 
-    this.reqConfig.cancelToken.execAbort((reason) => {
-      executor(reason);
-    });
+    return this.reqConfig.cancelToken.subscribeCancelEvent(listener);
   }
 }
