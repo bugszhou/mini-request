@@ -3,7 +3,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-05 14:31:47
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-10 12:09:58
+ * @Last Modified time: 2021-02-10 14:21:44
  * @Description http request adapter
  * 1. 自定义请求适配器接口规范
  * 2. 执行成功需要调用resolve
@@ -19,20 +19,13 @@
  *    reject(reason);
  * });
  */
-import { isUndefined } from "../helpers/utils";
-
-export interface IResolveOptions {
-  headers: Record<string, any>;
-  status: number;
-  data: any;
-  response?: any;
-}
+import { isUndefined, merge } from "../helpers/utils";
 
 export default class Adapter {
-  private reqConfig: IAppletsRequest.IHttpConfig;
+  private reqConfig: Omit<IAppletsRequest.IHttpConfig, "Adapter">;
 
   constructor(config: IAppletsRequest.IHttpConfig) {
-    this.reqConfig = config;
+    this.reqConfig = this.copyAdapterConfig(config);
   }
 
   /**
@@ -74,18 +67,21 @@ export default class Adapter {
   ): void {
     if (isUndefined(options) || options === null) {
       reject({
+        headers: null,
         status: "NETWORK_ERROR",
         errMsg: "Reject arguments Error",
+        data: null,
         config: this.reqConfig,
         extra: null,
       });
     }
 
     reject({
-      config: this.reqConfig,
       status: options.status,
-      data: options.data,
       errMsg: options.errMsg,
+      config: this.reqConfig,
+      headers: options.headers || {},
+      data: options.data,
       extra: isUndefined(options.extra) ? null : options.extra,
     });
   }
@@ -102,5 +98,16 @@ export default class Adapter {
     }
 
     return this.reqConfig.cancelToken.subscribeCancelEvent(listener);
+  }
+
+  private copyAdapterConfig(
+    config: IAppletsRequest.IHttpConfig
+  ): Omit<IAppletsRequest.IHttpConfig, "Adapter"> {
+    if (isUndefined(config) || config === null) {
+      return {};
+    }
+    const reqConfig: any = merge({}, config);
+    delete reqConfig.Adapter;
+    return reqConfig;
   }
 }

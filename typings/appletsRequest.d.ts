@@ -132,6 +132,10 @@ declare namespace IAppletsRequest {
      */
     status: IAppletsRequestStatus;
     /**
+     * 响应headers
+     */
+    headers?: Record<string, any>;
+    /**
      * response data
      */
     data?: any;

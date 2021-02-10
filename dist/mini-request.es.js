@@ -910,7 +910,7 @@ function createError(message, config, status, response, extra) {
 /* eslint-disable max-len */
 var Adapter = /** @class */ (function () {
     function Adapter(config) {
-        this.reqConfig = config;
+        this.reqConfig = this.copyAdapterConfig(config);
     }
     /**
      * 接口请求成功执行该方法
@@ -943,17 +943,20 @@ var Adapter = /** @class */ (function () {
     Adapter.prototype.reject = function (options, reject) {
         if (isUndefined(options) || options === null) {
             reject({
+                headers: null,
                 status: "NETWORK_ERROR",
                 errMsg: "Reject arguments Error",
+                data: null,
                 config: this.reqConfig,
                 extra: null,
             });
         }
         reject({
-            config: this.reqConfig,
             status: options.status,
-            data: options.data,
             errMsg: options.errMsg,
+            config: this.reqConfig,
+            headers: options.headers || {},
+            data: options.data,
             extra: isUndefined(options.extra) ? null : options.extra,
         });
     };
@@ -966,6 +969,14 @@ var Adapter = /** @class */ (function () {
             return;
         }
         return this.reqConfig.cancelToken.subscribeCancelEvent(listener);
+    };
+    Adapter.prototype.copyAdapterConfig = function (config) {
+        if (isUndefined(config) || config === null) {
+            return {};
+        }
+        var reqConfig = merge({}, config);
+        delete reqConfig.Adapter;
+        return reqConfig;
     };
     return Adapter;
 }());
