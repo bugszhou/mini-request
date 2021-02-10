@@ -168,7 +168,8 @@ function getCookiesStr(config: IAppletsRequestConfig): string {
   if (config.withCredentials || isURLSameOrigin()) {
     return combineCookiesStr(
       config.headers!.Cookies as string,
-      config.xsrfCookieName
+      config.xsrfCookieName,
+      getCookie(getCookies(config), config.xsrfCookieName)
     );
   }
   return "";

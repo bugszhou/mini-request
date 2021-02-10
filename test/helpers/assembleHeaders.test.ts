@@ -3,8 +3,6 @@ import assembleReqHeaders, {
   filterHeaders,
   combineCookiesStr,
 } from "../../src/helpers/assembleHeaders";
-jest.mock("../../src/adapters/wx/storageCookies");
-import { getCookie } from "../../src/adapters/wx/storageCookies";
 
 describe("formattedHeader", () => {
   it("undefined, null, empty normalizedNames", () => {
@@ -76,30 +74,44 @@ describe("filterHeaders", () => {
 
 describe("combineCookiesStr", () => {
   it("null, undefined", () => {
-    (getCookie as jest.MockedFunction<any>).mockReturnValueOnce("");
-    expect(combineCookiesStr(undefined, "username")).toBe("username");
+    const getCookie = jest.fn();
+    getCookie.mockReturnValue("");
+    expect(
+      combineCookiesStr(undefined, "username", getCookie(undefined, "username"))
+    ).toBe("username");
 
-    expect(combineCookiesStr(undefined, "")).toBeUndefined();
-    expect(combineCookiesStr("", "")).toBe("");
-    expect(combineCookiesStr("", undefined)).toBe("");
-    expect(combineCookiesStr("username=tom", undefined)).toBe("username=tom");
+    expect(
+      combineCookiesStr(undefined, "", getCookie(undefined, ""))
+    ).toBeUndefined();
+    expect(combineCookiesStr("", "", getCookie(undefined, ""))).toBe("");
+    expect(combineCookiesStr("", undefined, getCookie(undefined, ""))).toBe("");
+    expect(
+      combineCookiesStr("username=tom", undefined, getCookie(undefined, ""))
+    ).toBe("username=tom");
   });
 
   it("combine string", () => {
-    (getCookie as jest.MockedFunction<any>).mockReturnValueOnce("jack");
-    expect(combineCookiesStr("age=14", "username")).toBe(
+    const getCookie = jest.fn();
+    getCookie.mockReturnValue("jack");
+    expect(combineCookiesStr("age=14", "username", getCookie())).toBe(
       "age=14; username=jack"
     );
   });
 
   it("combine null", () => {
-    (getCookie as jest.MockedFunction<any>).mockReturnValueOnce(null);
-    expect(combineCookiesStr("age=14", "username")).toBe("age=14; username");
+    const getCookie = jest.fn();
+    getCookie.mockReturnValueOnce(null);
+    expect(combineCookiesStr("age=14", "username", getCookie())).toBe(
+      "age=14; username"
+    );
   });
 
   it("original cookiesStr is not string", () => {
-    (getCookie as jest.MockedFunction<any>).mockReturnValueOnce("tom");
-    expect(combineCookiesStr({} as string, "username")).toBe("username=tom");
+    const getCookie = jest.fn();
+    getCookie.mockReturnValueOnce("tom");
+    expect(combineCookiesStr({} as string, "username", getCookie())).toBe(
+      "username=tom"
+    );
   });
 });
 

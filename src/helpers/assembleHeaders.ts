@@ -2,11 +2,9 @@
  * @Author: youzhao.zhou
  * @Date: 2021-01-31 11:14:33
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-08 16:50:27
+ * @Last Modified time: 2021-02-10 17:10:35
  * @Description 处理请求headers和处理响应headers
  */
-
-import { getCookie } from "../adapters/wx/storageCookies";
 import { isPlainObject, isString, merge } from "./utils";
 
 /**
@@ -132,13 +130,12 @@ export function filterHeaders(
  */
 export function combineCookiesStr(
   cookiesString: string | undefined,
-  cookieName: string | undefined
+  cookieName: string | undefined,
+  cookieVal: any
 ): any {
   if (!cookieName && String(cookieName) !== String(0)) {
     return cookiesString;
   }
-
-  const cookieVal = getCookie(cookieName);
 
   if (!isString(cookiesString)) {
     return !cookieVal && String(cookieVal) !== "0"

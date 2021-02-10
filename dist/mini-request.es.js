@@ -600,26 +600,11 @@ function mergeConfig(config1, optionalConfig2) {
     return config;
 }
 
-var STORAGE_COOKIES_KEY$1 = "miniRequest:cookies";
-function getCookie(cookieName) {
-    try {
-        var cacheCookies = wx.getStorageSync(STORAGE_COOKIES_KEY$1);
-        if (!cacheCookies || !cookieName || !isString(cacheCookies[cookieName])) {
-            return "";
-        }
-        return cacheCookies[cookieName];
-    }
-    catch (e) {
-        console.error(e);
-        return "";
-    }
-}
-
 /*
  * @Author: youzhao.zhou
  * @Date: 2021-01-31 11:14:33
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-08 16:50:27
+ * @Last Modified time: 2021-02-10 17:10:35
  * @Description 处理请求headers和处理响应headers
  */
 /**
@@ -717,11 +702,10 @@ function filterHeaders(headers, method) {
  * combineCookieStr("token=tokenString", "username");
  * @returns {string} 拼接后的cookie string
  */
-function combineCookiesStr(cookiesString, cookieName) {
+function combineCookiesStr(cookiesString, cookieName, cookieVal) {
     if (!cookieName && String(cookieName) !== String(0)) {
         return cookiesString;
     }
-    var cookieVal = getCookie(cookieName);
     if (!isString(cookiesString)) {
         return !cookieVal && String(cookieVal) !== "0"
             ? cookieName
@@ -804,7 +788,7 @@ function getCookies(config) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return config.readCookies(STORAGE_COOKIES_KEY);
 }
-function getCookie$1(cookies, cookieName) {
+function getCookie(cookies, cookieName) {
     if (!cookies || !cookieName) {
         return "";
     }
@@ -1057,7 +1041,7 @@ function formattedConfig(config) {
         transformedConfig.headers.Cookies = cookiesStr;
     }
     // xsrf 防御
-    var xsrfToken = getCookie$1(getCookies(config), transformedConfig.xsrfCookieName);
+    var xsrfToken = getCookie(getCookies(config), transformedConfig.xsrfCookieName);
     if (xsrfToken) {
         transformedConfig.headers[transformedConfig.xsrfHeaderName] = xsrfToken;
     }
@@ -1073,7 +1057,7 @@ function formattedGetRequestTaskFunction(fn) {
 }
 function getCookiesStr(config) {
     if (config.withCredentials || isURLSameOrigin()) {
-        return combineCookiesStr(config.headers.Cookies, config.xsrfCookieName);
+        return combineCookiesStr(config.headers.Cookies, config.xsrfCookieName, getCookie(getCookies(config), config.xsrfCookieName));
     }
     return "";
 }
