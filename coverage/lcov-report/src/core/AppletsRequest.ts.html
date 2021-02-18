@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/190</span>
+                <span class='fraction'>0/184</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/190</span>
+                <span class='fraction'>0/184</span>
             </div>
         
             
@@ -241,19 +241,7 @@
 <a name='L182'></a><a href='#L182'>182</a>
 <a name='L183'></a><a href='#L183'>183</a>
 <a name='L184'></a><a href='#L184'>184</a>
-<a name='L185'></a><a href='#L185'>185</a>
-<a name='L186'></a><a href='#L186'>186</a>
-<a name='L187'></a><a href='#L187'>187</a>
-<a name='L188'></a><a href='#L188'>188</a>
-<a name='L189'></a><a href='#L189'>189</a>
-<a name='L190'></a><a href='#L190'>190</a>
-<a name='L191'></a><a href='#L191'>191</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L185'></a><a href='#L185'>185</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -486,7 +474,7 @@
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  request(</span>
 <span class="cstat-no" title="statement not covered" >    options: string | IAppletsRequestConfig,</span>
-<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig</span>
+<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig,</span>
 <span class="cstat-no" title="statement not covered" >  ): IAppletsRequestPromise {</span>
 <span class="cstat-no" title="statement not covered" >    let formattedConfig: IAppletsRequestConfig = {};</span>
 <span class="cstat-no" title="statement not covered" >    if (typeof options === "string") {</span>
@@ -505,18 +493,12 @@
 <span class="cstat-no" title="statement not covered" >      },</span>
 <span class="cstat-no" title="statement not covered" >    ];</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    this.interceptors.request.forEach(</span>
-<span class="cstat-no" title="statement not covered" >      (interceptor) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >        // eslint-disable-next-line implicit-arrow-linebreak</span>
-<span class="cstat-no" title="statement not covered" >        chain.unshift(interceptor)</span>
-<span class="cstat-no" title="statement not covered" >      // eslint-disable-next-line function-paren-newline</span>
+<span class="cstat-no" title="statement not covered" >    this.interceptors.request.forEach((interceptor) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >      chain.unshift(interceptor),</span>
 <span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    this.interceptors.response.forEach(</span>
-<span class="cstat-no" title="statement not covered" >      (interceptor) =&gt;</span>
-<span class="cstat-no" title="statement not covered" >        // eslint-disable-next-line implicit-arrow-linebreak</span>
-<span class="cstat-no" title="statement not covered" >        chain.push(interceptor)</span>
-<span class="cstat-no" title="statement not covered" >      // eslint-disable-next-line function-paren-newline</span>
+<span class="cstat-no" title="statement not covered" >    this.interceptors.response.forEach((interceptor) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >      chain.push(interceptor),</span>
 <span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >    let promise = Promise.resolve(formattedConfig);</span>
@@ -550,7 +532,7 @@
 <span class="cstat-no" title="statement not covered" >  post(</span>
 <span class="cstat-no" title="statement not covered" >    url: string,</span>
 <span class="cstat-no" title="statement not covered" >    data?: IAppletsRequest.IDataType,</span>
-<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig</span>
+<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig,</span>
 <span class="cstat-no" title="statement not covered" >  ): IAppletsRequestPromise {</span>
 <span class="cstat-no" title="statement not covered" >    return this.requestWithData(url, "POST", data, config);</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
@@ -558,7 +540,7 @@
 <span class="cstat-no" title="statement not covered" >  put(</span>
 <span class="cstat-no" title="statement not covered" >    url: string,</span>
 <span class="cstat-no" title="statement not covered" >    data?: IAppletsRequest.IDataType,</span>
-<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig</span>
+<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig,</span>
 <span class="cstat-no" title="statement not covered" >  ): IAppletsRequestPromise {</span>
 <span class="cstat-no" title="statement not covered" >    return this.requestWithData(url, "PUT", data, config);</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
@@ -566,7 +548,7 @@
 <span class="cstat-no" title="statement not covered" >  create(config?: IAppletsRequestConfig): AppletsRequestInstance {</span>
 <span class="cstat-no" title="statement not covered" >    const miniRequest = new AppletsRequest(mergeConfig(defaults, config));</span>
 <span class="cstat-no" title="statement not covered" >    const ins: AppletsRequestInstance = AppletsRequest.prototype.request.bind(</span>
-<span class="cstat-no" title="statement not covered" >      miniRequest</span>
+<span class="cstat-no" title="statement not covered" >      miniRequest,</span>
 <span class="cstat-no" title="statement not covered" >    ) as AppletsRequestInstance;</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >    return assign(ins, miniRequest);</span>
@@ -588,7 +570,7 @@
 <span class="cstat-no" title="statement not covered" >    const formattedUrl = transformUrl(</span>
 <span class="cstat-no" title="statement not covered" >      combinedURL,</span>
 <span class="cstat-no" title="statement not covered" >      params,</span>
-<span class="cstat-no" title="statement not covered" >      config.paramsSerializer</span>
+<span class="cstat-no" title="statement not covered" >      config.paramsSerializer,</span>
 <span class="cstat-no" title="statement not covered" >    );</span>
 <span class="cstat-no" title="statement not covered" >    return formattedUrl;</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
@@ -600,7 +582,7 @@
 <span class="cstat-no" title="statement not covered" >  private requestWithMethod(</span>
 <span class="cstat-no" title="statement not covered" >    url: string,</span>
 <span class="cstat-no" title="statement not covered" >    method: IAppletsRequest.IMethod,</span>
-<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig</span>
+<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig,</span>
 <span class="cstat-no" title="statement not covered" >  ): IAppletsRequestPromise {</span>
 <span class="cstat-no" title="statement not covered" >    return this.request({</span>
 <span class="cstat-no" title="statement not covered" >      ...this.transformConfig(config),</span>
@@ -613,7 +595,7 @@
 <span class="cstat-no" title="statement not covered" >    url: string,</span>
 <span class="cstat-no" title="statement not covered" >    method: IAppletsRequest.IMethod,</span>
 <span class="cstat-no" title="statement not covered" >    data?: IAppletsRequest.IDataType,</span>
-<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig</span>
+<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig,</span>
 <span class="cstat-no" title="statement not covered" >  ): IAppletsRequestPromise {</span>
 <span class="cstat-no" title="statement not covered" >    return this.requestWithMethod(url, method, {</span>
 <span class="cstat-no" title="statement not covered" >      ...this.transformConfig(config),</span>
@@ -622,7 +604,7 @@
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  private transformConfig(</span>
-<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig</span>
+<span class="cstat-no" title="statement not covered" >    config?: IAppletsRequestConfig,</span>
 <span class="cstat-no" title="statement not covered" >  ): IAppletsRequestConfig {</span>
 <span class="cstat-no" title="statement not covered" >    return isPlainObject(config) ? config : {};</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
@@ -634,7 +616,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Feb 10 2021 14:35:09 GMT+0800 (China Standard Time)
+                at Thu Feb 18 2021 15:50:14 GMT+0800 (China Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

@@ -870,7 +870,7 @@ function tryDecode(str, decodeFn) {
  * @Author: youzhao.zhou
  * @Date: 2021-01-31 21:52:37
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-05 23:14:19
+ * @Last Modified time: 2021-02-18 15:36:25
  * @Description 处理错误
  */
 var AppletsRequestError = /** @class */ (function () {
@@ -886,6 +886,19 @@ var AppletsRequestError = /** @class */ (function () {
     }
     return AppletsRequestError;
 }());
+/**
+ * 构建错误对象
+ * @example
+ * createError("Err Msg", config, status, response, extra)
+ * @returns
+ * {
+ *  errMsg: string,
+ *  config: config,
+ *  status: http status,
+ *  response: adapter response,
+ *  extra: any other info,
+ * }
+ */
 function createError(message, config, status, response, extra) {
     var tmpStatus = !status && status !== 0 ? "NETWORK_ERROR" : status;
     return new AppletsRequestError(message, config, tmpStatus, response, extra);
@@ -1095,17 +1108,11 @@ var AppletsRequest = /** @class */ (function () {
             },
         ];
         this.interceptors.request.forEach(function (interceptor) {
-            // eslint-disable-next-line implicit-arrow-linebreak
             return chain.unshift(interceptor);
-        }
-        // eslint-disable-next-line function-paren-newline
-        );
+        });
         this.interceptors.response.forEach(function (interceptor) {
-            // eslint-disable-next-line implicit-arrow-linebreak
             return chain.push(interceptor);
-        }
-        // eslint-disable-next-line function-paren-newline
-        );
+        });
         var promise = Promise.resolve(formattedConfig);
         chain.forEach(function (interceptor) {
             if (!interceptor) {

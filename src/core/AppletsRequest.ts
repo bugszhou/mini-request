@@ -66,18 +66,12 @@ export default class AppletsRequest {
       },
     ];
 
-    this.interceptors.request.forEach(
-      (interceptor) =>
-        // eslint-disable-next-line implicit-arrow-linebreak
-        chain.unshift(interceptor)
-      // eslint-disable-next-line function-paren-newline
+    this.interceptors.request.forEach((interceptor) =>
+      chain.unshift(interceptor)
     );
 
-    this.interceptors.response.forEach(
-      (interceptor) =>
-        // eslint-disable-next-line implicit-arrow-linebreak
-        chain.push(interceptor)
-      // eslint-disable-next-line function-paren-newline
+    this.interceptors.response.forEach((interceptor) =>
+      chain.push(interceptor)
     );
 
     let promise = Promise.resolve(formattedConfig);

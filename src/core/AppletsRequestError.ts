@@ -2,7 +2,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-01-31 21:52:37
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-05 23:14:19
+ * @Last Modified time: 2021-02-18 15:36:25
  * @Description 处理错误
  */
 
@@ -22,7 +22,7 @@ export default class AppletsRequestError {
     config: IAppletsRequest.IHttpConfig,
     status: IAppletsRequestStatus,
     response: IAppletsRequestResponse | undefined,
-    extra?: any,
+    extra?: any
   ) {
     // super(message);
 
@@ -36,12 +36,25 @@ export default class AppletsRequestError {
   }
 }
 
+/**
+ * 构建错误对象
+ * @example
+ * createError("Err Msg", config, status, response, extra)
+ * @returns
+ * {
+ *  errMsg: string,
+ *  config: config,
+ *  status: http status,
+ *  response: adapter response,
+ *  extra: any other info,
+ * }
+ */
 export function createError(
   message: string,
   config: IAppletsRequest.IHttpConfig,
   status: IAppletsRequestStatus,
   response: IAppletsRequestResponse | undefined,
-  extra?: any,
+  extra?: any
 ): AppletsRequestError {
   const tmpStatus = !status && status !== 0 ? "NETWORK_ERROR" : status;
 
