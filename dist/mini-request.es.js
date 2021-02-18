@@ -764,14 +764,20 @@ function transformConfig(config, fns) {
  * @Author: youzhao.zhou
  * @Date: 2021-02-02 17:57:28
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-05 23:11:21
+ * @Last Modified time: 2021-02-18 16:01:15
  * @Description transformRequest和transformResponse辅助函数
+ */
+/**
+ * custom data format
+ * @param data request data
+ * @param headers request headers
+ * @param fns transformData function in config
  */
 function transformData(data, headers, fns) {
     var formattedData = data;
     forEach(fns, function (fn) {
         if (typeof fn === "function") {
-            formattedData = fn(data, headers);
+            formattedData = fn(formattedData, headers);
         }
     });
     return formattedData;
