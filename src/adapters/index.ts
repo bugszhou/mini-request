@@ -19,7 +19,6 @@ function defaultAdapter(config: IAppletsRequestConfig): IAppletsRequestPromise {
       "defaultAdapter: ",
       "Pls set adapter!!! Don't use default adapter"
     );
-    console.log("defaultAdapter: ", config);
     adapter.resolve(
       {
         data: {},

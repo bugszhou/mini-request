@@ -33,6 +33,7 @@ describe("mergeConfig", () => {
     expect(config.validateStatus).toBeInstanceOf(Function);
     delete config.transformRequest;
     delete config.validateStatus;
+    delete config.adapter;
     expect(config).toEqual(mergedConfig);
   });
 
@@ -89,6 +90,7 @@ describe("mergeConfig", () => {
     expect(config.validateStatus).toEqual(validateStatus);
     delete config.transformRequest;
     delete config.validateStatus;
+    delete config.adapter;
     expect(config).toEqual(mergedConfig);
   });
 

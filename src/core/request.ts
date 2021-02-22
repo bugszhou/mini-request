@@ -75,6 +75,12 @@ async function request(
       );
     }
 
+    if (err instanceof TypeError) {
+      return Promise.reject(
+        createError(err.message, err.config, "SCRIPT_ERROR", err.response, err)
+      );
+    }
+
     return Promise.reject(
       createError(err.errMsg, err.config, err.status, err.response, err.extra)
     );

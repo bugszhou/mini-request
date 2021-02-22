@@ -24,16 +24,22 @@ interface IPromiseChain<T> {
   rejected?: IAppletsRequest.IRejected;
 }
 
+export type URLType = string;
+
 export default class AppletsRequest {
   AppletsRequest = AppletsRequest;
 
   CancelToken = CancelToken;
 
-  isCancel = isCancel;
-
   defaults: IAppletsRequestConfig = {};
 
   interceptors: IInterceptors;
+
+  isCancel = isCancel;
+
+  isTimeout = isTimeout;
+
+  isNetworkError = isNetworkError;
 
   constructor(config?: IAppletsRequestConfig) {
     if (config) {
@@ -47,7 +53,7 @@ export default class AppletsRequest {
   }
 
   request(
-    options: string | IAppletsRequestConfig,
+    options: URLType | IAppletsRequestConfig,
     config?: IAppletsRequestConfig
   ): IAppletsRequestPromise {
     let formattedConfig: IAppletsRequestConfig = {};
@@ -148,10 +154,6 @@ export default class AppletsRequest {
     );
     return formattedUrl;
   }
-
-  isTimeout = isTimeout;
-
-  isNetworkError = isNetworkError;
 
   private requestWithMethod(
     url: string,

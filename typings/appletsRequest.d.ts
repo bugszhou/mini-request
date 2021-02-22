@@ -298,10 +298,12 @@ interface AppletsRequestInstance extends AppletsRequest {
  *  NETWORK_ERROR：网络错误，请求没发出去
  *
  *  TIMEOUT：网络超时
+ *  
+ *  SCRIPT_ERROR Javascript语法错误
  *
  * number类型：参考http status code，如：404、500
  */
-type IAppletsRequestStatus = "NETWORK_ERROR" | "TIMEOUT" | number;
+type IAppletsRequestStatus = "NETWORK_ERROR" | "TIMEOUT" | "SCRIPT_ERROR" | number;
 
 interface IAppletsRequestConfig {
   baseURL?: string;
@@ -414,7 +416,7 @@ type IAppletsRequestPromise<IData = any> = Promise<
 interface IAppletsRequestRejectData {
   errMsg: string;
   config: IAppletsRequest.IHttpConfig;
-  status: "NETWORK_ERROR" | "TIMEOUT";
+  status: "NETWORK_ERROR" | "TIMEOUT" | "SCRIPT_ERROR";
   response?: IAppletsRequestResponse;
   extra?: any;
 }
