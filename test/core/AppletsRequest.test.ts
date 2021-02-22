@@ -49,7 +49,7 @@ adapter.mockRejectedValueOnce({
  * 4. 404
  * 5. 500
  */
-describe("AppletsRequest", () => {
+describe("Request", () => {
   const appletsRequest = new AppletsRequest({
     ...defaults,
     adapter,
@@ -232,5 +232,253 @@ describe("AppletsRequest", () => {
     setTimeout(() => {
       cancelToken.cancel("test cancel");
     }, 200);
+  });
+});
+
+describe("AppletsRequest", () => {
+  it("Options is config", () => {
+    const appletsRequest = new AppletsRequest();
+    appletsRequest.interceptors.request.use((config) => {
+      return config;
+    });
+    appletsRequest.interceptors.request.eject(0);
+    return appletsRequest
+      .request({
+        url: "/get1",
+      })
+      .catch((err) => {
+        expect(err.status).toBe("SCRIPT_ERROR");
+      });
+  });
+
+  it("Get", () => {
+    const adapterFn = jest.fn().mockResolvedValue({
+      response: null,
+      status: 200,
+      config: null,
+      data: {
+        username: "tom1",
+      },
+      originRes: null,
+    });
+    const appletsRequest = new AppletsRequest(defaults);
+    return appletsRequest
+      .get("/get1", {
+        adapter: adapterFn,
+      })
+      .then((res) => {
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it("Delete", () => {
+    const adapterFn = jest.fn().mockResolvedValue({
+      response: null,
+      status: 200,
+      config: null,
+      data: {
+        username: "tom1",
+      },
+      originRes: null,
+    });
+    const appletsRequest = new AppletsRequest(defaults);
+    return appletsRequest
+      .delete("/get1", {
+        adapter: adapterFn,
+      })
+      .then((res) => {
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it("Head", () => {
+    const adapterFn = jest.fn().mockResolvedValue({
+      response: null,
+      status: 200,
+      config: null,
+      data: {
+        username: "tom1",
+      },
+      originRes: null,
+    });
+    const appletsRequest = new AppletsRequest(defaults);
+    return appletsRequest
+      .head("/get1", {
+        adapter: adapterFn,
+      })
+      .then((res) => {
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it("Options", () => {
+    const adapterFn = jest.fn().mockResolvedValue({
+      response: null,
+      status: 200,
+      config: null,
+      data: {
+        username: "tom1",
+      },
+      originRes: null,
+    });
+    const appletsRequest = new AppletsRequest(defaults);
+    return appletsRequest
+      .options("/get1", {
+        adapter: adapterFn,
+      })
+      .then((res) => {
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it("Post", () => {
+    const adapterFn = jest.fn().mockResolvedValue({
+      response: null,
+      status: 200,
+      config: null,
+      data: {
+        username: "tom1",
+      },
+      originRes: null,
+    });
+    const appletsRequest = new AppletsRequest(defaults);
+    return appletsRequest
+      .post(
+        "/get1",
+        {},
+        {
+          adapter: adapterFn,
+        }
+      )
+      .then((res) => {
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it("Put", () => {
+    const adapterFn = jest.fn().mockResolvedValue({
+      response: null,
+      status: 200,
+      config: null,
+      data: {
+        username: "tom1",
+      },
+      originRes: null,
+    });
+    const appletsRequest = new AppletsRequest(defaults);
+    return appletsRequest
+      .put(
+        "/get1",
+        {},
+        {
+          adapter: adapterFn,
+        }
+      )
+      .then((res) => {
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it("create", () => {
+    const appletsRequest = new AppletsRequest(defaults);
+    const adapterFn = jest.fn().mockResolvedValue({
+      response: null,
+      status: 200,
+      config: null,
+      data: {
+        username: "tom1",
+      },
+      originRes: null,
+    });
+    return appletsRequest
+      .create()
+      .put(
+        "/get1",
+        {},
+        {
+          adapter: adapterFn,
+        }
+      )
+      .then((res) => {
+        expect(res.status).toBe(200);
+      });
+  });
+
+  it("getUri", () => {
+    const appletsRequest = new AppletsRequest(defaults);
+    expect(
+      appletsRequest.getUri({
+        baseURL: "https://xxx.com",
+        url: "/get1",
+      })
+    ).toBe("https://xxx.com/get1");
+  });
+
+  it("getUri empty url", () => {
+    const appletsRequest = new AppletsRequest(defaults);
+    expect(
+      appletsRequest.getUri({
+        baseURL: "https://xxx.com",
+        url: "",
+      })
+    ).toBe("https://xxx.com");
+  });
+
+  it("getUri absolute url", () => {
+    const appletsRequest = new AppletsRequest(defaults);
+    expect(
+      appletsRequest.getUri({
+        baseURL: "https://xxx.com",
+        url: "https://xxx1.com/get1",
+      })
+    ).toBe("https://xxx1.com/get1");
+  });
+
+  it("getUri empty baseUrl", () => {
+    const appletsRequest = new AppletsRequest(defaults);
+    expect(
+      appletsRequest.getUri({
+        baseURL: "",
+        url: "/get1",
+      })
+    ).toBe("/get1");
+  });
+
+  it("all", () => {
+    const appletsRequest = new AppletsRequest(defaults);
+    const adapterFn = jest.fn().mockResolvedValue({
+      response: null,
+      status: 200,
+      config: null,
+      data: {
+        username: "tom1",
+      },
+      originRes: null,
+    });
+
+    function get1() {
+      return appletsRequest.get("/get1", {
+        adapter: adapterFn,
+      });
+    }
+
+    function get2() {
+      return appletsRequest.get("/get1", {
+        adapter: adapterFn,
+      });
+    }
+    return appletsRequest.all([get1(), get2()]).then((res) => {
+      res.forEach((item) => {
+        expect(item.status).toBe(200);
+      });
+    });
+  });
+
+  it("all Error", () => {
+    const appletsRequest = new AppletsRequest(defaults);
+
+    expect(() => {
+      appletsRequest.all([]);
+    }).toThrow();
   });
 });
