@@ -332,34 +332,6 @@ function setContentTypeIfUnset(headers, value) {
 }
 
 var DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
-var defaults = {
-    adapter: getDefaultAdapter(),
-    method: "GET",
-    timeout: 10000,
-    headers: __assign({ common: {
-            Accept: "application/json, text/plain, */*",
-        } }, getDefaultHeaders()),
-    transformConfig: [],
-    transformRequest: [
-        function (data, headers) {
-            normalizeHeaderName(headers, "Accept");
-            normalizeHeaderName(headers, "Content-Type");
-            if (isPlainObject(data)) {
-                setContentTypeIfUnset(headers, "application/json; charset=utf-8");
-            }
-            return data;
-        },
-    ],
-    transformResponse: [],
-    xsrfCookieName: "XSRF-TOKEN",
-    xsrfHeaderName: "X-XSRF-TOKEN",
-    validateStatus: function (status) {
-        if (status >= 200 && status < 300) {
-            return true;
-        }
-        return false;
-    },
-};
 function getDefaultHeaders() {
     var headers = {};
     ["delete", "get", "head", "options"].forEach(function (method) {
@@ -373,6 +345,37 @@ function getDefaultHeaders() {
     return headers;
 }
 var STORAGE_COOKIES_KEY = "miniRequest:cookies";
+function getDefaults() {
+    var defaults = {
+        adapter: getDefaultAdapter(),
+        method: "GET",
+        timeout: 10000,
+        headers: __assign({ common: {
+                Accept: "application/json, text/plain, */*",
+            } }, getDefaultHeaders()),
+        transformConfig: [],
+        transformRequest: [
+            function (data, headers) {
+                normalizeHeaderName(headers, "Accept");
+                normalizeHeaderName(headers, "Content-Type");
+                if (isPlainObject(data)) {
+                    setContentTypeIfUnset(headers, "application/json; charset=utf-8");
+                }
+                return data;
+            },
+        ],
+        transformResponse: [],
+        xsrfCookieName: "XSRF-TOKEN",
+        xsrfHeaderName: "X-XSRF-TOKEN",
+        validateStatus: function (status) {
+            if (status >= 200 && status < 300) {
+                return true;
+            }
+            return false;
+        },
+    };
+    return defaults;
+}
 
 /**
  * 根据response.status的值来判断是不是NETWORK_ERROR(网络错误)，如：请求不可用等
@@ -1179,7 +1182,7 @@ var AppletsRequest = /** @class */ (function () {
         return this.requestWithData(url, "PUT", data, config);
     };
     AppletsRequest.prototype.create = function (config) {
-        var miniRequest = new AppletsRequest(mergeConfig(defaults, config));
+        var miniRequest = new AppletsRequest(mergeConfig(getDefaults(), config));
         var ins = AppletsRequest.prototype.request.bind(miniRequest);
         return assign(ins, miniRequest);
     };

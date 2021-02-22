@@ -89,7 +89,7 @@ var AppletsRequest = /** @class */ (function () {
         return this.requestWithData(url, "PUT", data, config);
     };
     AppletsRequest.prototype.create = function (config) {
-        var miniRequest = new AppletsRequest(mergeConfig_1.default(defaults_1.default, config));
+        var miniRequest = new AppletsRequest(mergeConfig_1.default(defaults_1.default(), config));
         var ins = AppletsRequest.prototype.request.bind(miniRequest);
         return utils_1.assign(ins, miniRequest);
     };

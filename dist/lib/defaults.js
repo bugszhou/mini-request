@@ -17,34 +17,6 @@ var normalizeHeaderName_1 = require("./helpers/normalizeHeaderName");
 var setContentTypeIfUnset_1 = require("./helpers/setContentTypeIfUnset");
 var utils_1 = require("./helpers/utils");
 var DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
-var defaults = {
-    adapter: adapters_1.default(),
-    method: "GET",
-    timeout: 10000,
-    headers: __assign({ common: {
-            Accept: "application/json, text/plain, */*",
-        } }, getDefaultHeaders()),
-    transformConfig: [],
-    transformRequest: [
-        function (data, headers) {
-            normalizeHeaderName_1.default(headers, "Accept");
-            normalizeHeaderName_1.default(headers, "Content-Type");
-            if (utils_1.isPlainObject(data)) {
-                setContentTypeIfUnset_1.default(headers, "application/json; charset=utf-8");
-            }
-            return data;
-        },
-    ],
-    transformResponse: [],
-    xsrfCookieName: "XSRF-TOKEN",
-    xsrfHeaderName: "X-XSRF-TOKEN",
-    validateStatus: function (status) {
-        if (status >= 200 && status < 300) {
-            return true;
-        }
-        return false;
-    },
-};
 function getDefaultHeaders() {
     var headers = {};
     ["delete", "get", "head", "options"].forEach(function (method) {
@@ -58,5 +30,36 @@ function getDefaultHeaders() {
     return headers;
 }
 exports.STORAGE_COOKIES_KEY = "miniRequest:cookies";
-exports.default = defaults;
+function getDefaults() {
+    var defaults = {
+        adapter: adapters_1.default(),
+        method: "GET",
+        timeout: 10000,
+        headers: __assign({ common: {
+                Accept: "application/json, text/plain, */*",
+            } }, getDefaultHeaders()),
+        transformConfig: [],
+        transformRequest: [
+            function (data, headers) {
+                normalizeHeaderName_1.default(headers, "Accept");
+                normalizeHeaderName_1.default(headers, "Content-Type");
+                if (utils_1.isPlainObject(data)) {
+                    setContentTypeIfUnset_1.default(headers, "application/json; charset=utf-8");
+                }
+                return data;
+            },
+        ],
+        transformResponse: [],
+        xsrfCookieName: "XSRF-TOKEN",
+        xsrfHeaderName: "X-XSRF-TOKEN",
+        validateStatus: function (status) {
+            if (status >= 200 && status < 300) {
+                return true;
+            }
+            return false;
+        },
+    };
+    return defaults;
+}
+exports.default = getDefaults;
 //# sourceMappingURL=defaults.js.map

@@ -1,6 +1,6 @@
 import Adapter from "../../src/adapters/Adapter";
 import AppletsRequest from "../../src/core/AppletsRequest";
-import defaults from "../../src/defaults";
+import getDefaults from "../../src/defaults";
 
 const adapter = jest.fn();
 adapter.mockRejectedValueOnce({
@@ -51,7 +51,7 @@ adapter.mockRejectedValueOnce({
  */
 describe("Request", () => {
   const appletsRequest = new AppletsRequest({
-    ...defaults,
+    ...getDefaults(),
     adapter,
   });
 
@@ -62,13 +62,13 @@ describe("Request", () => {
   });
 
   it("Normal", () => {
-    return new AppletsRequest(defaults).request("/get").catch((err) => {
+    return new AppletsRequest(getDefaults()).request("/get").catch((err) => {
       expect(err.status).toBe(404);
     });
   });
 
   it("Normal getRequestTask undefined", () => {
-    return new AppletsRequest(defaults)
+    return new AppletsRequest(getDefaults())
       .request("/get", {
         getRequestTask: undefined,
         adapter: jest.fn().mockRejectedValue({
@@ -89,7 +89,7 @@ describe("Request", () => {
   });
 
   it("Normal getRequestTask", () => {
-    return new AppletsRequest(defaults)
+    return new AppletsRequest(getDefaults())
       .request("/get", {
         getRequestTask() {
           console.log("getRequestTask");
@@ -139,7 +139,7 @@ describe("Request", () => {
   });
 
   it("XSRF", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     return appletsRequest
       .request("/get", {
         readCookies() {
@@ -168,7 +168,7 @@ describe("Request", () => {
   });
 
   it("Cancel Before Request", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     const cancelToken = new appletsRequest.CancelToken();
     cancelToken.cancel("test cancel");
     return appletsRequest
@@ -200,7 +200,7 @@ describe("Request", () => {
   });
 
   it("Cancel After Request", (done) => {
-    const appletsRequestCancel = new AppletsRequest(defaults);
+    const appletsRequestCancel = new AppletsRequest(getDefaults());
     const cancelToken = new appletsRequestCancel.CancelToken();
     const config: any = {
       readCookies() {
@@ -261,7 +261,7 @@ describe("AppletsRequest", () => {
       },
       originRes: null,
     });
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     return appletsRequest
       .get("/get1", {
         adapter: adapterFn,
@@ -281,7 +281,7 @@ describe("AppletsRequest", () => {
       },
       originRes: null,
     });
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     return appletsRequest
       .delete("/get1", {
         adapter: adapterFn,
@@ -301,7 +301,7 @@ describe("AppletsRequest", () => {
       },
       originRes: null,
     });
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     return appletsRequest
       .head("/get1", {
         adapter: adapterFn,
@@ -321,7 +321,7 @@ describe("AppletsRequest", () => {
       },
       originRes: null,
     });
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     return appletsRequest
       .options("/get1", {
         adapter: adapterFn,
@@ -341,7 +341,7 @@ describe("AppletsRequest", () => {
       },
       originRes: null,
     });
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     return appletsRequest
       .post(
         "/get1",
@@ -365,7 +365,7 @@ describe("AppletsRequest", () => {
       },
       originRes: null,
     });
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     return appletsRequest
       .put(
         "/get1",
@@ -380,7 +380,7 @@ describe("AppletsRequest", () => {
   });
 
   it("create", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     const adapterFn = jest.fn().mockResolvedValue({
       response: null,
       status: 200,
@@ -405,7 +405,7 @@ describe("AppletsRequest", () => {
   });
 
   it("getUri", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     expect(
       appletsRequest.getUri({
         baseURL: "https://xxx.com",
@@ -415,7 +415,7 @@ describe("AppletsRequest", () => {
   });
 
   it("getUri empty url", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     expect(
       appletsRequest.getUri({
         baseURL: "https://xxx.com",
@@ -425,7 +425,7 @@ describe("AppletsRequest", () => {
   });
 
   it("getUri absolute url", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     expect(
       appletsRequest.getUri({
         baseURL: "https://xxx.com",
@@ -435,7 +435,7 @@ describe("AppletsRequest", () => {
   });
 
   it("getUri empty baseUrl", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     expect(
       appletsRequest.getUri({
         baseURL: "",
@@ -445,7 +445,7 @@ describe("AppletsRequest", () => {
   });
 
   it("all", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
     const adapterFn = jest.fn().mockResolvedValue({
       response: null,
       status: 200,
@@ -475,7 +475,7 @@ describe("AppletsRequest", () => {
   });
 
   it("all Error", () => {
-    const appletsRequest = new AppletsRequest(defaults);
+    const appletsRequest = new AppletsRequest(getDefaults());
 
     expect(() => {
       appletsRequest.all([]);

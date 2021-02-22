@@ -1,5 +1,7 @@
 import mergeConfig from "../../src/core/mergeConfig";
-import defaultConfig from "../../src/defaults";
+import getDefaults from "../../src/defaults";
+
+const defaultConfig = getDefaults();
 
 describe("mergeConfig", () => {
   it("merge undefined", () => {
