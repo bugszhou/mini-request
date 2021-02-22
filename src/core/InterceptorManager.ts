@@ -1,6 +1,20 @@
+import { isFunction, isUndefined } from "../helpers/utils";
+
 interface IInterceptor<T> {
-  fulfilled: IAppletsRequest.IResolved<T>;
+  fulfilled: IAppletsRequest.IResolved<T> | undefined;
   rejected: IAppletsRequest.IRejected | undefined;
+}
+
+function isValidInterceptor(executor: any): boolean {
+  if (isUndefined(executor)) {
+    return true;
+  }
+
+  if (isFunction(executor)) {
+    return true;
+  }
+
+  return false;
 }
 
 export default class InterceptorManager<T> {
@@ -12,12 +26,13 @@ export default class InterceptorManager<T> {
 
   use(
     fulfilled: IAppletsRequest.IResolved<T>,
-    rejected?: IAppletsRequest.IRejected,
+    rejected?: IAppletsRequest.IRejected
   ): IAppletsRequest.IInterceptorId {
-    this.interceptors.push({
-      fulfilled,
-      rejected,
-    });
+    const interceptor: IInterceptor<T> = {
+      fulfilled: isValidInterceptor(fulfilled) ? fulfilled : undefined,
+      rejected: isValidInterceptor(rejected) ? rejected : undefined,
+    };
+    this.interceptors.push(interceptor);
 
     return this.interceptors.length - 1;
   }
@@ -29,11 +44,20 @@ export default class InterceptorManager<T> {
     this.interceptors[interceptorId] = null;
   }
 
-  forEach(fn: (interceptor: IInterceptor<T>) => void): void {
-    this.interceptors.forEach((interceptor) => {
+  forEach(
+    fn: (
+      interceptor: IInterceptor<T>,
+      interceptorId: IAppletsRequest.IInterceptorId
+    ) => void
+  ): void {
+    this.interceptors.forEach((interceptor, interceptorId) => {
       if (typeof fn === "function" && interceptor !== null) {
-        fn(interceptor);
+        fn(interceptor, interceptorId);
       }
     });
+  }
+
+  size(): number {
+    return this.interceptors.length;
   }
 }
