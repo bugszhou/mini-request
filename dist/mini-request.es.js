@@ -1228,5 +1228,5 @@ function createAppletsRequestInstance(config) {
 var miniRequest = createAppletsRequestInstance();
 
 export default miniRequest;
-export { AppletsRequest, createAppletsRequestInstance };
+export { AppletsRequest, createAppletsRequestInstance, getDefaults };
 //# sourceMappingURL=mini-request.es.js.map

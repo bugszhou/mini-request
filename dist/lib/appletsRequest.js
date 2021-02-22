@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppletsRequest = exports.createAppletsRequestInstance = void 0;
+exports.getDefaults = exports.AppletsRequest = exports.createAppletsRequestInstance = void 0;
 var AppletsRequest_1 = require("./core/AppletsRequest");
 exports.AppletsRequest = AppletsRequest_1.default;
+var defaults_1 = require("./defaults");
+exports.getDefaults = defaults_1.default;
 /**
  * 创建AppletsRequest实例
  * @param {IAppletsRequestConfig} config

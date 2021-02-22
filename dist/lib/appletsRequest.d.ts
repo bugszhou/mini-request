@@ -1,4 +1,5 @@
 import AppletsRequest from "./core/AppletsRequest";
+import getDefaults from "./defaults";
 /**
  * 创建AppletsRequest实例
  * @param {IAppletsRequestConfig} config
@@ -10,3 +11,4 @@ export declare function createAppletsRequestInstance(config?: IAppletsRequestCon
 declare const miniRequest: AppletsRequestInstance;
 export default miniRequest;
 export { AppletsRequest as AppletsRequest };
+export { getDefaults as getDefaults };
