@@ -11,3 +11,5 @@ export { AppletsRequest as AppletsRequest };
 export function createAppletsRequestInstance(
   config?: IAppletsRequestConfig
 ): AppletsRequestInstance;
+
+export function getDefaults(): IAppletsRequestConfig;
