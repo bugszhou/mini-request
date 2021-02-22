@@ -10,16 +10,16 @@ export default function getDefaultAdapter(): IAdapterFn {
 }
 
 function defaultAdapter(config: IAppletsRequestConfig): IAppletsRequestPromise {
-  console.error(
-    "defaultAdapter: ",
-    "Pls set adapter!!! Don't use default adapter"
-  );
-  console.error("defaultAdapter: ", config);
   const adapter = new Adapter({
     method: transformMethod(config.method),
     ...config,
   } as IAppletsRequest.IHttpConfig);
   return new Promise((resolve) => {
+    console.log(
+      "defaultAdapter: ",
+      "Pls set adapter!!! Don't use default adapter"
+    );
+    console.log("defaultAdapter: ", config);
     adapter.resolve(
       {
         data: {},

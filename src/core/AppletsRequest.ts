@@ -19,7 +19,8 @@ interface IInterceptors {
 interface IPromiseChain<T> {
   fulfilled:
     | IAppletsRequest.IResolved<T>
-    | ((config: IAppletsRequestConfig) => IAppletsRequestPromise);
+    | ((config: IAppletsRequestConfig) => IAppletsRequestPromise)
+    | undefined;
   rejected?: IAppletsRequest.IRejected;
 }
 
