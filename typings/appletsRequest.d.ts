@@ -310,7 +310,7 @@ interface IAppletsRequestConfig {
   /**
    * http request in different platform
    */
-  adapter?: (config: IAppletsRequestConfig) => IAppletsRequestPromise;
+  adapter?: (config: IAppletsRequest.IHttpConfig) => IAppletsRequestPromise;
   url?: string;
   method?: IAppletsRequest.IMethod;
   headers?: {
