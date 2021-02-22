@@ -1,6 +1,6 @@
 import CancelToken from "../cancel/CancelToken";
 import isCancel from "../cancel/isCancel";
-import defaults from "../defaults";
+import getDefaults from "../defaults";
 import isNetworkError from "../error/isNetworkError";
 import isTimeout from "../error/isTimeout";
 import combineURLs from "../helpers/combineURLs";
@@ -126,7 +126,7 @@ export default class AppletsRequest {
   }
 
   create(config?: IAppletsRequestConfig): AppletsRequestInstance {
-    const miniRequest = new AppletsRequest(mergeConfig(defaults, config));
+    const miniRequest = new AppletsRequest(mergeConfig(getDefaults(), config));
     const ins: AppletsRequestInstance = AppletsRequest.prototype.request.bind(
       miniRequest
     ) as AppletsRequestInstance;
