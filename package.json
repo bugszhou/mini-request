@@ -1,6 +1,6 @@
 {
   "name": "applets-request",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "mini program axois request wechat alipay",
   "main": "dist/mini-request.min.js",
   "module": "dist/mini-request.es.js",
