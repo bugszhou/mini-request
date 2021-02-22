@@ -21,6 +21,9 @@ function isPlainObject(val) {
 }
 exports.isPlainObject = isPlainObject;
 function assign(to, from) {
+    if (isString(from)) {
+        return to;
+    }
     for (var key in from) {
         to[key] = from[key];
     }
@@ -64,7 +67,7 @@ function merge() {
     if (objs.length === 0) {
         return Object.create(null);
     }
-    var result = {};
+    var result = Object.create(null);
     function assignValue(val, key) {
         if (isPlainObject(result[key]) && isPlainObject(val)) {
             result[key] = merge(result[key], val);

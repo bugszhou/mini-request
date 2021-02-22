@@ -1,20 +1,22 @@
-export interface IResolveOptions {
-    headers: Record<string, any>;
-    status: number;
-    data: any;
-    response?: any;
-}
-interface IRejectOptions {
-    errMsg: string;
-    status: IAppletsRequestStatus;
-    data?: any;
-    extra?: any;
-}
 export default class Adapter {
     private reqConfig;
     constructor(config: IAppletsRequest.IHttpConfig);
-    resolve(options: IResolveOptions, resolve: IAppletsRequest.IResolved<any>): void;
-    reject(options: IRejectOptions, reject: IAppletsRequest.IRejected): void;
-    abort(executor: (cancel: IAppletsRequest.ICanceler) => void): void;
+    /**
+     * 接口请求成功执行该方法
+     * @param options response数据
+     * @param resolve Promise.resolve
+     */
+    resolve(options: IAppletsRequest.IAdapterResolveOptions, resolve: IAppletsRequest.IResolved<any>): void;
+    /**
+     * 接口请求失败执行该方法
+     * @param options response数据
+     * @param reject Promise.reject
+     */
+    reject(options: IAppletsRequest.IAdapterRejectOptions, reject: IAppletsRequest.IRejected): void;
+    /**
+     * 取消接口请求
+     * @param listener 监听执行取消接口请求操作的监听函数
+     */
+    subscribeCancelEvent(listener: (reason: IAppletsRequest.ICancelerIns) => any): any;
+    private copyAdapterConfig;
 }
-export {};

@@ -1,5 +1,5 @@
 interface IInterceptor<T> {
-    fulfilled: IAppletsRequest.IResolved<T>;
+    fulfilled: IAppletsRequest.IResolved<T> | undefined;
     rejected: IAppletsRequest.IRejected | undefined;
 }
 export default class InterceptorManager<T> {
@@ -7,6 +7,7 @@ export default class InterceptorManager<T> {
     constructor();
     use(fulfilled: IAppletsRequest.IResolved<T>, rejected?: IAppletsRequest.IRejected): IAppletsRequest.IInterceptorId;
     eject(interceptorId: IAppletsRequest.IInterceptorId): void;
-    forEach(fn: (interceptor: IInterceptor<T>) => void): void;
+    forEach(fn: (interceptor: IInterceptor<T>, interceptorId: IAppletsRequest.IInterceptorId) => void): void;
+    size(): number;
 }
 export {};

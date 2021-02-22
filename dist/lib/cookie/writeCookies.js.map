@@ -1,0 +1,1 @@
+{"version":3,"file":"writeCookies.js","sourceRoot":"","sources":["../../../src/cookie/writeCookies.ts"],"names":[],"mappings":";;AAAA,wCAAkD;AAClD,0CAA8C;AAE9C,SAAwB,YAAY,CAClC,MAA6B,EAC7B,OAAY;IAEZ,IAAI,CAAC,MAAM,CAAC,WAAW,IAAI,CAAC,kBAAU,CAAC,MAAM,CAAC,YAAY,CAAC,EAAE;QAC3D,OAAO;KACR;IAED,oEAAoE;IACpE,MAAM,CAAC,YAAa,CAAC,8BAAmB,EAAE,OAAO,CAAC,CAAC;AACrD,CAAC;AAVD,+BAUC"}

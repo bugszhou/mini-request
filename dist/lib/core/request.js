@@ -47,6 +47,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 var assembleHeaders_1 = require("../helpers/assembleHeaders");
 var transformMethod_1 = require("../helpers/transformMethod");
 var transformUrl_1 = require("../helpers/transformUrl");
@@ -54,12 +55,14 @@ var transformConfig_1 = require("./transformConfig");
 var transformData_1 = require("./transformData");
 var isCancel_1 = require("../cancel/isCancel");
 var isURLSameOrigin_1 = require("../helpers/isURLSameOrigin");
-var storageCookies_1 = require("../adapters/wx/storageCookies");
+var getCookies_1 = require("../cookie/getCookies");
 var utils_1 = require("../helpers/utils");
-var parseCookie_1 = require("../helpers/parseCookie");
+var parseCookie_1 = require("../cookie/parseCookie");
 var AppletsRequestError_1 = require("./AppletsRequestError");
 var combineURLs_1 = require("../helpers/combineURLs");
 var isAbsoluteURL_1 = require("../helpers/isAbsoluteURL");
+var Adapter_1 = require("../adapters/Adapter");
+var writeCookies_1 = require("../cookie/writeCookies");
 function request(config) {
     return __awaiter(this, void 0, void 0, function () {
         var transformedConfig, res, reason_1, err;
@@ -77,9 +80,7 @@ function request(config) {
                     if (utils_1.isPlainObject(res.headers)) {
                         res.cookies = parseCookie_1.default(assembleHeaders_1.formattedHeader(res.headers, ["Set-Cookie"])["Set-Cookie"]);
                     }
-                    if (config.autoCookies) {
-                        storageCookies_1.default(res.cookies);
-                    }
+                    writeCookies_1.default(config, res.cookies);
                     if (typeof config.validateStatus === "function" &&
                         config.validateStatus(res.status)) {
                         res.data = transformData_1.default(res.data, res.headers, transformedConfig.transformResponse);
@@ -95,6 +96,9 @@ function request(config) {
                     err = reason_1;
                     if (err && err.response) {
                         err.response.data = transformData_1.default(err.response.data, err.response.headers, transformedConfig.transformResponse);
+                    }
+                    if (err instanceof TypeError) {
+                        return [2 /*return*/, Promise.reject(AppletsRequestError_1.createError(err.message, err.config, "SCRIPT_ERROR", err.response, err))];
                     }
                     return [2 /*return*/, Promise.reject(AppletsRequestError_1.createError(err.errMsg, err.config, err.status, err.response, err.extra))];
                 case 4: return [2 /*return*/];
@@ -130,11 +134,11 @@ function formattedConfig(config) {
         transformedConfig.headers.Cookies = cookiesStr;
     }
     // xsrf 防御
-    var xsrfToken = storageCookies_1.getCookie(transformedConfig.xsrfCookieName);
+    var xsrfToken = getCookies_1.getCookie(getCookies_1.default(config), transformedConfig.xsrfCookieName);
     if (xsrfToken) {
         transformedConfig.headers[transformedConfig.xsrfHeaderName] = xsrfToken;
     }
-    return __assign(__assign({}, transformedConfig), { url: formattedUrl, method: method, headers: transformedConfig.headers, getRequestTask: formattedGetRequestTaskFunction(transformedConfig.getRequestTask) });
+    return __assign(__assign({}, transformedConfig), { url: formattedUrl, method: method, headers: transformedConfig.headers, getRequestTask: formattedGetRequestTaskFunction(transformedConfig.getRequestTask), Adapter: Adapter_1.default });
 }
 function formattedGetRequestTaskFunction(fn) {
     if (typeof fn === "function") {
@@ -146,7 +150,7 @@ function formattedGetRequestTaskFunction(fn) {
 }
 function getCookiesStr(config) {
     if (config.withCredentials || isURLSameOrigin_1.default()) {
-        return assembleHeaders_1.combineCookiesStr(config.headers.Cookies, config.xsrfCookieName);
+        return assembleHeaders_1.combineCookiesStr(config.headers.Cookies, config.xsrfCookieName, getCookies_1.getCookie(getCookies_1.default(config), config.xsrfCookieName));
     }
     return "";
 }

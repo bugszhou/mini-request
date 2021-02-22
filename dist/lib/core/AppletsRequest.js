@@ -27,8 +27,8 @@ var AppletsRequest = /** @class */ (function () {
     function AppletsRequest(config) {
         this.AppletsRequest = AppletsRequest;
         this.CancelToken = CancelToken_1.default;
-        this.isCancel = isCancel_1.default;
         this.defaults = {};
+        this.isCancel = isCancel_1.default;
         this.isTimeout = isTimeout_1.default;
         this.isNetworkError = isNetworkError_1.default;
         if (config) {
@@ -56,17 +56,11 @@ var AppletsRequest = /** @class */ (function () {
             },
         ];
         this.interceptors.request.forEach(function (interceptor) {
-            // eslint-disable-next-line implicit-arrow-linebreak
             return chain.unshift(interceptor);
-        }
-        // eslint-disable-next-line function-paren-newline
-        );
+        });
         this.interceptors.response.forEach(function (interceptor) {
-            // eslint-disable-next-line implicit-arrow-linebreak
             return chain.push(interceptor);
-        }
-        // eslint-disable-next-line function-paren-newline
-        );
+        });
         var promise = Promise.resolve(formattedConfig);
         chain.forEach(function (interceptor) {
             if (!interceptor) {

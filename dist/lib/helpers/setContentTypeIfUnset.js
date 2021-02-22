@@ -4,7 +4,7 @@ var utils_1 = require("./utils");
 function setContentTypeIfUnset(headers, value) {
     if (!utils_1.isUndefined(headers) &&
         headers &&
-        !utils_1.isUndefined(headers["Content-Type"])) {
+        utils_1.isUndefined(headers["Content-Type"])) {
         headers["Content-Type"] = value;
     }
 }

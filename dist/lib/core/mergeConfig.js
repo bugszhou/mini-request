@@ -3,7 +3,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-02-01 22:55:50
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-02 19:14:16
+ * @Last Modified time: 2021-02-09 18:07:00
  * @Description 合并config
  */
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -18,9 +18,21 @@ function mergeConfig(config1, optionalConfig2) {
     // 只要在config2中存在key，就赋值config2[key]，不考虑null和undefined；
     // 如果config2中不存在key，config1中存在该key，就赋值config1[key]；
     // config1和config2都不存在，则跳过
-    var directMergeKeys = ["validateStatus"];
+    var directMergeKeys = ["validateStatus", "writeCookies", "readCookies"];
     // 优先从config2中取值，config2中没有值的，再从config1取值
-    var config2FirstConfig1DefaultKeys = ["timeout"];
+    var config2FirstConfig1DefaultKeys = [
+        "baseURL",
+        "transformConfig",
+        "transformRequest",
+        "transformResponse",
+        "paramsSerializer",
+        "timeout",
+        "adapter",
+        "responseType",
+        "xsrfCookieName",
+        "xsrfHeaderName",
+        "cancelToken",
+    ];
     valueFromConfig2Keys.forEach(getValueFromConfig2);
     config2FirstConfig1DefaultKeys.forEach(getValueFromConfig2First);
     directMergeKeys.forEach(getDirectValue);

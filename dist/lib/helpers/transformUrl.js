@@ -3,7 +3,7 @@
  * @Author: youzhao.zhou
  * @Date: 2021-01-30 16:44:44
  * @Last Modified by: youzhao.zhou
- * @Last Modified time: 2021-02-05 23:10:33
+ * @Last Modified time: 2021-02-07 12:29:11
  * @Description 处理url，将params数据，以query的方式拼接到url上，
  * @example /demo?p1=12&p2=34
  *
@@ -28,8 +28,7 @@ function parseUrl(url, params, paramsSerializer) {
         return tmpUrl;
     }
     var queryStr = utils_1.isFunction(paramsSerializer)
-        ? paramsSerializer(params)
-        : parseQueryStr(paramsKeys, params);
+        ? paramsSerializer === null || paramsSerializer === void 0 ? void 0 : paramsSerializer(params) : parseQueryStr(paramsKeys, params);
     if (!queryStr) {
         return tmpUrl;
     }

@@ -9,7 +9,7 @@ export default class CancelToken {
     static source(): ISourceReturn;
     constructor(executor?: IAppletsRequest.IEmptyFN);
     cancel(message: string): void;
-    execAbort(resolution: IAppletsRequest.IResolved<any>): any;
+    subscribeCancelEvent(listener: IAppletsRequest.IResolvedReturn<IAppletsRequest.ICancelerIns>): any;
     throwIfRequested(): void;
 }
 export {};

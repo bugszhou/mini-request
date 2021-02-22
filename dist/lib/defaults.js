@@ -11,6 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.STORAGE_COOKIES_KEY = void 0;
 var adapters_1 = require("./adapters");
 var normalizeHeaderName_1 = require("./helpers/normalizeHeaderName");
 var setContentTypeIfUnset_1 = require("./helpers/setContentTypeIfUnset");
@@ -56,5 +57,6 @@ function getDefaultHeaders() {
     });
     return headers;
 }
+exports.STORAGE_COOKIES_KEY = "miniRequest:cookies";
 exports.default = defaults;
 //# sourceMappingURL=defaults.js.map

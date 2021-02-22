@@ -7,14 +7,17 @@ interface IInterceptors {
     request: InterceptorManager<IAppletsRequestConfig>;
     response: InterceptorManager<IAppletsRequestResponse>;
 }
+export declare type URLType = string;
 export default class AppletsRequest {
     AppletsRequest: typeof AppletsRequest;
     CancelToken: typeof CancelToken;
-    isCancel: typeof isCancel;
     defaults: IAppletsRequestConfig;
     interceptors: IInterceptors;
+    isCancel: typeof isCancel;
+    isTimeout: typeof isTimeout;
+    isNetworkError: typeof isNetworkError;
     constructor(config?: IAppletsRequestConfig);
-    request(options: string | IAppletsRequestConfig, config?: IAppletsRequestConfig): IAppletsRequestPromise;
+    request(options: URLType | IAppletsRequestConfig, config?: IAppletsRequestConfig): IAppletsRequestPromise;
     get(url: string, config?: IAppletsRequestConfig): IAppletsRequestPromise;
     delete(url: string, config?: IAppletsRequestConfig): IAppletsRequestPromise;
     head(url: string, config?: IAppletsRequestConfig): IAppletsRequestPromise;
@@ -24,8 +27,6 @@ export default class AppletsRequest {
     create(config?: IAppletsRequestConfig): AppletsRequestInstance;
     all(promises: IAppletsRequestPromise[]): Promise<IAppletsRequestResponse[]>;
     getUri(config: IAppletsRequestConfig): string;
-    isTimeout: typeof isTimeout;
-    isNetworkError: typeof isNetworkError;
     private requestWithMethod;
     private requestWithData;
     private transformConfig;

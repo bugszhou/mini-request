@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.serializeCookie = void 0;
-var utils_1 = require("./utils");
+var utils_1 = require("../helpers/utils");
 /**
  * Module variables.
  * @private
@@ -18,11 +18,17 @@ var pairSplitRegExp = /; */;
  */
 // eslint-disable-next-line no-control-regex
 var fieldContentRegExp = /^[\u0009\u0020-\u007e\u0080-\u00ff]+$/;
-function parseCookies(cookiesStr) {
+/**
+ *
+ * @param {string} cookiesStr cookies字符串
+ * @param options
+ */
+function parseCookies(cookiesStr, options) {
+    if (options === void 0) { options = {}; }
     if (!cookiesStr) {
         return {};
     }
-    return parse(cookiesStr);
+    return parse(cookiesStr, options);
 }
 exports.default = parseCookies;
 /**
@@ -80,21 +86,21 @@ function serializeCookie(name, val, options) {
     if (options === void 0) { options = {}; }
     var encodeFn = options.encode || encode;
     serializeThrowErr(typeof encodeFn !== "function", "option encode is invalid");
-    serializeThrowErr(regPass(name), "argument name is invalid");
+    serializeThrowErr(!regPass(name), "argument name is invalid");
     var value = encodeFn(val);
-    serializeThrowErr(regPass(value), "argument val is invalid");
+    serializeThrowErr(!regPass(value), "argument val is invalid");
     var str = name + "=" + value;
-    if (options.maxAge !== null) {
+    if (options.maxAge || options.maxAge === 0) {
         var maxAge = options.maxAge - 0;
-        serializeThrowErr(Number.isNaN(maxAge) || !Number.isFinite(maxAge), "argument val is invalid");
+        serializeThrowErr(Number.isNaN(maxAge) || !Number.isFinite(maxAge), "option maxAge is invalid");
         str += "; Max-Age=" + Math.floor(maxAge);
     }
     if (options.domain) {
-        serializeThrowErr(regPass(options.domain), "argument val is invalid");
+        serializeThrowErr(!regPass(options.domain), "option domain is invalid");
         str += "; Domain=" + options.domain;
     }
     if (options.path) {
-        serializeThrowErr(regPass(options.path), "option path is invalid");
+        serializeThrowErr(!regPass(options.path), "option path is invalid");
         str += "; Path=" + options.path;
     }
     if (options.expires) {
@@ -133,7 +139,7 @@ function serializeThrowErr(isErr, errMsg) {
     throw new TypeError(errMsg);
 }
 function regPass(data) {
-    return data && !fieldContentRegExp.test(data);
+    return Boolean(data) && fieldContentRegExp.test(data);
 }
 /**
  * Try decoding a string using a decoding function.

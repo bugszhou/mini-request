@@ -213,6 +213,103 @@ function isCancel(canceler) {
     return canceler && canceler.isCancel;
 }
 
+function transformMethod(method) {
+    if (!method || typeof method !== "string") {
+        return "GET";
+    }
+    return method.toUpperCase();
+}
+
+/* eslint-disable max-len */
+var Adapter = /** @class */ (function () {
+    function Adapter(config) {
+        this.reqConfig = this.copyAdapterConfig(config);
+    }
+    /**
+     * 接口请求成功执行该方法
+     * @param options response数据
+     * @param resolve Promise.resolve
+     */
+    Adapter.prototype.resolve = function (options, resolve) {
+        if (isUndefined(options) || options === null) {
+            resolve({
+                headers: {},
+                status: 200,
+                data: {},
+                config: this.reqConfig,
+                originalRes: null,
+            });
+        }
+        resolve({
+            headers: options.headers,
+            config: this.reqConfig,
+            data: options.data,
+            status: options.status,
+            originalRes: isUndefined(options.response) ? null : options.response,
+        });
+    };
+    /**
+     * 接口请求失败执行该方法
+     * @param options response数据
+     * @param reject Promise.reject
+     */
+    Adapter.prototype.reject = function (options, reject) {
+        if (isUndefined(options) || options === null) {
+            reject({
+                headers: null,
+                status: "NETWORK_ERROR",
+                errMsg: "Reject arguments Error",
+                data: null,
+                config: this.reqConfig,
+                extra: null,
+            });
+        }
+        reject({
+            status: options.status,
+            errMsg: options.errMsg,
+            config: this.reqConfig,
+            headers: options.headers || {},
+            data: options.data,
+            extra: isUndefined(options.extra) ? null : options.extra,
+        });
+    };
+    /**
+     * 取消接口请求
+     * @param listener 监听执行取消接口请求操作的监听函数
+     */
+    Adapter.prototype.subscribeCancelEvent = function (listener) {
+        if (!this.reqConfig.cancelToken) {
+            return;
+        }
+        return this.reqConfig.cancelToken.subscribeCancelEvent(listener);
+    };
+    Adapter.prototype.copyAdapterConfig = function (config) {
+        if (isUndefined(config) || config === null) {
+            return {};
+        }
+        var reqConfig = merge({}, config);
+        delete reqConfig.Adapter;
+        return reqConfig;
+    };
+    return Adapter;
+}());
+
+function getDefaultAdapter() {
+    return defaultAdapter;
+}
+function defaultAdapter(config) {
+    var adapter = new Adapter(__assign({ method: transformMethod(config.method) }, config));
+    return new Promise(function (resolve) {
+        console.log("defaultAdapter: ", "Pls set adapter!!! Don't use default adapter");
+        adapter.resolve({
+            data: {},
+            headers: {},
+            status: 404,
+            response: null,
+        }, resolve);
+    });
+}
+
 function normalizeHeaderName(headers, normalizedHeaderName) {
     if (!normalizedHeaderName) {
         return;
@@ -236,7 +333,7 @@ function setContentTypeIfUnset(headers, value) {
 
 var DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
 var defaults = {
-    // adapter: getDefaultAdapter(),
+    adapter: getDefaultAdapter(),
     method: "GET",
     timeout: 10000,
     headers: __assign({ common: {
@@ -458,15 +555,25 @@ function transformUrl(url, params, paramsSerializer) {
     return parseUrl(url, params, paramsSerializer);
 }
 
+function isValidInterceptor(executor) {
+    if (isUndefined(executor)) {
+        return true;
+    }
+    if (isFunction(executor)) {
+        return true;
+    }
+    return false;
+}
 var InterceptorManager = /** @class */ (function () {
     function InterceptorManager() {
         this.interceptors = [];
     }
     InterceptorManager.prototype.use = function (fulfilled, rejected) {
-        this.interceptors.push({
-            fulfilled: fulfilled,
-            rejected: rejected,
-        });
+        var interceptor = {
+            fulfilled: isValidInterceptor(fulfilled) ? fulfilled : undefined,
+            rejected: isValidInterceptor(rejected) ? rejected : undefined,
+        };
+        this.interceptors.push(interceptor);
         return this.interceptors.length - 1;
     };
     InterceptorManager.prototype.eject = function (interceptorId) {
@@ -476,11 +583,14 @@ var InterceptorManager = /** @class */ (function () {
         this.interceptors[interceptorId] = null;
     };
     InterceptorManager.prototype.forEach = function (fn) {
-        this.interceptors.forEach(function (interceptor) {
+        this.interceptors.forEach(function (interceptor, interceptorId) {
             if (typeof fn === "function" && interceptor !== null) {
-                fn(interceptor);
+                fn(interceptor, interceptorId);
             }
         });
+    };
+    InterceptorManager.prototype.size = function () {
+        return this.interceptors.length;
     };
     return InterceptorManager;
 }());
@@ -719,13 +829,6 @@ function spliceCookieStr(cookieName, cookieVal) {
         : cookieName + "=" + cookieVal;
 }
 
-function transformMethod(method) {
-    if (!method || typeof method !== "string") {
-        return "GET";
-    }
-    return method.toUpperCase();
-}
-
 /*
  * @Author: youzhao.zhou
  * @Date: 2021-02-02 18:16:24
@@ -910,80 +1013,6 @@ function createError(message, config, status, response, extra) {
     return new AppletsRequestError(message, config, tmpStatus, response, extra);
 }
 
-/* eslint-disable max-len */
-var Adapter = /** @class */ (function () {
-    function Adapter(config) {
-        this.reqConfig = this.copyAdapterConfig(config);
-    }
-    /**
-     * 接口请求成功执行该方法
-     * @param options response数据
-     * @param resolve Promise.resolve
-     */
-    Adapter.prototype.resolve = function (options, resolve) {
-        if (isUndefined(options) || options === null) {
-            resolve({
-                headers: {},
-                status: 200,
-                data: {},
-                config: this.reqConfig,
-                originalRes: null,
-            });
-        }
-        resolve({
-            headers: options.headers,
-            config: this.reqConfig,
-            data: options.data,
-            status: options.status,
-            originalRes: isUndefined(options.response) ? null : options.response,
-        });
-    };
-    /**
-     * 接口请求失败执行该方法
-     * @param options response数据
-     * @param reject Promise.reject
-     */
-    Adapter.prototype.reject = function (options, reject) {
-        if (isUndefined(options) || options === null) {
-            reject({
-                headers: null,
-                status: "NETWORK_ERROR",
-                errMsg: "Reject arguments Error",
-                data: null,
-                config: this.reqConfig,
-                extra: null,
-            });
-        }
-        reject({
-            status: options.status,
-            errMsg: options.errMsg,
-            config: this.reqConfig,
-            headers: options.headers || {},
-            data: options.data,
-            extra: isUndefined(options.extra) ? null : options.extra,
-        });
-    };
-    /**
-     * 取消接口请求
-     * @param listener 监听执行取消接口请求操作的监听函数
-     */
-    Adapter.prototype.subscribeCancelEvent = function (listener) {
-        if (!this.reqConfig.cancelToken) {
-            return;
-        }
-        return this.reqConfig.cancelToken.subscribeCancelEvent(listener);
-    };
-    Adapter.prototype.copyAdapterConfig = function (config) {
-        if (isUndefined(config) || config === null) {
-            return {};
-        }
-        var reqConfig = merge({}, config);
-        delete reqConfig.Adapter;
-        return reqConfig;
-    };
-    return Adapter;
-}());
-
 function writeCookies(config, cookies) {
     if (!config.autoCookies || !isFunction(config.writeCookies)) {
         return;
@@ -1025,6 +1054,9 @@ function request(config) {
                     err = reason_1;
                     if (err && err.response) {
                         err.response.data = transformData(err.response.data, err.response.headers, transformedConfig.transformResponse);
+                    }
+                    if (err instanceof TypeError) {
+                        return [2 /*return*/, Promise.reject(createError(err.message, err.config, "SCRIPT_ERROR", err.response, err))];
                     }
                     return [2 /*return*/, Promise.reject(createError(err.errMsg, err.config, err.status, err.response, err.extra))];
                 case 4: return [2 /*return*/];
@@ -1085,8 +1117,8 @@ var AppletsRequest = /** @class */ (function () {
     function AppletsRequest(config) {
         this.AppletsRequest = AppletsRequest;
         this.CancelToken = CancelToken;
-        this.isCancel = isCancel;
         this.defaults = {};
+        this.isCancel = isCancel;
         this.isTimeout = isTimeout;
         this.isNetworkError = isNetworkError;
         if (config) {

@@ -4,9 +4,6 @@ var Cancel_1 = require("./Cancel");
 var CancelToken = /** @class */ (function () {
     function CancelToken(executor) {
         var _this = this;
-        this.promiseResolve = function () {
-            // empty
-        };
         this.promise = new Promise(function (resolve) {
             _this.promiseResolve = resolve;
         });
@@ -15,14 +12,13 @@ var CancelToken = /** @class */ (function () {
         }
     }
     CancelToken.source = function () {
-        var cancel = function () {
-            // empty
-        };
+        var cancel;
         var token = new CancelToken(function (cancelFn) {
             cancel = cancelFn;
         });
         return {
             token: token,
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             cancel: cancel,
         };
     };
@@ -33,8 +29,8 @@ var CancelToken = /** @class */ (function () {
         this.reason = new Cancel_1.default(message);
         this.promiseResolve(this.reason);
     };
-    CancelToken.prototype.execAbort = function (resolution) {
-        return this.promise.then(resolution);
+    CancelToken.prototype.subscribeCancelEvent = function (listener) {
+        return this.promise.then(listener);
     };
     CancelToken.prototype.throwIfRequested = function () {
         if (this.reason) {

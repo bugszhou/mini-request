@@ -1,4 +1,9 @@
-export default function parseCookies(cookiesStr: string): Record<string, string>;
+/**
+ *
+ * @param {string} cookiesStr cookies字符串
+ * @param options
+ */
+export default function parseCookies(cookiesStr: any, options?: any): Record<string, string>;
 /**
  * Serialize data into a cookie header.
  *
