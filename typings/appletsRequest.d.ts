@@ -305,7 +305,7 @@ interface AppletsRequestInstance extends AppletsRequest {
  */
 type IAppletsRequestStatus = "NETWORK_ERROR" | "TIMEOUT" | "SCRIPT_ERROR" | number;
 
-interface IAppletsRequestConfig {
+interface IAppletsRequestConfig<IData = IAppletsRequest.IDataType, IParams = any> {
   baseURL?: string;
   /**
    * http request in different platform
@@ -319,11 +319,11 @@ interface IAppletsRequestConfig {
   /**
    * body data
    */
-  data?: IAppletsRequest.IDataType;
+  data?: IData;
   /**
    * query data
    */
-  params?: any;
+  params?: IParams;
   responseType?: "text" | "arraybuffer" | "json";
   timeout?: number;
   /**
