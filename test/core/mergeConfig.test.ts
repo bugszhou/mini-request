@@ -21,13 +21,13 @@ describe("mergeConfig", () => {
         head: {},
         options: {},
         post: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json; charset=utf-8",
         },
         put: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json; charset=utf-8",
         },
         patch: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json; charset=utf-8",
         },
       },
     };
@@ -77,13 +77,13 @@ describe("mergeConfig", () => {
         head: {},
         options: {},
         post: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json; charset=utf-8",
         },
         put: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json; charset=utf-8",
         },
         patch: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json; charset=utf-8",
         },
       },
     };
