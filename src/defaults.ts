@@ -3,7 +3,8 @@ import normalizeHeaderName from "./helpers/normalizeHeaderName";
 import setContentTypeIfUnset from "./helpers/setContentTypeIfUnset";
 import { isPlainObject } from "./helpers/utils";
 
-const DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
+// const DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
+const DEFAULT_CONTENT_TYPE = "application/json; charset=utf-8";
 
 function getDefaultHeaders(): any {
   const headers: any = {};
