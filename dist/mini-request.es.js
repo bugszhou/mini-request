@@ -331,7 +331,8 @@ function setContentTypeIfUnset(headers, value) {
     }
 }
 
-var DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
+// const DEFAULT_CONTENT_TYPE = "application/x-www-form-urlencoded";
+var DEFAULT_CONTENT_TYPE = "application/json; charset=utf-8";
 function getDefaultHeaders() {
     var headers = {};
     ["delete", "get", "head", "options"].forEach(function (method) {
