@@ -261,6 +261,7 @@ var Adapter = /** @class */ (function () {
                 errMsg: "Reject arguments Error",
                 data: null,
                 config: this.reqConfig,
+                response: null,
                 extra: null,
             });
         }
@@ -270,6 +271,7 @@ var Adapter = /** @class */ (function () {
             config: this.reqConfig,
             headers: options.headers || {},
             data: options.data,
+            response: isUndefined(options.response) ? null : options.response,
             extra: isUndefined(options.extra) ? null : options.extra,
         });
     };
