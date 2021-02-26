@@ -159,6 +159,7 @@ describe("Adapter", () => {
         data: null,
         config: {},
         extra: null,
+        response: null,
       });
     });
   });
@@ -177,6 +178,7 @@ describe("Adapter", () => {
         data: null,
         config: {},
         extra: null,
+        response: null,
       });
     });
   });
@@ -213,6 +215,7 @@ describe("Adapter", () => {
           },
         },
         config: {},
+        response: null,
         extra: {
           cookies: ["cookie1", "cookie2"],
         },
@@ -253,6 +256,7 @@ describe("Adapter", () => {
           },
         },
         config: {},
+        response: null,
         extra: null,
       });
       expect(config).toEqual({

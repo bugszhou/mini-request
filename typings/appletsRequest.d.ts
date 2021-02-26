@@ -136,6 +136,10 @@ declare namespace IAppletsRequest {
      */
     headers?: Record<string, any>;
     /**
+     * 响应对象
+     */
+    response?: any;
+    /**
      * response data
      */
     data?: any;
